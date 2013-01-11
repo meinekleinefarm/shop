@@ -2,7 +2,7 @@
 # Set environment to development unless something else is specified
 env = ENV["RAILS_ENV"] || "production"
 
-worker_processes 2
+worker_processes 1
 base_dir = "/var/apps/shop/production/current"
 shared_path = "/var/apps/shop/production/shared"
 working_directory base_dir
