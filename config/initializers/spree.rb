@@ -12,11 +12,13 @@ Spree.config do |config|
 #  config.default_locale = 'de'
   config.allow_ssl_in_production = false
   config.currency = 'EUR'
-  config.display_currency = true
+  config.display_currency = false
   config.default_country_id = 74
   config.currency_symbol_position = "after"
   config.prices_inc_tax = true
   config.address_requires_state = false
+  config.attachment_default_url = '/system/spree/products/:id/:style/:basename.:extension'
+  config.attachment_path = ':rails_root/public/system/spree/products/:id/:style/:basename.:extension'
 end
 
 Spree.user_class = "Spree::User"
