@@ -7,8 +7,13 @@ group :default do
 
   # Bundle edge Rails instead:
   # gem 'rails', :git => 'git://github.com/rails/rails.git'
+  gem 'haml'
+
+  # Use unicorn as the app server
+  gem 'unicorn'
 
   gem 'mysql2'
+  gem 'therubyracer'
   gem 'jquery-rails'
 end
 
@@ -34,8 +39,6 @@ end
 
 
 group :deployment do
-  # Use unicorn as the app server
-  gem 'unicorn'
   # Deploy with Capistrano
   gem 'capistrano'
 end
