@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/meinekleinefarm/spree_mkf_theme
+  revision: 4d8f9ee6c98ce85fb90c37837979804e5f538ae3
+  specs:
+    spree_mkf_theme (1.2.2)
+      spree_core (>= 1.2.2)
+
+GIT
   remote: git://github.com/spree/spree_auth_devise.git
   revision: ba356f4c71e35784c3d4765b6b8e92e3496edd24
   branch: edge
@@ -24,12 +31,6 @@ GIT
     spree_i18n (1.0.0)
       i18n (~> 0.5)
       spree (>= 1.1)
-
-PATH
-  remote: ../spree_mkf_theme
-  specs:
-    spree_mkf_theme (1.2.2)
-      spree_core (>= 1.2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -142,7 +143,7 @@ GEM
       i18n (~> 0.4)
       json
     multi_json (1.5.0)
-    multi_xml (0.5.1)
+    multi_xml (0.5.2)
     mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
