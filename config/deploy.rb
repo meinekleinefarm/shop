@@ -41,17 +41,17 @@ after "deploy:restart", "deploy:cleanup"
 namespace :unicorn do
   desc "Zero-downtime restart of Unicorn"
   task :restart, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn_mkf upgrade"
+    sudo "/etc/init.d/unicorn_shop upgrade"
   end
 
   desc "Start unicorn"
   task :start, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn_mkf start"
+    sudo "/etc/init.d/unicorn_shop start"
   end
 
   desc "Stop unicorn"
   task :stop, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn_mkf stop"
+    sudo "/etc/init.d/unicorn_shop stop"
   end
   after "deploy:restart", "unicorn:restart"
   after "deploy:start", "unicorn:start"
