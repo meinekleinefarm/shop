@@ -16,11 +16,12 @@ Spree.config do |config|
   config.default_country_id = 74
   config.currency_symbol_position = "after"
   config.prices_inc_tax = true
-  config.shipment_inc_vat = true
+  config.shipment_inc_vat = false
   config.address_requires_state = false
   config.attachment_default_url = '/system/spree/products/:id/:style/:basename.:extension'
   config.attachment_path = ':rails_root/public/system/spree/products/:id/:style/:basename.:extension'
   config.attachment_url = '/system/spree/products/:id/:style/:basename.:extension'
+  config.attachment_styles = "{\"mini\":\"48x48>\",\"small\":\"148x148>\",\"product\":\"300x240#\",\"large\":\"600x600>\"}"
 end
 
 Spree.user_class = "Spree::User"
