@@ -8,7 +8,7 @@
 Spree.config do |config|
   # Example:
   # Uncomment to override the default site name.
-  config.site_name = "MeinKleineFarm.org"
+  config.site_name = "MeineKleineFarm.org"
 #  config.default_locale = 'de'
   config.allow_ssl_in_production = false
   config.currency = 'EUR'
