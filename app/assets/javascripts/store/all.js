@@ -11,5 +11,6 @@
 //= require store/spree_promo
 
 //= require_tree .
-//= require store/spree_mkf_theme
 //= require jquery.rating
+//= require store/spree_social_products
+//= require store/spree_mkf_theme
