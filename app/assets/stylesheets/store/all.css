@@ -9,5 +9,6 @@
 
  *= require_self
  *= require_tree .
+ *= require store/spree_reviews
  *= require store/spree_mkf_theme
 */

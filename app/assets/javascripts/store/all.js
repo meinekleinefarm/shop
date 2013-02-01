@@ -12,3 +12,4 @@
 
 //= require_tree .
 //= require store/spree_mkf_theme
+//= require jquery.rating

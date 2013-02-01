@@ -14,7 +14,7 @@ group :default do
 
   gem 'mysql2'
   gem 'therubyracer'
-  gem 'jquery-rails'
+  gem 'jquery-rails', '~> 2.1.4'
 end
 
 # Gems used only for assets and not required
@@ -51,5 +51,6 @@ gem 'spree_gateway', :github => 'spree/spree_gateway'
 gem 'spree_auth_devise', :github => 'spree/spree_auth_devise', :branch => 'edge'
 gem 'spree_i18n', :git => 'git://github.com/spree/spree_i18n.git', :branch => '1-3-stable'
 gem 'spree_paypal_express', :git => 'git://github.com/spree/spree_paypal_express.git', :branch => '1-3-stable'
+gem 'spree_reviews', :git => 'git://github.com/spree/spree_reviews.git', :branch => '1-3-stable'
 gem 'spree_mkf_theme', :git => 'git://github.com/meinekleinefarm/spree_mkf_theme'
 #gem 'spree_mkf_theme', :path => '../spree_mkf_theme'
