@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 8f89b96da29b969dd766497c4cc6691b82826dd7
+  revision: 58593741efea34d3c12a883eba4e974891147ae5
   specs:
     spree_mkf_theme (1.2.2)
       spree_core (>= 1.2.2)
@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_i18n.git
-  revision: 5a6eb632a049c22267e2f5bda4119bcb6a452900
+  revision: e9e5aa19baa938cac0c82eb3cc2a0dc18159dbf7
   branch: 1-3-stable
   specs:
     spree_i18n (1.0.0)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_reviews.git
-  revision: 24ce36c98c2cb19f5959af2d6c04366f05a49ebd
+  revision: 0f21aa1282eb55aabee93891bac7652198c9575f
   branch: 1-3-stable
   specs:
     spree_reviews (1.0.0)
@@ -157,7 +157,7 @@ GEM
       rack
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.1.4)
+    jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.6)
@@ -171,12 +171,12 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.19)
+    mime-types (1.21)
     money (5.0.0)
       i18n (~> 0.4)
       json
     multi_json (1.5.0)
-    multi_xml (0.5.2)
+    multi_xml (0.5.3)
     mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -199,7 +199,7 @@ GEM
     rabl (0.7.2)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
-    rack (1.4.4)
+    rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.3)
@@ -223,11 +223,11 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (10.0.3)
-    ransack (0.7.2)
+    ransack (0.7.3)
       actionpack (~> 3.0)
       activerecord (~> 3.0)
       polyamorous (~> 0.5.0)
-    rdoc (3.12)
+    rdoc (3.12.1)
       json (~> 1.4)
     ref (1.0.2)
     sass (3.2.4)
@@ -245,19 +245,19 @@ GEM
       wasabi (~> 3.0.0)
     select2-rails (3.2.1)
       thor (~> 0.14)
-    spree (1.3.1)
-      spree_api (= 1.3.1)
-      spree_cmd (= 1.3.1)
-      spree_core (= 1.3.1)
-      spree_dash (= 1.3.1)
-      spree_promo (= 1.3.1)
-      spree_sample (= 1.3.1)
-    spree_api (1.3.1)
-      spree_core (= 1.3.1)
+    spree (1.3.2)
+      spree_api (= 1.3.2)
+      spree_cmd (= 1.3.2)
+      spree_core (= 1.3.2)
+      spree_dash (= 1.3.2)
+      spree_promo (= 1.3.2)
+      spree_sample (= 1.3.2)
+    spree_api (1.3.2)
+      spree_core (= 1.3.2)
       versioncake (= 0.4.0)
-    spree_cmd (1.3.1)
+    spree_cmd (1.3.2)
       thor (>= 0.14.6)
-    spree_core (1.3.1)
+    spree_core (1.3.2)
       activemerchant (~> 1.29.3)
       acts_as_list (= 0.1.4)
       awesome_nested_set (= 2.1.5)
@@ -266,23 +266,23 @@ GEM
       deface (>= 0.9.0)
       ffaker (~> 1.12.0)
       highline (= 1.6.11)
-      jquery-rails (~> 2.0)
+      jquery-rails (~> 2.2.0)
       kaminari (= 0.13.0)
       money (= 5.0.0)
       paperclip (~> 2.8)
       rabl (= 0.7.2)
-      rails (~> 3.2.10)
+      rails (~> 3.2.11)
       ransack (~> 0.7.2)
       select2-rails (~> 3.2)
       state_machine (= 1.1.2)
       stringex (~> 1.3.2)
-    spree_dash (1.3.1)
+    spree_dash (1.3.2)
       httparty (~> 0.8.1)
-      spree_core (= 1.3.1)
-    spree_promo (1.3.1)
-      spree_core (= 1.3.1)
-    spree_sample (1.3.1)
-      spree_core (= 1.3.1)
+      spree_core (= 1.3.2)
+    spree_promo (1.3.2)
+      spree_core (= 1.3.2)
+    spree_sample (1.3.2)
+      spree_core (= 1.3.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -324,11 +324,11 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2.1)
   haml
-  jquery-rails (~> 2.1.4)
+  jquery-rails
   mysql2
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
-  spree (= 1.3.1)
+  spree (= 1.3.2)
   spree_auth_devise!
   spree_gateway!
   spree_i18n!
