@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-migrate-1.0.0
 
 //= require store/spree_core
 //= require store/spree_promo
