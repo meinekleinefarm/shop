@@ -1,0 +1,10 @@
+%h1 Die Schweine und ihr Fleisch
+%p Oben links auf das aktuelleste Schwein klicken, um seine Wurst zu bestellen (Schwarzweißschweine wurden bereits geschlachtet). Alles ausverkauft? Gerne nehme ich Nachfragen oder Vorbestellungen per Email entgegeben.
+
+%div{ 'data-hook' => "homepage_products" }
+  %ul#schweine.inline.product-listing.row
+    = render :partial => 'schwein', :collection => @schweine
+
+- content_for :sidebar do
+  %div{'data-hook' => "homepage_sidebar_navigation"}
+    = render :partial => 'spree/shared/taxonomies'

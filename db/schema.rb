@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211151652) do
+ActiveRecord::Schema.define(:version => 20130311135459) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -442,6 +442,17 @@ ActiveRecord::Schema.define(:version => 20130211151652) do
 
   add_index "spree_roles_users", ["role_id"], :name => "index_spree_roles_users_on_role_id"
   add_index "spree_roles_users", ["user_id"], :name => "index_spree_roles_users_on_user_id"
+
+  create_table "spree_schweine", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "date_of_death"
+    t.integer  "weight"
+    t.string   "meta_keywords"
+    t.string   "meta_description"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "spree_shipments", :force => true do |t|
     t.string   "tracking"
