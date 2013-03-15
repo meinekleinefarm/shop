@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 8bcf6b7b753eb3c593c367939f4f2885d51c1e64
+  revision: 60d8435ee4028c24e12d3b251410b445e45ba8a1
   specs:
     spree_mkf_theme (1.2.2)
       spree_core (>= 1.2.2)
