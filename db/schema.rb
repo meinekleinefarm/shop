@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311135459) do
+ActiveRecord::Schema.define(:version => 20130315115832) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -450,6 +450,8 @@ ActiveRecord::Schema.define(:version => 20130311135459) do
     t.integer  "weight"
     t.string   "meta_keywords"
     t.string   "meta_description"
+    t.datetime "deleted_at"
+    t.string   "permalink"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
