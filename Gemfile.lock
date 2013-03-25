@@ -25,6 +25,15 @@ GIT
       spree_core
 
 GIT
+  remote: git://github.com/spree/spree_editor.git
+  revision: 686ba6d8771709caf27e8a525822d3d39e065ac0
+  branch: 1-3-stable
+  specs:
+    spree_editor (1.0.1)
+      spree_core (>= 1.0.0)
+      tinymce-rails (>= 3.4.7.0.1)
+
+GIT
   remote: git://github.com/spree/spree_gateway
   revision: 2c9e850010e49e27d17e9aa484719c976c4b1800
   branch: 1-3-stable
@@ -312,6 +321,10 @@ GEM
       ref
     thor (0.17.0)
     tilt (1.3.6)
+    tinymce-rails (3.5.8.1)
+      railties (>= 3.1.1)
+    tinymce-rails-langs (0.1)
+      tinymce-rails (>= 3.4.9)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -348,6 +361,7 @@ DEPENDENCIES
   spree (= 1.3.2)
   spree_auth_devise!
   spree_contact_us!
+  spree_editor!
   spree_gateway!
   spree_i18n!
   spree_mkf_theme!
@@ -356,5 +370,7 @@ DEPENDENCIES
   spree_social_products!
   spree_static_content!
   therubyracer
+  tinymce-rails
+  tinymce-rails-langs
   uglifier (>= 1.0.3)
   unicorn

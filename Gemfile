@@ -14,6 +14,8 @@ group :default do
 
   gem 'mysql2'
   gem 'jquery-rails' #, '~> 2.1.4'
+  gem 'tinymce-rails'
+  gem 'tinymce-rails-langs'
 end
 
 # Gems used only for assets and not required
@@ -52,6 +54,7 @@ gem 'spree_i18n',             :git => 'git://github.com/spree/spree_i18n.git',  
 gem 'spree_paypal_express',   :git => 'git://github.com/spree/spree_paypal_express.git',  :branch => '1-3-stable'
 gem 'spree_reviews',          :git => 'git://github.com/spree/spree_reviews.git',         :branch => '1-3-stable'
 gem 'spree_static_content',   :git => 'git://github.com/spree/spree_static_content.git',  :branch => '1-3-stable'
+gem 'spree_editor',           :git => 'git://github.com/spree/spree_editor.git',          :branch => '1-3-stable'
 gem 'spree_contact_us',       :git => 'git://github.com/jdutil/spree_contact_us.git',     :branch => '1-3-stable'
 gem 'spree_social_products',  :git => 'git://github.com/spree/spree_social_products.git', :branch => 'master'
 gem 'spree_mkf_theme',        :git => 'git://github.com/meinekleinefarm/spree_mkf_theme'
