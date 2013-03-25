@@ -25,3 +25,7 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Spree::User"
+
+SpreeEditor::Config.tap do |config|
+  config.ids = "product_description taxon_description schwein_description page_body event_body"
+end
