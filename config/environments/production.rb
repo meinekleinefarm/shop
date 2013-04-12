@@ -46,7 +46,7 @@ Shop::Application.configure do
   config.action_controller.asset_host = "http://railsausbildung.de"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( admin/jquery.tablesorter.min.js )
+  config.assets.precompile += %w( admin/jquery.tablesorter.min.js admin/advanced_reporting.js admin/advanced_reporting.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
