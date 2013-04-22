@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree-bank-transfer
-  revision: 518b784a8983d0d9c5aab088d30716b7fcc88cb8
+  revision: 600a48af2cdc1d977fd1c9adce40dd8eedc7c7e8
   branch: master
   specs:
     spree_bank_transfer (1.0.0)
