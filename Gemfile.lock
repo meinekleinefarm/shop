@@ -17,8 +17,16 @@ GIT
       spree_core (~> 1.3.1)
 
 GIT
+  remote: git://github.com/meinekleinefarm/spree-bank-transfer
+  revision: 518b784a8983d0d9c5aab088d30716b7fcc88cb8
+  branch: master
+  specs:
+    spree_bank_transfer (1.0.0)
+      spree_core (~> 1.3.2)
+
+GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 7fceba06a9b43884f252e3d8eb8381039a82df4f
+  revision: 6bb634c51c2b899360525b33cad8ca9e844d30a3
   specs:
     spree_mkf_theme (1.2.2)
       spree_core (>= 1.2.2)
@@ -186,7 +194,7 @@ GEM
       builder (>= 2.1.2)
     haml (3.1.7)
     highline (1.6.11)
-    hike (1.2.1)
+    hike (1.2.2)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
@@ -210,7 +218,7 @@ GEM
       treetop (~> 1.4.8)
     mailfactory (1.4.0)
       mime-types (>= 1.13.1)
-    mime-types (1.21)
+    mime-types (1.22)
     money (5.0.0)
       i18n (~> 0.4)
       json
@@ -344,8 +352,8 @@ GEM
     therubyracer (0.11.1)
       libv8 (~> 3.11.8.7)
       ref
-    thor (0.17.0)
-    tilt (1.3.6)
+    thor (0.18.1)
+    tilt (1.3.7)
     tinymce-rails (3.5.8.1)
       railties (>= 3.1.1)
     tinymce-rails-langs (0.1)
@@ -387,6 +395,7 @@ DEPENDENCIES
   spree (= 1.3.2)
   spree_advanced_reporting!
   spree_auth_devise!
+  spree_bank_transfer!
   spree_contact_us!
   spree_editor!
   spree_gateway!
