@@ -81,7 +81,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_paypal_express.git
-  revision: 483f6ababa9c8a1c574aad0a948c96cc21a591db
+  revision: d63b1c339bc75761ccd3026e233724bad260ca64
   branch: 1-3-stable
   specs:
     spree_paypal_express (1.2.0)
