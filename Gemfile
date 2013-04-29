@@ -58,7 +58,10 @@ gem 'spree_editor',             :git => 'git://github.com/spree/spree_editor.git
 gem 'spree_contact_us',         :git => 'git://github.com/jdutil/spree_contact_us.git',             :branch => '1-3-stable'
 gem 'spree_advanced_reporting', :git => 'git://github.com/greinacker/spree_advanced_reporting.git', :branch => '1-3-stable'
 gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',         :branch => 'master'
+
 gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-bank-transfer',     :branch => 'master'
-# gem 'spree_bank_transfer',      :path => '../spree-bank-transfer'
+gem 'spree_flat_in_range',      :git => 'git://github.com/meinekleinefarm/spree_flat_in_range.git',          :branch => 'master'
 gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme'
-# gem 'spree_mkf_theme',        :path => '../spree_mkf_theme'
+#gem 'spree_bank_transfer',      :path => '../spree-bank-transfer'
+#gem 'spree_flat_in_range',      :path => '../spree_flat_in_range'
+#gem 'spree_mkf_theme',          :path => '../spree_mkf_theme'
