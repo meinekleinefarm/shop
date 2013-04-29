@@ -90,7 +90,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_reviews.git
-  revision: 0f21aa1282eb55aabee93891bac7652198c9575f
+  revision: 8deca48aadf4350d54ecae581614e76e172187a1
   branch: 1-3-stable
   specs:
     spree_reviews (1.0.0)
