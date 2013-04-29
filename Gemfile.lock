@@ -71,11 +71,12 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_i18n.git
-  revision: e9e5aa19baa938cac0c82eb3cc2a0dc18159dbf7
+  revision: 3dba87cec2fca8c835c9491b51dc536bceb6a872
   branch: 1-3-stable
   specs:
     spree_i18n (1.0.0)
       i18n (~> 0.5)
+      rails-i18n
       spree_core (>= 1.1)
 
 GIT
@@ -227,7 +228,7 @@ GEM
       treetop (~> 1.4.8)
     mailfactory (1.4.0)
       mime-types (>= 1.13.1)
-    mime-types (1.22)
+    mime-types (1.23)
     money (5.0.0)
       i18n (~> 0.4)
       json
@@ -273,6 +274,8 @@ GEM
       activesupport (= 3.2.11)
       bundler (~> 1.0)
       railties (= 3.2.11)
+    rails-i18n (0.7.3)
+      i18n (~> 0.5)
     railties (3.2.11)
       actionpack (= 3.2.11)
       activesupport (= 3.2.11)
@@ -297,7 +300,7 @@ GEM
       mailfactory (>= 1.2.3)
       rubyzip (>= 0.9.1)
       ruport (>= 1.6.0)
-    sass (3.2.7)
+    sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -379,7 +382,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uuidtools (2.1.3)
+    uuidtools (2.1.4)
     versioncake (0.4.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
