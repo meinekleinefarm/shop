@@ -12,7 +12,8 @@ group :default do
   # Use unicorn as the app server
   gem 'unicorn'
 
-  gem 'mysql2'
+  # gem 'mysql2'
+  gem 'pg'
   gem 'jquery-rails' #, '~> 2.1.4'
   gem 'tinymce-rails'
   gem 'tinymce-rails-langs'
