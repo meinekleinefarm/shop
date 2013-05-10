@@ -43,7 +43,7 @@ Shop::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "http://railsausbildung.de"
+  # config.action_controller.asset_host = "http://asset%d.meinekleinefarm.org"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( admin/jquery.tablesorter.min.js admin/advanced_reporting.js admin/advanced_reporting.css )
