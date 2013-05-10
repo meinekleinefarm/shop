@@ -232,6 +232,7 @@ GEM
       treetop (~> 1.4.8)
     mailfactory (1.4.0)
       mime-types (>= 1.13.1)
+    memcache-client (1.8.5)
     mime-types (1.23)
     money (5.0.0)
       i18n (~> 0.4)
@@ -405,6 +406,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   haml
   jquery-rails
+  memcache-client
   pg
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
