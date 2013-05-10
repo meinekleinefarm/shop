@@ -17,6 +17,7 @@ group :default do
   gem 'jquery-rails' #, '~> 2.1.4'
   gem 'tinymce-rails'
   gem 'tinymce-rails-langs'
+  gem 'memcache-client'
 end
 
 # Gems used only for assets and not required
