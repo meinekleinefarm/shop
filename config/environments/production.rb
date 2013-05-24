@@ -43,13 +43,17 @@ Shop::Application.configure do
   # config.cache_store = :mem_cache_store
   # default is:
   # config.cache_store = :file_store, "tmp/cache/"
-  config.cache_store = :mem_cache_store, 'localhost', { :namespace => "mkf_production/#{Rails.env}/",
-                                                        :c_threshold => 10_000,
-                                                        :compression => true,
-                                                        :debug => Rails.env.development?,
-                                                        :readonly => false,
-                                                        :urlencode => false
-                                                      }
+  memcache_yml = Rails.root.join('config', 'memcached.yml')
+  memcache_config = YAML.load(File.read(memcache_yml))[Rails.env || 'development']
+
+  config.cache_store = :mem_cache_store, memcache_config['servers'], {
+    :namespace => "mkf/#{Rails.env}/",
+    :c_threshold => 10_000,
+    :compression => true,
+    :debug => Rails.env.development?,
+    :readonly => false,
+    :urlencode => false
+  }
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
