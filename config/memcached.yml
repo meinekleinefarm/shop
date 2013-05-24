@@ -1,0 +1,5 @@
+development:
+  ttl: 1800
+  memory: 32
+  servers:
+    - localhost:11211
