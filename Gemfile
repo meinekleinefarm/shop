@@ -58,7 +58,7 @@ gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.gi
 gem 'spree_static_content',     :git => 'git://github.com/spree/spree_static_content.git',          :branch => '1-3-stable'
 gem 'spree_editor',             :git => 'git://github.com/spree/spree_editor.git',                  :branch => '1-3-stable'
 gem 'spree_contact_us',         :git => 'git://github.com/jdutil/spree_contact_us.git',             :branch => '1-3-stable'
-gem 'spree_advanced_reporting', :git => 'git://github.com/greinacker/spree_advanced_reporting.git', :branch => '1-3-stable'
+gem 'spree_advanced_reporting', :git => 'git://github.com/iloveitaly/spree_advanced_reporting.git', :branch => 'master'
 gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',         :branch => 'master'
 
 gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-bank-transfer',     :branch => 'master'
