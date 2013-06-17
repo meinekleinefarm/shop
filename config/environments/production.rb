@@ -68,11 +68,20 @@ Shop::Application.configure do
   # Add the fonts path
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
+  # Add the image path
+  config.assets.paths << Rails.root.join('app', 'assets', 'images')
+
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( admin/jquery.tablesorter.min.js admin/advanced_reporting.js admin/advanced_reporting.css )
 
-  # Precompile additional assets
+  # Precompile additional fonts
   config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+  # Precompile additional image
+  config.assets.precompile += %w( apple-touch-icon*.png)
+
+
+
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
