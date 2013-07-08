@@ -1,9 +1,9 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe Spree::Product do
+describe Spree::User do
 
-  subject { FactoryGirl.build(:product) }
+  subject { FactoryGirl.build(:admin) }
   
   context :validations do
     
