@@ -26,6 +26,7 @@ test:
   encoding: utf8
   reconnect: false
   database: shop_test
+  min_messages: warning
   pool: 5
   username: postgres
   password:
