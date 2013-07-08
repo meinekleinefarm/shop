@@ -7,12 +7,11 @@ feature "Sign in", %q{
 } do
 
   background do
-    FactoryGirl.create(:spree_order)
+    FactoryGirl.create(:order)
   end
 
   scenario "Sign in" do
     visit '/'
-    page.should have_content('Two')
   end
 
 end

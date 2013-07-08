@@ -37,6 +37,8 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'guard-rspec'
+  gem 'guard-spork'
 end
 
 
