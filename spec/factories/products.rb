@@ -7,8 +7,12 @@ FactoryGirl.define do
     available_on { 10.days.ago }
     permalink 'leberwurst'
     association :tax_category, factory: :reduced_tax_category
+    price 4.0
     shipping_category
     on_demand false
-    price 4.0
+    
+    after :create do |product|
+      product.master.images = [ FactoryGirl.create(:image)]
+    end
   end
 end
