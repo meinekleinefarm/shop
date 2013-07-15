@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617100843) do
+ActiveRecord::Schema.define(:version => 20130624141220) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -109,6 +109,23 @@ ActiveRecord::Schema.define(:version => 20130617100843) do
   end
 
   add_index "spree_configurations", ["name", "type"], :name => "index_spree_configurations_on_name_and_type"
+
+  create_table "spree_contents", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "title"
+    t.text     "body"
+    t.string   "link"
+    t.string   "link_text"
+    t.string   "context"
+    t.boolean  "hide_title",              :default => false
+    t.integer  "position",                :default => 999
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
 
   create_table "spree_countries", :force => true do |t|
     t.string  "iso_name"
@@ -261,24 +278,17 @@ ActiveRecord::Schema.define(:version => 20130617100843) do
 
   create_table "spree_pages", :force => true do |t|
     t.string   "title"
-    t.text     "body"
-    t.string   "slug"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.boolean  "show_in_header",           :default => false, :null => false
-    t.boolean  "show_in_footer",           :default => false, :null => false
-    t.string   "foreign_link"
-    t.integer  "position",                 :default => 1,     :null => false
-    t.boolean  "visible",                  :default => true
-    t.string   "meta_keywords"
-    t.string   "meta_description"
-    t.string   "layout"
-    t.boolean  "show_in_sidebar",          :default => false, :null => false
+    t.string   "nav_title"
+    t.string   "path"
     t.string   "meta_title"
-    t.boolean  "render_layout_as_partial", :default => false
+    t.string   "meta_description"
+    t.string   "meta_keywords"
+    t.integer  "position",         :default => 999
+    t.boolean  "accessible",       :default => true
+    t.boolean  "visible",          :default => true
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
-
-  add_index "spree_pages", ["slug"], :name => "index_pages_on_slug"
 
   create_table "spree_payment_methods", :force => true do |t|
     t.string   "type"
