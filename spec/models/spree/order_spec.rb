@@ -1,26 +1,33 @@
 # encoding: UTF-8
 require 'spec_helper'
 describe Spree::Order do
-  
+
   subject do
     FactoryGirl.build(:order)
   end
-  
-  let :ship_address do
-    FactoryGirl.create(:address)
+
+  context :validations do
+
+    it { should be_valid }
+
   end
 
-  let :bill_address do
-    FactoryGirl.create(:address)
+  context :new_order do
+
+    subject do
+      FactoryGirl.build(:new_order)
+    end
+
+    it "should render csv" do
+      subject.to_csv.should eql ""
+    end
   end
-  
-  context :validations do
-    
-    it { should be_valid }
-    
-  end
-  
-  context :csv do
+
+  context :completed_order do
+    subject do
+      FactoryGirl.build(:completed_order)
+    end
+
     it "should render csv" do
       subject.to_csv.should eql ""
     end

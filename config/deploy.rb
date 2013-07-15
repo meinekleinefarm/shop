@@ -16,16 +16,16 @@ set :default_run_options, :pty => true # or else you'll get "sorry, you must hav
 
 set :ssh_options, :keys => [ File.expand_path("~/.ssh/mkf_rsa") ], :forward_agent => true
 
-set :user, 'mkf'
+set :user, 'rails'
 
 after  'deploy:update_code',  'deploy:symlink_configs'
 
-role :web, "176.9.63.170"                          # Your HTTP server, Apache/etc
-role :app, "176.9.63.170"                          # This may be the same as your `Web` server
-role :db,  "176.9.63.170", :primary => true # This is where Rails migrations will run
+role :web, "144.76.71.176"                          # Your HTTP server, Apache/etc
+role :app, "144.76.71.176"                          # This may be the same as your `Web` server
+role :db,  "144.76.71.176", :primary => true # This is where Rails migrations will run
 
 set :port, 22022
-set :deploy_to, "/var/apps/shop/production"
+set :deploy_to, "/var/apps/mkf/production"
 
 set :default_environment, {
   'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games'
@@ -41,17 +41,17 @@ after "deploy:restart", "deploy:cleanup"
 namespace :unicorn do
   desc "Zero-downtime restart of Unicorn"
   task :restart, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn_shop upgrade"
+    sudo "/etc/init.d/mkf_production upgrade"
   end
 
   desc "Start unicorn"
   task :start, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn_shop start"
+    sudo "/etc/init.d/mkf_production start"
   end
 
   desc "Stop unicorn"
   task :stop, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn_shop stop"
+    sudo "/etc/init.d/mkf_production stop"
   end
   after "deploy:restart", "unicorn:restart"
   after "deploy:start", "unicorn:start"
