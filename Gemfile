@@ -80,7 +80,7 @@ gem 'spree_essential_cms',      :git => 'git://github.com/xmpolaris/spree_essent
 gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',         :branch => 'master'
 
 gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-bank-transfer',     :branch => 'master'
-gem 'spree_flat_in_range',      :git => 'git://github.com/meinekleinefarm/spree_flat_in_range.git', :branch => 'master'
+# gem 'spree_flat_in_range',      :git => 'git://github.com/meinekleinefarm/spree_flat_in_range.git', :branch => 'master'
 gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme',         :branch => 'master'
 #gem 'spree_bank_transfer',      :path => '../spree-bank-transfer'
 #gem 'spree_flat_in_range',      :path => '../spree_flat_in_range'
