@@ -19,7 +19,7 @@ Spree.config do |config|
   config.default_country_id = 74
   config.currency_symbol_position = "after"
   config.prices_inc_tax = true
-  config.currency_decimal_mark = '.'
+  config.currency_decimal_mark = ','
   config.currency_thousands_separator = '.'
   config.shipment_inc_vat = false
   config.address_requires_state = false
