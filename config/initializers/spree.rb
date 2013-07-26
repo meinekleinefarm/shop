@@ -9,6 +9,9 @@ Spree.config do |config|
   # Example:
   # Uncomment to override the default site name.
   config.site_name = "MeineKleineFarm.org"
+  config.site_url = "shop.meinekleinefarm.org"
+  config.default_meta_keywords = ""
+  config.default_meta_description = ""
 #  config.default_locale = 'de'
   config.allow_ssl_in_production = true
   config.currency = 'EUR'
@@ -16,6 +19,8 @@ Spree.config do |config|
   config.default_country_id = 74
   config.currency_symbol_position = "after"
   config.prices_inc_tax = true
+  config.currency_decimal_mark = '.'
+  config.currency_thousands_separator = '.'
   config.shipment_inc_vat = false
   config.address_requires_state = false
   config.attachment_default_url = '/system/spree/products/:id/:style/:basename.:extension'
