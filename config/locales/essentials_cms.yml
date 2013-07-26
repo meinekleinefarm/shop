@@ -1,0 +1,45 @@
+de:
+
+  successfully_created: "%{resource} wurde erfolgreich erzeugt!"
+  successfully_removed: "%{resource} wurde erfolgreich entfernt!"
+  successfully_updated: "%{resource} wurde erfolgreich aktualisiert!"
+
+  essentials:
+    parsed_with: Geparsed mit
+
+  activerecord:
+    attributes:
+      order:
+        completed_at: Abgeschlossen am
+    errors:
+      messages:
+        invalid_date_time: ist ein ungültiges Datum.
+
+  upload:
+    model_name: Upload
+    file_name: Dateiname
+    size: Größe
+
+  # spree hack
+  first_name_start: "Vorname beginnt mit"
+  last_name_start: "Nachname beginnt mit"
+
+  spree:
+    admin:
+      shared:
+        contents_tab:
+          content: Content
+
+      subnav:
+        uploads: Uploads
+
+      uploads:
+        new:
+          new_upload: Neuer Upload
+        edit:
+          edit_upload: Edit Upload
+          preview: Preview
+          link: Link
+        index:
+          listing_uploads: Listing Uploads
+          new_upload: Upload a file
