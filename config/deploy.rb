@@ -1,4 +1,4 @@
-set :application, "shop"
+set :application, "mkf_production"
 set :repository,  "git@github.com:meinekleinefarm/shop.git"
 
 set :branch, ENV['BRANCH'] || "master"
