@@ -90,7 +90,18 @@ describe Spree::Order do
         "Nein",
         "Nein",
         "Nein",
-        "0.0"
+        "0.0",
+        "0.0",
+        "0.0",
+        "",
+        "0.0",
+        "0.0",
+        "0.0",
+        subject.created_at.strftime("%Y-%m-%d"),
+        subject.created_at.strftime("%H:%M:%S"),
+        subject.updated_at.strftime("%Y-%m-%d"),
+        subject.updated_at.strftime("%H:%M:%S"),
+        "ProduktID: 3 Rotwurst (Schwein 1) 1 Glas / 200g 1 x 3,50 EUR = 3,50 EUR ----------------------------- ProduktID: 4 Sülze (Schwein 1) 1 Glas / 200g 2 x 3,50 EUR = 7,00 EUR ----------------------------- Zwischensumme: 10,50 EUR Verpackungs- und Lieferkosten: 5,90 EUR ----------------------------- Gesamt: 16,40 EUR ----------------------------- -----------------------------   Gemäß § 19 Umsatzsteuergesetz erheben wir als Kleinunternehmen keine Umsatzsteuer."
       ]
     end
   end

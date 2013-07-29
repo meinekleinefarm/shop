@@ -124,11 +124,10 @@ Spree::Order.class_eval do
       total.to_s,
       "0.0",
       "0.0",
-      created_at.to_date.to_s(:short), #"2012-01-06"
-      created_at.to_time.to_s(:csv), #"09:43:36"
-      created_at.to_date.to_s(:short), #"2012-01-06"
-      updated_at.to_time.to_s(:csv), #"09:43:36"
-
+      created_at.strftime("%Y-%m-%d"), #"2012-01-06"
+      created_at.strftime("%H:%M:%S"), #"09:43:36"
+      created_at.strftime("%Y-%m-%d"), #"2012-01-06"
+      updated_at.strftime("%H:%M:%S") #"09:43:36"
     ]
   end
 
