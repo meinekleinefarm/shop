@@ -3,8 +3,6 @@
 require 'csv'
 Spree::Order.class_eval do
 
-  delegate :email, :to => :user
-
   def status
     shipment_status || payment_status || order_status
   end
@@ -91,6 +89,10 @@ Spree::Order.class_eval do
 
   def shipping_total
     shipment.try(:cost)
+  end
+
+  def email
+    user.try(:email)
   end
 
   def to_csv
