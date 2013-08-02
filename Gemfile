@@ -19,6 +19,8 @@ group :default do
   gem 'tinymce-rails-langs'
   gem 'memcache-client'
   gem 'airbrake'
+  gem 'i18n'
+  gem 'rails-i18n'
 end
 
 # Gems used only for assets and not required
