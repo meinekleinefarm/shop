@@ -16,3 +16,4 @@
 //= require store/spree_social_products
 //= require store/spree_mkf_theme
 //= require select2
+//= require store/spree_essential_menus

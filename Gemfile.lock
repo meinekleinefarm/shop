@@ -15,8 +15,18 @@ GIT
       spree_core (~> 1.3.2)
 
 GIT
+  remote: git://github.com/meinekleinefarm/spree_essential_menus.git
+  revision: 0e74e2d7989c73864ed7f904c7c9442f4b23505a
+  specs:
+    spree_essential_menus (0.2.5)
+      acts_as_tree (~> 1.1.0)
+      coffee-rails
+      haml
+      spree_essentials (>= 0.5.0)
+
+GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: b8733b3dbf96524b672d00c8fee1810ec0937f60
+  revision: afe574d1d06459081b5fb3727999aeeca0031388
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -145,6 +155,8 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     acts_as_list (0.1.4)
+    acts_as_tree (1.1.0)
+      activerecord (>= 3.0.0)
     airbrake (3.1.12)
       activesupport
       builder
@@ -474,6 +486,7 @@ DEPENDENCIES
   spree_contact_us!
   spree_editor!
   spree_essential_cms!
+  spree_essential_menus!
   spree_essentials!
   spree_gateway!
   spree_i18n!
