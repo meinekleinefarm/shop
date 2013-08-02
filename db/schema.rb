@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624141220) do
+ActiveRecord::Schema.define(:version => 20130802095160) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -219,6 +219,30 @@ ActiveRecord::Schema.define(:version => 20130624141220) do
     t.boolean  "active",      :default => true
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "spree_menu_bars", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "css_class"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "spree_menus", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "menu_bar_id"
+    t.integer  "sequence"
+    t.integer  "parent_id"
+    t.string   "link_text"
+    t.string   "url"
+    t.boolean  "visible",                 :default => true
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "menu_image_file_name"
+    t.string   "menu_image_content_type"
+    t.integer  "menu_image_file_size"
+    t.datetime "menu_image_updated_at"
   end
 
   create_table "spree_option_types", :force => true do |t|

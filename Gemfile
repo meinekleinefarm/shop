@@ -76,13 +76,19 @@ gem 'spree_paypal_express',     :git => 'git://github.com/spree/spree_paypal_exp
 gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.git',                 :branch => '1-3-stable'
 gem 'spree_editor',             :git => 'git://github.com/spree/spree_editor.git',                  :branch => '1-3-stable'
 gem 'spree_contact_us',         :git => 'git://github.com/jdutil/spree_contact_us.git',             :branch => '1-3-stable'
+gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',         :branch => 'master'
 gem 'spree_essentials',         :git => 'git://github.com/xmpolaris/spree_essentials',              :branch => '1.3.x'
 gem 'spree_essential_cms',      :git => 'git://github.com/xmpolaris/spree_essential_cms',           :branch => '1.3.x'
-gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',         :branch => 'master'
+
+gem 'spree_essential_menus',    :git => 'git://github.com/meinekleinefarm/spree_essential_menus.git'
+#gem 'spree_essential_menus',    :path => '../spree_essential_menus'
 
 gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-bank-transfer',     :branch => 'master'
 #gem 'spree_bank_transfer',      :path => '../spree-bank-transfer'
-# gem 'spree_flat_in_range',      :git => 'git://github.com/meinekleinefarm/spree_flat_in_range.git', :branch => 'master'
-#gem 'spree_flat_in_range',      :path => '../spree_flat_in_range'
+
 gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme',         :branch => 'master'
 #gem 'spree_mkf_theme',          :path => '../spree_mkf_theme'
+
+# gem 'spree_flat_in_range',      :git => 'git://github.com/meinekleinefarm/spree_flat_in_range.git', :branch => 'master'
+#gem 'spree_flat_in_range',      :path => '../spree_flat_in_range'
+
