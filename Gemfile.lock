@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree-bank-transfer
-  revision: 600a48af2cdc1d977fd1c9adce40dd8eedc7c7e8
+  revision: dfe8e254963e3cd5b9365b944847b8d772f39fc7
   branch: master
   specs:
     spree_bank_transfer (1.0.0)
@@ -473,10 +473,12 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   haml
+  i18n
   jquery-rails
   memcache-client
   pg
   rails (= 3.2.13)
+  rails-i18n
   rspec-rails
   ruby-graphviz
   sass-rails (~> 3.2.3)
