@@ -129,7 +129,8 @@ Spree::Order.class_eval do
       created_at.strftime("%Y-%m-%d"), #"2012-01-06"
       created_at.strftime("%H:%M:%S"), #"09:43:36"
       created_at.strftime("%Y-%m-%d"), #"2012-01-06"
-      updated_at.strftime("%H:%M:%S") #"09:43:36"
+      updated_at.strftime("%H:%M:%S"), #"09:43:36"
+      line_items.map(&:to_csv).join(' ----------------------------- ')
     ]
   end
 
