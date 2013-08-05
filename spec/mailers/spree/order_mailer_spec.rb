@@ -10,6 +10,12 @@ describe Spree::OrderMailer do
       completed_at: 1.day.ago
     )
   }
+
+  let!(:line_item) {
+    (rand(3) + 3 ).times do |i|
+      FactoryGirl.create(:line_item, :order => order)
+    end
+  }
   context "confirmation mail" do
 
     let(:mail) { Spree::OrderMailer.confirm_email(order) }
@@ -33,6 +39,14 @@ describe Spree::OrderMailer do
     it "renders the body as text and html" do
       mail.body.encoded.should include("Content-Type: text/plain")
       mail.body.encoded.should include("Content-Type: text/html")
+    end
+
+    # ensure that mail contains all ordered items
+    it 'renders the ordered items' do
+      order.line_items.each do |item|
+        mail.body.encoded.should include(item.name)
+      end
+
     end
   end
 end
