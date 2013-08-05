@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: bb9683fc6c6169f3dcfde3ea5d1d0675a52d04a3
+  revision: 1ac597a270362c3ec691f2d2946651b447830fae
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -132,7 +132,7 @@ GEM
     active_utils (2.0.0)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.35.1)
+    activemerchant (1.36.0)
       active_utils (>= 1.0.2)
       activesupport (>= 2.3.14)
       builder (>= 2.0.0)
@@ -281,7 +281,7 @@ GEM
     money (5.0.0)
       i18n (~> 0.4)
       json
-    multi_json (1.7.7)
+    multi_json (1.7.8)
     multi_xml (0.5.4)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
