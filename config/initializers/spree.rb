@@ -10,6 +10,7 @@ Spree.config do |config|
   # Uncomment to override the default site name.
   config.site_name = "MeineKleineFarm.org"
   config.site_url = "shop.meinekleinefarm.org"
+  config.emails_sent_from = "shop@meinekleinefarm.org"
   config.default_meta_keywords = ""
   config.default_meta_description = ""
 #  config.default_locale = 'de'
