@@ -24,7 +24,9 @@ describe Spree::Order do
 
     before :each do
       subject.save!
-      FactoryGirl.create(:line_item, :order => subject)
+      5.times do |i|
+        FactoryGirl.create(:line_item, :order => subject)
+      end
     end
 
     #{
@@ -68,7 +70,7 @@ describe Spree::Order do
 
     it "should render csv" do
       subject.to_csv.should eql [
-        "1",
+        subject.id.to_s,
         nil,
         "Herr/Frau",
         "John",
