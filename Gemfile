@@ -90,7 +90,3 @@ gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-
 
 gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme',         :branch => 'master'
 #gem 'spree_mkf_theme',          :path => '../spree_mkf_theme'
-
-# gem 'spree_flat_in_range',      :git => 'git://github.com/meinekleinefarm/spree_flat_in_range.git', :branch => 'master'
-#gem 'spree_flat_in_range',      :path => '../spree_flat_in_range'
-
