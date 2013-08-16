@@ -18,7 +18,7 @@ group :default do
   gem 'tinymce-rails'
   gem 'tinymce-rails-langs'
   gem 'memcache-client'
-  gem 'airbrake'
+  # gem 'airbrake'
   gem 'i18n'
   gem 'rails-i18n'
 end
@@ -37,7 +37,7 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '3.6.0'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'guard-rspec'
