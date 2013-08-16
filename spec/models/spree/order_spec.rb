@@ -11,7 +11,7 @@ describe Spree::Order do
   end
 
   subject do
-    FactoryGirl.build(:order, :total => 120.0, bill_address: bill_address, ship_address: ship_address)
+    FactoryGirl.create(:order, :total => 120.0, bill_address: bill_address, ship_address: ship_address)
   end
 
   context :validations do
@@ -22,12 +22,7 @@ describe Spree::Order do
 
   context :completed_order do
 
-    before :each do
-      subject.save!
-      5.times do |i|
-        FactoryGirl.create(:line_item, :order => subject)
-      end
-    end
+    subject = FactoryGirl.create(:order_with_inventory_unit_shipped)
 
     #{
     # id
@@ -69,6 +64,15 @@ describe Spree::Order do
     #}
 
     it "should render csv" do
+
+      5.times do |i|
+        FactoryGirl.create(:line_item, :order => subject)
+        FactoryGirl.create(:inventory_unit, :order => subject, :state => 'shipped')
+      end
+
+
+      subject.line_items.size.should eql 5
+
       subject.to_csv.should eql [
         subject.id.to_s,
         nil,

@@ -19,6 +19,9 @@ Shop::Application.configure do
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
+  # available log levels are: :debug, :info, :warn, :error, :fatal, and :unknown,
+  config.log_level = :debug
+
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 

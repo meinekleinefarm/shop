@@ -3,6 +3,18 @@
 require 'csv'
 Spree::Order.class_eval do
 
+  def total_weight
+    line_items.inject(0) do |weight, line_item|
+      weight + (line_item.variant.weight ? (line_item.quantity * line_item.variant.weight.to_i) : 0)
+    end
+  end
+
+  def net_weight
+    line_items.inject(0) do |weight, line_item|
+      weight + (line_item.product.net_weight ? (line_item.quantity * line_item.product.net_weight.to_i) : 0)
+    end
+  end
+
   def status
     shipment_status || payment_status || order_status
   end
@@ -56,7 +68,11 @@ Spree::Order.class_eval do
   end
 
   def billing_street
-    billing_address.try(:address1)
+    billing_address.try(:address1).gsub(/^([a-zäöüß\s\d.,-]+?)\s*([\d\s]+(?:\s?[-|+\/]\s?\d+)?\s*[a-z]?)?$/i,'\1') rescue nil
+  end
+
+  def billing_street_nr
+    billing_address.try(:address1).gsub(/^([a-zäöüß\s\d.,-]+?)\s*([\d\s]+(?:\s?[-|+\/]\s?\d+)?\s*[a-z]?)?$/i,'\2') rescue nil
   end
 
   def billing_phone
@@ -79,8 +95,16 @@ Spree::Order.class_eval do
     shipping_address.try(:city)
   end
 
+  def shipping_zip
+    shipping_address.try(:zipcode)
+  end
+
   def shipping_street
-    shipping_address.try(:address1)
+    shipping_address.try(:address1).gsub(/^([a-zäöüß\s\d.,-]+?)\s*([\d\s]+(?:\s?[-|+\/]\s?\d+)?\s*[a-z]?)?$/i,'\1') rescue nil
+  end
+
+  def shipping_street_nr
+    shipping_address.try(:address1).gsub(/^([a-zäöüß\s\d.,-]+?)\s*([\d\s]+(?:\s?[-|+\/]\s?\d+)?\s*[a-z]?)?$/i,'\2') rescue nil
   end
 
   def shipping_phone
@@ -95,6 +119,18 @@ Spree::Order.class_eval do
     user.try(:email)
   end
 
+  def price_products_total_with_tax
+    Spree::Money.new(item_total).money
+  end
+
+  def price_products_total_tax
+    line_items.map(&:tax_amount).sum
+  end
+
+  def price_products_total_without_tax
+    price_products_total_with_tax - price_products_total_tax
+  end
+
   def to_csv
     [
       id.to_s,
@@ -105,27 +141,28 @@ Spree::Order.class_eval do
       billing_zip,
       billing_city,
       billing_street,
-      nil,
+      billing_street_nr,
       email,
       billing_phone,
       shipping_salutation,
       shipping_first_name,
       shipping_last_name,
+      shipping_zip,
       shipping_city,
       shipping_street,
-      nil,
+      shipping_street_nr,
       email,
       shipping_phone,
       'Nein',
       'Nein',
       'Nein',
-      total.to_s,
-      item_total.to_s,
-      (total - item_total).to_s,
-      shipping_total.to_s,
-      total.to_s,
-      "0.0",
-      "0.0",
+      price_products_total_with_tax.to_f.to_s, #price_products_total_with_tax
+      price_products_total_without_tax.to_f.to_s, #price_products_total_without_tax
+      price_products_total_tax.to_f.to_s, #price_products_total_tax
+      shipping_total.to_f.to_s, #price_shipping_total
+      total.to_f.to_s, #price_total
+      net_weight, #weight_total_in_gram
+      total_weight, #weight_total_in_gram_brutto
       created_at.strftime("%Y-%m-%d"), #"2012-01-06"
       created_at.strftime("%H:%M:%S"), #"09:43:36"
       created_at.strftime("%Y-%m-%d"), #"2012-01-06"
@@ -135,7 +172,8 @@ Spree::Order.class_eval do
   end
 
   # EXAMPLE:
-  # "3";"Abgeschlossen";"Frau";"Ursula";"Enzian";"99734";"Nordhausen";"Stolberger Str. 83";"";"neru52@web.de";"03631/4735465";"";"";"";"";"";"";"";"";"";"Ja";"Nein";"Nein";"10.50";"8.51";"2.00";"5.90";"16.40";"600";"0";"2012-01-06";"09:43:36";"2012-02-16";"13:21:23";"ProduktID: 3 Rotwurst (Schwein 1) 1 Glas / 200g 1 x 3,50 EUR = 3,50 EUR ----------------------------- ProduktID: 4 Sülze (Schwein 1) 1 Glas / 200g 2 x 3,50 EUR = 7,00 EUR ----------------------------- Zwischensumme: 10,50 EUR Verpackungs- und Lieferkosten: 5,90 EUR ----------------------------- Gesamt: 16,40 EUR ----------------------------- -----------------------------   Gemäß § 19 Umsatzsteuergesetz erheben wir als Kleinunternehmen keine Umsatzsteuer. "
+  # id ;status         ;billing_salutation;billing_first_name;billing_last_name;billing_zip;billing_city;billing_street      ;billing_street_nr;billing_email  ;billing_phone  ;shipping_salutation;shipping_first_name;shipping_last_name;shipping_zip;shipping_city;shipping_street;shipping_street_nr;shipping_email;shipping_phone;shipping_address_is_billing_address;is_gift;newsletter_subscription;price_products_total_with_tax;price_products_total_without_tax;price_products_total_tax;price_shipping_total;price_total;weight_total_in_gram;weight_total_in_gram_brutto;created_at_date;created_at_time;updated_at_date;updated_at_time;cart_text;comment
+  # "3";"Abgeschlossen";"Frau"            ;"Ursula"          ;"Enzian"         ;"99734"    ;"Nordhausen";"Stolberger Str. 83";""               ;"neru52@web.de";"03631/4735465";""                 ;""                 ;""                ;""          ;""           ;""             ;""                ;""            ;""            ;"Ja"                               ;"Nein" ;"Nein"                 ;"10.50"                      ;"8.51"                          ;"2.00"                  ;"5.90"              ;"16.40"    ;"600"               ;"0"                        ;"2012-01-06"   ;"09:43:36"     ;"2012-02-16"   ;"13:21:23"     ;"ProduktID: 3 Rotwurst (Schwein 1) 1 Glas / 200g 1 x 3,50 EUR = 3,50 EUR ----------------------------- ProduktID: 4 Sülze (Schwein 1) 1 Glas / 200g 2 x 3,50 EUR = 7,00 EUR ----------------------------- Zwischensumme: 10,50 EUR Verpackungs- und Lieferkosten: 5,90 EUR ----------------------------- Gesamt: 16,40 EUR ----------------------------- -----------------------------   Gemäß § 19 Umsatzsteuergesetz erheben wir als Kleinunternehmen keine Umsatzsteuer. "
   def self.to_csv
     orders = CSV.generate(:col_sep => ';', :force_quotes => true) do |csv|
       csv << csv_headers

@@ -64,7 +64,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_i18n.git
-  revision: 3dba87cec2fca8c835c9491b51dc536bceb6a872
+  revision: 752eb67204e9c5a4e22b62591a8fd55fe2285e43
   branch: 1-3-stable
   specs:
     spree_i18n (1.0.0)
@@ -157,10 +157,6 @@ GEM
     acts_as_list (0.1.4)
     acts_as_tree (1.1.0)
       activerecord (>= 3.0.0)
-    airbrake (3.1.12)
-      activesupport
-      builder
-      json
     akami (1.2.0)
       gyoku (>= 0.4.0)
       nokogiri (>= 1.4.0)
@@ -222,10 +218,10 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (4.2.0)
+    factory_girl (3.6.2)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl_rails (3.6.0)
+      factory_girl (~> 3.6.0)
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
@@ -277,12 +273,12 @@ GEM
       treetop (~> 1.4.8)
     memcache-client (1.8.5)
     method_source (0.8.1)
-    mime-types (1.23)
+    mime-types (1.24)
     money (5.0.0)
       i18n (~> 0.4)
       json
-    multi_json (1.7.8)
-    multi_xml (0.5.4)
+    multi_json (1.7.9)
+    multi_xml (0.5.5)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -324,7 +320,7 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
-    rails-i18n (0.7.3)
+    rails-i18n (0.7.4)
       i18n (~> 0.5)
     railties (3.2.13)
       actionpack (= 3.2.13)
@@ -462,13 +458,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake
   capistrano
   capybara
   capybara-webkit
   coffee-rails (~> 3.2.1)
   database_cleaner
-  factory_girl_rails
+  factory_girl_rails (= 3.6.0)
   faker
   guard-rspec
   guard-spork
