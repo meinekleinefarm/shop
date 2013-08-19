@@ -12,6 +12,7 @@
 
 //= require_tree .
 //= require admin/spree_social_products
+//= require admin/spree_mkf_theme
 //= require admin/spree_editor
 //= require admin/spree_essentials
 //= require admin/spree_essential_menus
