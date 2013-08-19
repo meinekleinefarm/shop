@@ -6,6 +6,6 @@ Spree::User.class_eval do
   private
 
   def ensure_admin_authentication_token
-    ensure_admin_authentication_token if admin?
+    ensure_authentication_token! if admin?
   end
 end

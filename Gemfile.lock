@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 6fdc45ce403445e37d7f6ec19b0c49f772bb1ecc
+  revision: 69b6137ccddc9f9384af4e459dd1f89de15d83b9
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -429,7 +429,7 @@ GEM
       railties (>= 3.1.1)
     tinymce-rails-langs (0.1)
       tinymce-rails (>= 3.4.9)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     truncate_html (0.5.5)
