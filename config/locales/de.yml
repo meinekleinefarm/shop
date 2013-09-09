@@ -203,3 +203,6 @@ de:
   activerecord:
     errors:
       <<: *errors
+
+  validation:
+    exceeds_available_stock: "ist zu hoch. Der Lagerbestand kann die angefragte Menge nicht abdecken."
