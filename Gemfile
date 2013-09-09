@@ -90,3 +90,6 @@ gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-
 
 gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme',         :branch => 'master'
 #gem 'spree_mkf_theme',          :path => '../spree_mkf_theme'
+
+gem 'spree_export',             :git => 'git://github.com/meinekleinefarm/spree_export.git'
+#gem 'spree_export',             :path => '../spree_export'
