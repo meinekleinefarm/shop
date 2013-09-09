@@ -115,10 +115,6 @@ Spree::Order.class_eval do
     shipment.try(:cost)
   end
 
-  def email
-    user.try(:email)
-  end
-
   def price_products_total_with_tax
     Spree::Money.new(item_total).money
   end
