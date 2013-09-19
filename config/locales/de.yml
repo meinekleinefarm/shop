@@ -1,5 +1,6 @@
 de:
   add_to_cart: "+ Warenkorb"
+  add: "Aufpreis"
   date:
     abbr_day_names:
     - So
@@ -207,3 +208,36 @@ de:
 
   validation:
     exceeds_available_stock: "ist zu hoch. Der Lagerbestand kann die angefragte Menge nicht abdecken."
+
+  views:
+    pagination:
+      first: "&laquo; Anfang"
+      last: "Ende &raquo;"
+      previous: "&lsaquo; Zurück"
+      next: "Weiter &rsaquo;"
+      truncate: "…"
+
+  adv_report:
+    dashboard: Dashboard
+    daily: Täglich
+    weekly: Wöchentlich
+    monthly: Monatlich
+    quarterly: Quartalsweise
+    yearly: Jährlich
+    revenue: "Umsatz"
+    units: "Einheiten"
+    units_sold: "verkaufte Einheiten"
+    profit: "Gewinn"
+    count: "Anzahl"
+    order_count: "Anzahl Bestellungen"
+    top_products: "Beste Produkte"
+    top_customers: "Beste Kunden"
+    submit: "Submit"
+    geo_revenue: "Umsatz nach Region"
+    geo_units: "Einheiten nach Region"
+    geo_profit: "Gewinn nach Region"
+    advanced_reports: Erweiterte Berichte
+    top_products_by_revenue: Beste Produkte nach Umsatz
+    top_customers_by_revenue: Beste Kunden nach Umsatz
+    last_10_orders: Letzten 10 Bestellungen
+    items_count: Anzahl Einheiten

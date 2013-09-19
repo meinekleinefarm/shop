@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/greinacker/spree_advanced_reporting.git
+  revision: 69edd7cea26f39b090d6cb1236f1209ec0e5363f
+  branch: 1-3-stable
+  specs:
+    spree_advanced_reporting (2.0.0)
+      ruport (>= 1.6.3)
+      ruport-util
+      spree_core (>= 0.80.0.beta)
+
+GIT
   remote: git://github.com/jdutil/spree_contact_us.git
   revision: 627ab1a639378e1a876736644ac0985253b61be8
   branch: 1-3-stable
@@ -210,6 +220,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    color (1.4.2)
     database_cleaner (1.0.1)
     deface (0.9.1)
       nokogiri (~> 1.5.0)
@@ -232,6 +243,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
+    fastercsv (1.5.5)
     ffaker (1.15.0)
     ffi (1.9.0)
     formatador (0.2.4)
@@ -278,6 +290,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailfactory (1.4.0)
+      mime-types (>= 1.13.1)
     memcache-client (1.8.5)
     method_source (0.8.1)
     mime-types (1.25)
@@ -301,6 +315,9 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pdf-writer (1.1.8)
+      color (>= 1.4.0)
+      transaction-simple (~> 1.3)
     pg (0.16.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -367,6 +384,14 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-graphviz (1.0.9)
+    rubyzip (1.0.0)
+    ruport (1.6.3)
+      fastercsv
+      pdf-writer (= 1.1.8)
+    ruport-util (0.14.0)
+      mailfactory (>= 1.2.3)
+      rubyzip (>= 0.9.1)
+      ruport (>= 1.6.0)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -436,6 +461,7 @@ GEM
       railties (>= 3.1.1)
     tinymce-rails-langs (0.1)
       tinymce-rails (>= 3.4.9)
+    transaction-simple (1.4.0.2)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -485,6 +511,7 @@ DEPENDENCIES
   ruby-graphviz
   sass-rails (~> 3.2.3)
   spree (= 1.3.3)
+  spree_advanced_reporting!
   spree_auth_devise!
   spree_bank_transfer!
   spree_contact_us!
