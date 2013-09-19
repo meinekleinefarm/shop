@@ -78,6 +78,7 @@ gem 'spree_paypal_express',     :git => 'git://github.com/spree/spree_paypal_exp
 gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.git',                 :branch => '1-3-stable'
 gem 'spree_editor',             :git => 'git://github.com/spree/spree_editor.git',                  :branch => '1-3-stable'
 gem 'spree_contact_us',         :git => 'git://github.com/jdutil/spree_contact_us.git',             :branch => '1-3-stable'
+gem 'spree_advanced_reporting', :git => 'git://github.com/greinacker/spree_advanced_reporting.git',      :branch => '1-3-stable'
 gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',         :branch => 'master'
 gem 'spree_essentials',         :git => 'git://github.com/xmpolaris/spree_essentials',              :branch => '1.3.x'
 gem 'spree_essential_cms',      :git => 'git://github.com/xmpolaris/spree_essential_cms',           :branch => '1.3.x'
