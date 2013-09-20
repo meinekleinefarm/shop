@@ -28,7 +28,7 @@ Spree.config do |config|
   config.attachment_default_url = '/system/spree/products/:id/:style/:basename.:extension'
   config.attachment_path = ':rails_root/public/spree/products/:id/:style/:basename.:extension'
   config.attachment_url = '/spree/products/:id/:style/:basename.:extension'
-  config.attachment_styles = "{\"mini\":\"48x48#\",\"small\":\"148x148#\",\"product\":\"460x345#\",\"large\":\"600x600>\"}"
+  config.attachment_styles = "{\"mini\":\"100x100#\",\"small\":\"420x420#\",\"product\":\"460x345#\",\"large\":\"600x600>\"}"
   config.auto_capture = true
 end
 
