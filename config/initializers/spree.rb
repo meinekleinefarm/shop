@@ -30,6 +30,8 @@ Spree.config do |config|
   config.attachment_url = '/spree/products/:id/:style/:basename.:extension'
   config.attachment_styles = "{\"mini\":\"100x100#\",\"small\":\"420x420#\",\"product\":\"460x345#\",\"large\":\"600x600>\"}"
   config.auto_capture = true
+  config.products_per_page = 100
+  config.admin_products_per_page = 20
 end
 
 Spree.user_class = "Spree::User"
