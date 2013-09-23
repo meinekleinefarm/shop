@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_export.git
-  revision: 7557741b3bdd74b3fb351893facd8b9ff338899c
+  revision: 8abccf37332d49a7ca6888ce3acc42037cc2d0f9
   specs:
     spree_export (2.0.3)
       spree_core (~> 1.3.0)
