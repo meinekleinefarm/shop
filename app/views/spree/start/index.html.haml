@@ -1,0 +1,21 @@
+%div{ 'data-hook' => "homepage_products" }
+  %h2
+    Schweine
+    %span.addition=link_to 'alle Schweine ...', schweine_path, style: 'font-size:50%;text-decoration:underline;padding-left: 3%'
+  %ul#schweine.inline.product-listing.row
+    = render :partial => 'spree/schweine/schwein', :collection => @schweine
+
+  %h2
+    Produkte
+    %span.addition=link_to 'alle Produkte ...', products_path, style: 'font-size:50%;text-decoration:underline;padding-left: 3%'
+  = render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon }
+
+- content_for :teaser do
+  .sixteen.columns.omega.teaser{style: 'margin-bottom: 10px'}
+    =image_tag('store/teaser.jpg', style: 'width: 100%')
+
+- content_for :sidebar do
+  %div{'data-hook' => "homepage_sidebar_navigation"}
+    = render :partial => 'spree/schweine/sidebar'
+    = render :partial => 'spree/shared/taxonomies'
+

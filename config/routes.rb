@@ -1,6 +1,6 @@
 Shop::Application.routes.draw do
 
-  root :to => 'spree/schweine#index'
+  root :to => 'spree/start#index'
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
