@@ -217,29 +217,5 @@ de:
       next: "Weiter &rsaquo;"
       truncate: "…"
 
-  adv_report:
-    dashboard: Dashboard
-    daily: Täglich
-    weekly: Wöchentlich
-    monthly: Monatlich
-    quarterly: Quartalsweise
-    yearly: Jährlich
-    revenue: "Umsatz"
-    units: "Einheiten"
-    units_sold: "verkaufte Einheiten"
-    profit: "Gewinn"
-    count: "Anzahl"
-    order_count: "Anzahl Bestellungen"
-    top_products: "Beste Produkte"
-    top_customers: "Beste Kunden"
-    submit: "Submit"
-    geo_revenue: "Umsatz nach Region"
-    geo_units: "Einheiten nach Region"
-    geo_profit: "Gewinn nach Region"
-    advanced_reports: Erweiterte Berichte
-    top_products_by_revenue: Beste Produkte nach Umsatz
-    top_customers_by_revenue: Beste Kunden nach Umsatz
-    last_10_orders: Letzten 10 Bestellungen
-    items_count: Anzahl Einheiten
   street_address: "Straße und Hausnummer"
   street_address_2: "Straße (Zusatzbemerkung)"
