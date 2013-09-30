@@ -241,3 +241,5 @@ de:
     top_customers_by_revenue: Beste Kunden nach Umsatz
     last_10_orders: Letzten 10 Bestellungen
     items_count: Anzahl Einheiten
+  street_address: "Straße und Hausnummer"
+  street_address_2: "Straße (Zusatzbemerkung)"
