@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 5ad667556a5227dfa8979be0de37e6631469653b
+  revision: 0d1726a17ef8d276462c00396d15e475d23a751c
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -530,6 +530,5 @@ DEPENDENCIES
   therubyracer
   tinymce-rails
   tinymce-rails-langs
-  truncate_html
   uglifier (>= 1.0.3)
   unicorn

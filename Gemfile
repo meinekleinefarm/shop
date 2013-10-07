@@ -21,7 +21,6 @@ group :default do
   # gem 'airbrake'
   gem 'i18n'
   gem 'rails-i18n'
-  gem 'truncate_html'
 end
 
 # Gems used only for assets and not required
