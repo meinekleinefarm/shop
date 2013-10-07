@@ -43,11 +43,12 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 02ad955c051cf6b4495340712b6029e0c4647413
+  revision: 5ad667556a5227dfa8979be0de37e6631469653b
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
       spree_core (>= 1.2.2)
+      truncate_html
 
 GIT
   remote: git://github.com/spree/spree_auth_devise
