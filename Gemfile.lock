@@ -530,5 +530,6 @@ DEPENDENCIES
   therubyracer
   tinymce-rails
   tinymce-rails-langs
+  truncate_html
   uglifier (>= 1.0.3)
   unicorn
