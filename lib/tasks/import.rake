@@ -44,6 +44,7 @@ namespace :import do
           end
         end
       end
+
       post.live = false
       post.save!
       post.update_attribute(:path, row[:path])
