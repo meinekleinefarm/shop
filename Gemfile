@@ -21,6 +21,7 @@ group :default do
   # gem 'airbrake'
   gem 'i18n'
   gem 'rails-i18n'
+  gem 'rack-statsd'
 end
 
 # Gems used only for assets and not required
