@@ -38,7 +38,9 @@ namespace :import do
               STDERR.puts "ERROR PARSING DATE #{k}: #{v} => #{e.message}"
             end
           when :body
-            post.send("#{k}=".to_sym, HTML2Markdown.new(v).to_s)
+            body_text = HTMLPage.new(:contents => v).markdown
+            body_text = body_text.gsub(/__MORE__/, '<!-- more -->')
+            post.send("#{k}=".to_sym, body_text)
           else
             post.send("#{k}=".to_sym, v)
           end
