@@ -41,6 +41,8 @@ namespace :import do
             body_text = HTMLPage.new(:contents => v).markdown
             body_text = body_text.gsub(/__MORE__/, '<!-- more -->')
             post.send("#{k}=".to_sym, body_text)
+
+            check_for_images(v)
           else
             post.send("#{k}=".to_sym, v)
           end
@@ -50,6 +52,16 @@ namespace :import do
       post.live = false
       post.save!
       post.update_attribute(:path, row[:path])
+
     end
+  end
+
+  def check_for_images(text)
+    # puts ">>>>>>>>>>>>>>>>"
+    # puts text
+    matches = text.match(/\"\/media\/(.+?)\"/)
+    image_names = matches.try(:captures)
+    # puts "IMAGES: #{image_name.inspect}"
+    # puts "<<<<<<<<<<<<<<<<"
   end
 end
