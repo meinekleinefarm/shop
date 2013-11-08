@@ -49,6 +49,7 @@ end
 
 group :development do
   gem 'ruby-graphviz'
+  gem 'better_errors'
 end
 
 group :test do
