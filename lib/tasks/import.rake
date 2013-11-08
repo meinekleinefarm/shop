@@ -28,6 +28,7 @@ namespace :import do
     blog = Spree::Blog.first
     CSV.foreach(file, :encoding => 'UTF-8', :header_converters => :symbol, :headers => true) do |row|
       post = blog.posts.find_or_initialize_by_id(row[:id])
+      images = []
       row.each do |k,v|
         if post.respond_to?("#{k}=".to_sym)
           case k
@@ -38,11 +39,13 @@ namespace :import do
               STDERR.puts "ERROR PARSING DATE #{k}: #{v} => #{e.message}"
             end
           when :body
+            images = check_for_images(v)
             body_text = HTMLPage.new(:contents => v).markdown
             body_text = body_text.gsub(/__MORE__/, '<!-- more -->')
+            body_text = body_text.gsub(/#*?\[?!\[\]\(.+?\)(\]\(.+?\))?/,'') # Remove embeded images
             post.send("#{k}=".to_sym, body_text)
 
-            check_for_images(v)
+
           else
             post.send("#{k}=".to_sym, v)
           end
@@ -52,16 +55,23 @@ namespace :import do
       post.live = false
       post.save!
       post.update_attribute(:path, row[:path])
-
+      images.each do |image|
+        asset = post.images.find_or_initialize_by_attachment_file_name(File.basename(image))
+        asset.viewable = post
+        asset.attachment = File.open(image)
+        asset.save!
+      end
     end
   end
 
   def check_for_images(text)
-    # puts ">>>>>>>>>>>>>>>>"
-    # puts text
     matches = text.match(/\"\/media\/(.+?)\"/)
     image_names = matches.try(:captures)
-    # puts "IMAGES: #{image_name.inspect}"
-    # puts "<<<<<<<<<<<<<<<<"
+    image_files = image_names.reduce([]) do |memo, image_name|
+      image_file = Rails.root.join('public', 'media', image_name)
+      memo << image_file if File.exists? image_file
+      memo
+    end unless image_names.nil?
+    image_files || []
   end
 end
