@@ -32,6 +32,15 @@ GIT
       spree_core (~> 1.3.2)
 
 GIT
+  remote: git://github.com/meinekleinefarm/spree_address_book.git
+  revision: c9cfd78ac3ff8312e83c9a502e17285006e1eda9
+  branch: 1-3-stable
+  specs:
+    spree_address_book (1.3.0)
+      spree_auth_devise
+      spree_core (~> 1.2)
+
+GIT
   remote: git://github.com/meinekleinefarm/spree_advanced_reporting.git
   revision: ae2d79baa238c76b99995df1c386433aaa285721
   branch: 1-3-stable
@@ -529,6 +538,7 @@ DEPENDENCIES
   ruby-graphviz
   sass-rails (~> 3.2.3)
   spree (= 1.3.3)
+  spree_address_book!
   spree_advanced_reporting!
   spree_auth_devise!
   spree_bank_transfer!

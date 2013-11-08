@@ -87,8 +87,6 @@ gem 'spree_essential_cms',      :git => 'git://github.com/coupling/spree_essenti
 gem 'spree_essential_blog',     :git => 'git://github.com/meinekleinefarm/spree_essential_blog',      :branch => '1-3-stable'
 #gem 'spree_essential_blog',             :path => '../spree_essential_blog'
 
-
-
 gem 'spree_essential_menus',    :git => 'git://github.com/meinekleinefarm/spree_essential_menus.git'
 #gem 'spree_essential_menus',    :path => '../spree_essential_menus'
 
@@ -100,6 +98,9 @@ gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_
 
 gem 'spree_export',             :git => 'git://github.com/meinekleinefarm/spree_export.git'
 #gem 'spree_export',             :path => '../spree_export'
+
+gem 'spree_address_book',       :git => "git://github.com/meinekleinefarm/spree_address_book.git",    :branch => '1-3-stable'
+#gem 'spree_address_book',                :path => '../spree_address_book'
 
 gem 'spree_advanced_reporting', :git => 'git://github.com/meinekleinefarm/spree_advanced_reporting.git',  :branch => '1-3-stable'
 #gem 'spree_advanced_reporting', :path => '../spree_advanced_reporting'
