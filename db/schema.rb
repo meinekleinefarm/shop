@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025101319) do
+ActiveRecord::Schema.define(:version => 20131108113308) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20131025101319) do
     t.integer  "country_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "user_id"
+    t.datetime "deleted_at"
   end
 
   add_index "spree_addresses", ["firstname"], :name => "index_addresses_on_firstname"
