@@ -78,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 7e19cd7aa6aedcabbc30af1cb47cc6c9a3a2f60b
+  revision: 52bf25260c00afe8dba75aa1f22325374f11e684
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -219,6 +219,8 @@ GEM
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     cancan (1.6.8)
     capistrano (2.14.1)
@@ -255,6 +257,7 @@ GEM
     coffee-script-source (1.4.0)
     color (1.4.2)
     database_cleaner (1.0.1)
+    debug_inspector (0.0.2)
     deface (0.9.1)
       nokogiri (~> 1.5.0)
       rails (~> 3.1)
@@ -529,6 +532,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   capistrano
   capybara
   capybara-webkit

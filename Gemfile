@@ -44,12 +44,12 @@ group :test, :development do
   gem 'capybara-webkit'
   gem 'guard-rspec'
   gem 'guard-spork'
-
 end
 
 group :development do
   gem 'ruby-graphviz'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
