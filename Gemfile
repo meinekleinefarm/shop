@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 group :default do
 
-  gem 'rails', '3.2.13'
+  gem 'rails', '3.2.16'
 
   # Bundle edge Rails instead:
   # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -104,7 +104,10 @@ gem 'spree_export',             :git => 'git://github.com/meinekleinefarm/spree_
 #gem 'spree_export',             :path => '../spree_export'
 
 gem 'spree_address_book',       :git => "git://github.com/meinekleinefarm/spree_address_book.git",    :branch => '1-3-stable'
-#gem 'spree_address_book',                :path => '../spree_address_book'
+#gem 'spree_address_book',       :path => '../spree_address_book'
+
+gem 'spree_packstation',       :git => "git://github.com/meinekleinefarm/spree_packstation.git",      :branch => '1-3-stable'
+#gem 'spree_packstation',        :path => '../spree_packstation'
 
 gem 'spree_advanced_reporting', :git => 'git://github.com/meinekleinefarm/spree_advanced_reporting.git',  :branch => '1-3-stable'
 #gem 'spree_advanced_reporting', :path => '../spree_advanced_reporting'
