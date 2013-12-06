@@ -23,6 +23,7 @@ group :default do
   gem 'rails-i18n'
   gem 'rack-statsd'
   gem 'html2markdown'
+  gem 'airbrake'
 end
 
 # Gems used only for assets and not required
