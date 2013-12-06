@@ -78,3 +78,6 @@ load 'deploy/assets'
 # have builder check and install gems after each update_code
 require 'bundler/capistrano'
 set :bundle_without, [:development, :test, :metrics, :deployment]
+
+        require './config/boot'
+        require 'airbrake/capistrano'
