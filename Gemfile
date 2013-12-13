@@ -93,6 +93,8 @@ gem 'spree_essential_blog',     :git => 'git://github.com/meinekleinefarm/spree_
 gem 'spree_essential_menus',    :git => 'git://github.com/meinekleinefarm/spree_essential_menus.git'
 #gem 'spree_essential_menus',    :path => '../spree_essential_menus'
 
+gem 'spree_gift_card',          :git => 'git://github.com/meinekleinefarm/spree_gift_card.git',                :branch => '1-3-stable'
+#gem 'spree_gift_card',          :path => '../spree_gift_card'
 
 gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-bank-transfer',       :branch => 'master'
 #gem 'spree_bank_transfer',      :path => '../spree-bank-transfer'
