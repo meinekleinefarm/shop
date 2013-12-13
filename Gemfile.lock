@@ -78,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_gift_card.git
-  revision: 1e7249565d4ec5eb2815036a9678ab7d2de10e63
+  revision: a5d65287d25d09f14662f6db95dbe507ea44c875
   branch: 1-3-stable
   specs:
     spree_gift_card (1.0.0.beta)
