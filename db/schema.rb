@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111140657) do
+ActiveRecord::Schema.define(:version => 20131209124426) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -185,6 +185,28 @@ ActiveRecord::Schema.define(:version => 20131111140657) do
     t.boolean  "test_mode",   :default => true
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "spree_gift_card_transactions", :force => true do |t|
+    t.decimal  "amount"
+    t.integer  "gift_card_id"
+    t.integer  "order_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "spree_gift_cards", :force => true do |t|
+    t.integer  "variant_id",                                   :null => false
+    t.integer  "line_item_id"
+    t.string   "email",                                        :null => false
+    t.string   "name"
+    t.text     "note"
+    t.string   "code",                                         :null => false
+    t.datetime "sent_at"
+    t.decimal  "current_value",  :precision => 8, :scale => 2, :null => false
+    t.decimal  "original_value", :precision => 8, :scale => 2, :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "spree_inventory_units", :force => true do |t|
@@ -442,6 +464,7 @@ ActiveRecord::Schema.define(:version => 20131111140657) do
     t.boolean  "on_demand",                                          :default => false
     t.decimal  "avg_rating",           :precision => 7, :scale => 5, :default => 0.0,   :null => false
     t.integer  "reviews_count",                                      :default => 0,     :null => false
+    t.boolean  "is_gift_card",                                       :default => false, :null => false
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"

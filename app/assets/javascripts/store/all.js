@@ -19,3 +19,4 @@
 //= require store/spree_essential_menus
 //= require store/spree_address_book
 //= require store/spree_packstation
+//= require store/spree_gift_card
