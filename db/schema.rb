@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209124426) do
+ActiveRecord::Schema.define(:version => 20131216122909) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20131209124426) do
   create_table "spree_gift_cards", :force => true do |t|
     t.integer  "variant_id",                                   :null => false
     t.integer  "line_item_id"
-    t.string   "email",                                        :null => false
+    t.string   "email"
     t.string   "name"
     t.text     "note"
     t.string   "code",                                         :null => false
@@ -381,6 +381,19 @@ ActiveRecord::Schema.define(:version => 20131209124426) do
     t.string "payer_country"
     t.string "payer_status"
   end
+
+  create_table "spree_paypal_express_checkouts", :force => true do |t|
+    t.string   "token"
+    t.string   "payer_id"
+    t.string   "transaction_id"
+    t.string   "state",                 :default => "complete"
+    t.string   "refund_transaction_id"
+    t.datetime "refunded_at"
+    t.string   "refund_type"
+    t.datetime "created_at"
+  end
+
+  add_index "spree_paypal_express_checkouts", ["transaction_id"], :name => "index_spree_paypal_express_checkouts_on_transaction_id"
 
   create_table "spree_post_categories", :force => true do |t|
     t.string   "name"

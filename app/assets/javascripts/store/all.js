@@ -20,3 +20,4 @@
 //= require store/spree_address_book
 //= require store/spree_packstation
 //= require store/spree_gift_card
+//= require store/spree_paypal_express

@@ -17,3 +17,4 @@
 //= require admin/spree_essentials
 //= require admin/spree_essential_menus
 //= require admin/spree_gift_card
+//= require admin/spree_paypal_express
