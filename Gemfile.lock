@@ -336,7 +336,8 @@ GEM
       rspec (~> 2.13)
     gyoku (0.4.6)
       builder (>= 2.1.2)
-    haml (3.1.7)
+    haml (4.0.4)
+      tilt
     hashery (2.1.1)
     highline (1.6.18)
     hike (1.2.3)
