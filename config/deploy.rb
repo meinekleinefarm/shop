@@ -1,83 +1,44 @@
-set :application, "mkf_production"
-set :repository,  "git@github.com:meinekleinefarm/shop.git"
+set :application, 'mkf'
+set :repo_url, 'git@github.com:meinekleinefarm/shop.git'
 
-set :branch, ENV['BRANCH'] || "master"
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :use_sudo, false
-
+# set :deploy_to, '/var/www/my_app'
 set :scm, :git
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :deploy_via, :remote_cache
-set :git_shallow_clone, 1
+set :format, :pretty
+set :log_level, :debug
+# set :pty, true
 
-set :default_run_options, :pty => true # or else you'll get "sorry, you must have a tty to run sudo"
+set :linked_files, %w{config/database.yml config/memcached.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/spree}
 
-set :ssh_options, :keys => [ File.expand_path("~/.ssh/mkf_rsa") ], :forward_agent => true
+set :rbenv_type, :system # :user or :system, depends on your rbenv setup
+set :rbenv_ruby, '1.9.3-p484'
+set :rbenv_custom_path, '/opt/rbenv'
 
-set :user, 'rails'
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :keep_releases, 5
 
-after  'deploy:update_code',  'deploy:symlink_configs'
-
-role :web, "144.76.71.176"                          # Your HTTP server, Apache/etc
-role :app, "144.76.71.176"                          # This may be the same as your `Web` server
-role :db,  "144.76.71.176", :primary => true # This is where Rails migrations will run
-
-set :port, 22022
-set :deploy_to, "/var/apps/mkf/production"
-
-set :default_environment, {
-  'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games'
-}
-
-
-# if you want to clean up old releases on each deploy uncomment this:
-after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-namespace :unicorn do
-  desc "Zero-downtime restart of Unicorn"
-  task :restart, :except => { :no_release => true } do
-    sudo "/etc/init.d/mkf_production upgrade"
-  end
-
-  desc "Start unicorn"
-  task :start, :except => { :no_release => true } do
-    sudo "/etc/init.d/mkf_production start"
-  end
-
-  desc "Stop unicorn"
-  task :stop, :except => { :no_release => true } do
-    sudo "/etc/init.d/mkf_production stop"
-  end
-  after "deploy:restart", "unicorn:restart"
-  after "deploy:start", "unicorn:start"
-  after "deploy:stop", "unicorn:stop"
-end
-
-# If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart do; end
 
-  task :symlink_configs do
-    %w(database.yml).each do |file|
-      run "ln -nfs #{shared_path}/config/#{file} #{release_path}/config/#{file}"
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+  after :finishing, 'deploy:cleanup'
+
 end
-
-
-# Precompile assets
-load 'deploy/assets'
-
-# have builder check and install gems after each update_code
-require 'bundler/capistrano'
-set :bundle_without, [:development, :test, :metrics, :deployment]
-
-        require './config/boot'
-        require 'airbrake/capistrano'

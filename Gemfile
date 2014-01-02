@@ -51,6 +51,12 @@ group :development do
   gem 'ruby-graphviz'
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # Deploy with Capistrano
+  gem 'capistrano',       '~> 3.0.0'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-bundler'
 end
 
 group :test do
@@ -64,13 +70,6 @@ end
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-
-group :deployment do
-  # Deploy with Capistrano
-  gem 'capistrano'
-end
-
 
 # To use debugger
 # gem 'debugger'
