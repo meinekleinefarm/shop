@@ -98,7 +98,7 @@ GIT
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
-      spree_core (>= 1.3.4)
+      spree_core (>= 1.3.3)
       truncate_html
 
 GIT

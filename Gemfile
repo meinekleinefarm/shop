@@ -116,7 +116,7 @@ gem 'spree_gift_card',          :git => 'git://github.com/meinekleinefarm/spree_
 gem 'spree_bank_transfer',      :git => 'git://github.com/meinekleinefarm/spree-bank-transfer',       :branch => 'master'
 #gem 'spree_bank_transfer',      :path => '../spree-bank-transfer'
 
-gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme',           :branch => 'master'
+gem 'spree_mkf_theme',          :git => 'git://github.com/meinekleinefarm/spree_mkf_theme',           :branch => '1-3-4-stable'
 #gem 'spree_mkf_theme',          :path => '../spree_mkf_theme'
 
 gem 'spree_export',             :git => 'git://github.com/meinekleinefarm/spree_export.git'
