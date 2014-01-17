@@ -88,7 +88,9 @@ gem 'spree_store_credits',      :git => 'git://github.com/meinekleinefarm/spree_
 gem 'spree_contact_us',         :git => 'git://github.com/jdutil/spree_contact_us.git',               :branch => '1-3-stable'
 gem 'spree_social_products',    :git => 'git://github.com/spree/spree_social_products.git',           :branch => '1-3-stable'
 
-gem 'spree_essentials',         :git => 'git://github.com/coupling/spree_essentials',                 :branch => '1-3-stable'
+gem 'spree_essentials',         :git => 'git://github.com/meinekleinefarm/spree_essentials',          :branch => '1-3-stable'
+#gem 'spree_essentials',         :path => '../spree_essentials'
+
 gem 'spree_essential_cms',      :git => 'git://github.com/coupling/spree_essential_cms',              :branch => '1-3-stable'
 gem 'spree_essential_blog',     :git => 'git://github.com/meinekleinefarm/spree_essential_blog',      :branch => '1-3-stable'
 #gem 'spree_essential_blog',             :path => '../spree_essential_blog'

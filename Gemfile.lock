@@ -7,15 +7,6 @@ GIT
       spree_essentials
 
 GIT
-  remote: git://github.com/coupling/spree_essentials
-  revision: d0c7a17292c39c931a6ff918c81b1379f70fb03c
-  branch: 1-3-stable
-  specs:
-    spree_essentials (0.5.0)
-      rdiscount
-      spree_core
-
-GIT
   remote: git://github.com/jdutil/spree_contact_us.git
   revision: 627ab1a639378e1a876736644ac0985253b61be8
   branch: 1-3-stable
@@ -68,6 +59,15 @@ GIT
       coffee-rails
       haml
       spree_essentials (>= 0.5.0)
+
+GIT
+  remote: git://github.com/meinekleinefarm/spree_essentials
+  revision: 1e301547f81703930d917ec256447a0158249171
+  branch: 1-3-stable
+  specs:
+    spree_essentials (0.5.0)
+      rdiscount
+      spree_core
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_export.git
