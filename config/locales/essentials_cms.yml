@@ -1,5 +1,4 @@
 de:
-
   successfully_created: "%{resource} wurde erfolgreich erzeugt!"
   successfully_removed: "%{resource} wurde erfolgreich entfernt!"
   successfully_updated: "%{resource} wurde erfolgreich aktualisiert!"
@@ -15,6 +14,7 @@ de:
       messages:
         invalid_date_time: ist ein ungültiges Datum.
 
+  listing_pages: Seitenübersicht
   upload:
     model_name: Upload
     file_name: Dateiname
@@ -26,20 +26,70 @@ de:
 
   spree:
     admin:
+      contents:
+        index:
+          new_content: Neuer Inhalt
+          listing_contents: Inhaltsübersicht
+        new:
+          new_content: New Content
+        edit:
+          edit_content: Edit Content
       shared:
         contents_tab:
           content: Content
-
+        page_tabs:
+          editing_page: Seite bearbeiten
+          page_details: Seiten Details
+          contents: Inhalte
+          images: Bilder
+      pages:
+        index:
+          title: Titel
+          listing_pages: Seitenübersicht
+          new_page: Neue Seite
+          title_contains: Titel
+        new:
+          new_page: Neue Seite
       subnav:
         uploads: Uploads
-
+        pages: Seiten
       uploads:
         new:
           new_upload: Neuer Upload
         edit:
-          edit_upload: Edit Upload
-          preview: Preview
+          edit_upload: Upload Bearbeiten
+          preview: Vorschau
           link: Link
         index:
-          listing_uploads: Listing Uploads
-          new_upload: Upload a file
+          listing_uploads: Uploads Übersicht
+          new_upload: Datei hochladen
+
+  page:
+    model_name: Seite
+    contents: Inhalt
+    title: Titel
+    nav_title: Navigationstitel
+    path: Permalink
+    meta_title: Meta Titel
+    meta_description: Meta Beschreibung
+    meta_keywords: Meta Keywords
+    accessible: Aktiv
+    visible: Sichtbar
+    explain_accessible: nicht-aktive Seiten müssen in einem speziellen controller aktiviert werden.
+    explain_visible: sichtbare Seiten werden im Hauptmenü angezeigt.
+  pages: Seiten
+
+  content:
+    model_name: Inhalt
+    page_title: Seitentitel
+    page: Seite
+    title: Titel
+    body: Body
+    attachment: Anhang
+    link: Link URL
+    link_text: Link Text
+    context: Context
+    hide_title: Titel verstecken
+    delete_attachment: Anhang löschen
+
+
