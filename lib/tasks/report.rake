@@ -24,8 +24,9 @@ namespace :report do
 
     voucher_data = [0,0.0]
     redeemed_vouchers = Spree::Adjustment.where(label: "Gutschein").where(adjustable_type: "Spree::Order")
-    redeemed_order_ids = Spree::Order.search(params).result.where(id: redeemed_vouchers.map(&:source).map(&:id))
+    redeemed_order_ids = Spree::Order.search(params).result.where(id: redeemed_vouchers.map(&:source_id))
     redeemed_vouchers.each do |adjustment|
+      next unless redeemed_order_ids.include?(adjustment.source_id)
       voucher_data[0] = voucher_data[0] + 1
       voucher_data[1] = voucher_data[1] + adjustment.amount.abs
     end
