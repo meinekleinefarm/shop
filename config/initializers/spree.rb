@@ -16,7 +16,7 @@ Spree.config do |config|
   config.default_meta_description = "Wir geben Wurst ein Gesicht!"
 #  config.default_locale = 'de'
   config.allow_ssl_in_production = true
-  config.allow_ssl_in_staging = true
+  config.allow_ssl_in_staging = false
   config.currency = 'EUR'
   config.display_currency = false
   config.default_country_id = 74
