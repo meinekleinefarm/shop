@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_essentials
-  revision: f541fd6c555eb925ea33a306516dd4302d26a837
+  revision: 53897253f710a0fd7599763dabde28aa3d078371
   branch: 1-3-stable
   specs:
     spree_essentials (0.5.0)
