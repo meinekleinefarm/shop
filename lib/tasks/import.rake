@@ -25,7 +25,7 @@ namespace :import do
   desc "Import blog posts from csv"
   task :posts => :environment do
     raise "Usage: 'rake import:pigs FILE=datei.csv'" unless file = ENV['FILE']
-    blog = Spree::Blog.first
+    blog = Spree::Blog.find_or_create_by_name_and_permalink('Blog', 'news')
     CSV.foreach(file, :encoding => 'UTF-8', :header_converters => :symbol, :headers => true) do |row|
       post = blog.posts.find_or_initialize_by_id(row[:id])
       images = []
@@ -52,7 +52,7 @@ namespace :import do
         end
       end
 
-      post.live = false
+      post.live = true
       post.save!
       post.update_attribute(:path, row[:path])
       images.each do |image|
