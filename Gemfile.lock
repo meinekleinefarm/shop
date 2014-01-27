@@ -22,6 +22,15 @@ GIT
       spree_core (~> 1.3.1)
 
 GIT
+  remote: git://github.com/meinekleinefarm/better_spree_paypal_express
+  revision: b1c545dec1e6076f5c4818ee38bd9b0ecab7b844
+  branch: 1-3-stable
+  specs:
+    spree_paypal_express (2.0.3)
+      paypal-sdk-merchant (= 1.106.1)
+      spree_core (~> 1.3.4)
+
+GIT
   remote: git://github.com/meinekleinefarm/spree-bank-transfer
   revision: 3b21eee783f2ce02a141e7da26e0e3ba34530b5f
   branch: master
@@ -117,15 +126,6 @@ GIT
     spree_store_credits (1.1.1)
       spree_core (~> 1.3)
       spree_promo (~> 1.3)
-
-GIT
-  remote: git://github.com/radar/better_spree_paypal_express
-  revision: b791081b9cb6432a137b531162210598e33dcfdc
-  branch: 1-3-stable
-  specs:
-    spree_paypal_express (2.0.3)
-      paypal-sdk-merchant (= 1.106.1)
-      spree_core (~> 1.3.4)
 
 GIT
   remote: git://github.com/spree/spree_auth_devise
