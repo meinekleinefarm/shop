@@ -92,6 +92,7 @@ gem 'spree_essentials',         :git => 'git://github.com/meinekleinefarm/spree_
 #gem 'spree_essentials',         :path => '../spree_essentials'
 
 gem 'spree_essential_cms',      :git => 'git://github.com/coupling/spree_essential_cms',              :branch => '1-3-stable'
+
 gem 'spree_essential_blog',     :git => 'git://github.com/meinekleinefarm/spree_essential_blog',      :branch => '1-3-stable'
 #gem 'spree_essential_blog',             :path => '../spree_essential_blog'
 

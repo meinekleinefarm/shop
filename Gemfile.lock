@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_essential_blog
-  revision: f510384fc65c1fc22707ea8ba6a1d06d49b0d010
+  revision: 92eb71e7178bc958edf543df953e5bd1e820ef05
   branch: 1-3-stable
   specs:
     spree_essential_blog (0.1.0)
