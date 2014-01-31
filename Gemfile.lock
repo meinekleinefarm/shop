@@ -103,11 +103,11 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 6a669f9646898855e9b6ee593c58345773ab3276
-  branch: master
+  revision: c80f5bb02cc1c70915ae0d76a8ea39458572d048
+  branch: 1-3-4-stable
   specs:
     spree_mkf_theme (1.2.3)
-      spree_core (>= 1.3.3)
+      spree_core (>= 1.3.4)
       truncate_html
 
 GIT
