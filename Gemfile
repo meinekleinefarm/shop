@@ -9,21 +9,16 @@ group :default do
   # gem 'rails', :git => 'git://github.com/rails/rails.git'
   gem 'haml'
 
-  # Use unicorn as the app server
-  gem 'unicorn'
-
   # gem 'mysql2'
   gem 'pg'
   gem 'jquery-rails' #, '~> 2.1.4'
+
   gem 'tinymce-rails'
   gem 'tinymce-rails-langs'
-  gem 'memcache-client'
-  # gem 'airbrake'
+
   gem 'i18n'
   gem 'rails-i18n'
-  gem 'rack-statsd'
   gem 'html2markdown'
-  gem 'airbrake'
 end
 
 # Gems used only for assets and not required
@@ -39,12 +34,18 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'rb-fsevent'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-pow',     require: false
+  gem 'guard-bundler', require: false
+
   gem 'rspec-rails'
-  gem 'factory_girl_rails', '3.6.0'
+  gem 'shoulda-matchers'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'guard-rspec'
-  gem 'guard-spork'
+  gem 'factory_girl_rails'
+  gem 'launchy'
 end
 
 group :development do
@@ -64,6 +65,13 @@ group :test do
   gem 'faker'
 end
 
+group :production do
+  # Use unicorn as the app server
+  gem 'unicorn'
+  gem 'memcache-client'
+  gem 'rack-statsd'
+  gem 'airbrake'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
