@@ -19,6 +19,7 @@ group :default do
   gem 'i18n'
   gem 'rails-i18n'
   gem 'html2markdown'
+  gem 'airbrake'
 end
 
 # Gems used only for assets and not required
@@ -70,7 +71,6 @@ group :production do
   gem 'unicorn'
   gem 'memcache-client'
   gem 'rack-statsd'
-  gem 'airbrake'
 end
 
 # To use ActiveModel has_secure_password
