@@ -26,6 +26,10 @@ RSpec.configure do |config|
   # Load factory girls syntax
   config.include FactoryGirl::Syntax::Methods
 
+  # Load devise relevant stuff
+  config.include Warden::Test::Helpers
+  Warden.test_mode!
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -45,6 +49,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
       DatabaseCleaner.clean_with(:truncation)
+      Warden.test_mode!
     end
 
   config.before(:each) do
@@ -61,6 +66,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    Warden.test_reset!
   end
 
   # If true, the base class of anonymous controllers will be inferred

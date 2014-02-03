@@ -22,7 +22,7 @@ describe Spree::OrderMailer do
 
     #ensure that the subject is correct
     it 'renders the subject' do
-      mail.subject.should match 'MeineKleineFarm.org Es geht um die Wurst'
+      mail.subject.should match 'MeineKleineFarm.org Shop Es geht um die Wurst'
     end
 
     #ensure that the receiver is correct
@@ -55,7 +55,7 @@ describe Spree::OrderMailer do
 
     #ensure that the subject is correct
     it 'renders the subject' do
-      mail.subject.should match 'MeineKleineFarm.org Deine Stornierung'
+      mail.subject.should match 'MeineKleineFarm.org Shop Deine Stornierung'
     end
 
     #ensure that the receiver is correct
