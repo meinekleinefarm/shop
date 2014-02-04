@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20131209124426) do
     t.datetime "updated_at",        :null => false
     t.integer  "user_id"
     t.datetime "deleted_at"
+    t.string   "station_number"
+    t.string   "locker_number"
   end
 
   add_index "spree_addresses", ["firstname"], :name => "index_addresses_on_firstname"
