@@ -4,7 +4,7 @@ include ActionView::Helpers::NumberHelper
 namespace :report do
 
   desc 'List of sold and redeemed vouchers.'
-  task :vouchers => :environment do
+  task vouchers: :environment do
     year = ENV['YEAR'] || Date.today.year
     start_of_year = Time.zone.parse("1.1.#{year}").beginning_of_year
     end_of_year = start_of_year.end_of_year
@@ -35,7 +35,7 @@ namespace :report do
   end
 
   desc 'List of granted and redeemed store credits.'
-  task :credits => :environment do
+  task credits: :environment do
     year = ENV['YEAR'] || Date.today.year
     start_of_year = Time.zone.parse("1.1.#{year}").beginning_of_year
     end_of_year = start_of_year.end_of_year
@@ -64,8 +64,26 @@ namespace :report do
     puts "#{voucher_data.first} eingelöste Guthaben im Gesamtwert von #{number_to_currency(voucher_data.last, unit: Spree::Config.currency)}"
   end
 
+  desc 'Show weight of a single pig'
+  task weight_of_pig: :environment do
+    pig_name = ENV['PIG']
+    raise 'Usage: bundle exec rake report:weight_of_pig PIG="Schwein 99"' unless pig_name
+    option_value = Spree::OptionValue.find_by_name(pig_name)
+    weight = 0.0
+    option_value.variants.each do |variant|
+      weight_of_variant = variant.product.net_weight.to_f
+      sold_items = 0
+      Spree::LineItem.where(variant_id: variant.id).each do |line_item|
+        sold_items += line_item.quantity if line_item.order.complete?
+      end
+      puts "SOLD: #{variant.id} - #{variant.name}: #{weight_of_variant} * #{sold_items} = #{weight_of_variant * sold_items}"
+      weight += (weight_of_variant * sold_items)
+    end
+    puts (weight / 1000.00).to_i
+  end
+
   desc 'Show all 19% UST stuff.'
-  task :merchandising => :environment do
+  task merchandising: :environment do
     product_ids_with_standard_tax = Spree::TaxCategory.find_by_name("Standardsteuer").product_ids
     variant_ids_with_standard_tax = Spree::Variant.where(product_id: product_ids_with_standard_tax).map(&:id)
     line_items_with_standard_tax = Spree::LineItem.where(variant_id: variant_ids_with_standard_tax)
@@ -87,5 +105,12 @@ namespace :report do
 
     puts "#{product_data.first} Produkte mit 19% USt im Gesamtwert von #{number_to_currency(product_data.last, unit: Spree::Config.currency)}"
 
+  end
+
+  desc 'Fetch information from google analytics.'
+  task weekly: :environment do
+    Spree::Role.find_by_name('admin').users.each do |admin|
+      ReportMailer.weekly(admin, Date.today.beginning_of_week, Date.today.end_of_week).deliver
+    end
   end
 end

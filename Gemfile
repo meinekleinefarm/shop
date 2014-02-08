@@ -20,6 +20,8 @@ group :default do
   gem 'rails-i18n'
   gem 'html2markdown'
   gem 'airbrake'
+
+  gem 'gattica', git: "git://github.com/chrisle/gattica.git"
 end
 
 # Gems used only for assets and not required
