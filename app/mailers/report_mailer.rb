@@ -5,8 +5,12 @@ class ReportMailer < ActionMailer::Base
   def weekly(user, start_date, end_date)
     @start_date = start_date
     @end_date = end_date
-    @visitors = visitors(beginning_of_week_before(start_date), end_date)
+    @visitors = []
+    @visitors << visitors(start_date, end_date)
+    @visitors << visitors(beginning_of_week_before(start_date), end_of_week_before(end_date))
+
     @visitors_by_source = visitors_by_source(start_date, end_date)
+
     @revenue = []
     @revenue << revenue(start_date, end_date)
     @revenue << revenue(beginning_of_week_before(start_date), end_of_week_before(end_date))
@@ -40,12 +44,10 @@ class ReportMailer < ActionMailer::Base
     results = GATTICA_INSTANCE.get({
                         :start_date => start_date.to_s,
                         :end_date => end_date.to_s,
-                        :dimensions => ['week'],
                         :metrics => ['visitors'],
-                        :sort => ['-week'],
                       }).to_hash
 
-    results.map{|res| res[:visitors].to_i}
+    results.first[:visitors].to_i
   end
 
   def visitors_by_source(start_date, end_date)
@@ -83,7 +85,7 @@ class ReportMailer < ActionMailer::Base
                                 created_at_lt: end_date.end_of_day).result
     payments_hash = search.group(:payment_method_id).count
     payments_hash.keys.each do |k|
-      payment_name = Spree::Payment.find(k).name
+      payment_name = Spree::PaymentMethod.find(k).name
       payments_hash[payment_name] = payments_hash.delete(k)
     end
     payments_hash unless payments_hash.blank?
