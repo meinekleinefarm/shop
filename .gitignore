@@ -17,3 +17,6 @@
 /vendor/bundle
 /public/system/spree
 /public/spree
+
+# Ignore config file for google analytics
+config/gattica.yml

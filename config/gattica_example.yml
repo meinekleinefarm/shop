@@ -1,0 +1,4 @@
+development:
+  email: 'your@email.com'
+  password: 'a_password'
+  profile_id: 'a_profile_id'
