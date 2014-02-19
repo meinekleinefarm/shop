@@ -20,3 +20,4 @@
 
 # Ignore config file for google analytics
 config/gattica.yml
+config/airbrake.yml
