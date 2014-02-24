@@ -110,7 +110,19 @@ namespace :report do
   desc 'Fetch information from google analytics.'
   task weekly: :environment do
     Spree::Role.find_by_name('admin').users.each do |admin|
-      ReportMailer.weekly(admin, Date.today.beginning_of_week, Date.today.end_of_week).deliver
+      ReportMailer.weekly(admin, last_monday, last_sunday).deliver
     end
+  end
+end
+
+def last_monday
+  last_sunday.monday
+end
+
+def last_sunday
+  if (today = Date.today) == today.sunday
+    today
+  else
+    7.days.ago.sunday.to_date
   end
 end
