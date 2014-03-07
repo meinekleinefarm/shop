@@ -92,14 +92,14 @@ gem 'spree_i18n',               :git => 'git://github.com/spree/spree_i18n.git',
 gem 'spree_paypal_express',     :git => 'git://github.com/meinekleinefarm/better_spree_paypal_express',:branch => '1-3-stable'
 #gem 'spree_paypal_express',     :path => '../better_spree_paypal_express'
 
-#gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.git',                   :branch => '1-3-stable'
-gem 'spree_reviews',            :git => 'git://github.com/meinekleinefarm/spree_reviews.git',          :branch => '1-3-stable'
+gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.git',                   :branch => '1-3-stable'
+#gem 'spree_reviews',            :git => 'git://github.com/meinekleinefarm/spree_reviews.git',          :branch => '1-3-stable'
 #gem 'spree_reviews',            :path => '../spree_reviews'
 
 gem 'spree_editor',             :git => 'git://github.com/spree/spree_editor.git',                    :branch => '1-3-stable'
 
-#gem 'spree_store_credits',      :git => 'git://github.com/spree/spree_store_credits.git',             :branch => '1-3-stable'
-gem 'spree_store_credits',      :git => 'git://github.com/meinekleinefarm/spree_store_credits.git',   :branch => '1-3-stable'
+gem 'spree_store_credits',      :git => 'git://github.com/spree/spree_store_credits.git',             :branch => '1-3-stable'
+#gem 'spree_store_credits',      :git => 'git://github.com/meinekleinefarm/spree_store_credits.git',   :branch => '1-3-stable'
 #gem 'spree_store_credits',      :path => '../spree_store_credits'
 
 gem 'spree_contact_us',         :git => 'git://github.com/jdutil/spree_contact_us.git',               :branch => '1-3-stable'
