@@ -8,7 +8,7 @@
 Spree.config do |config|
   # Example:
   # Uncomment to override the default site name.
-  config.site_name = "MeineKleineFarm.org Shop"
+  config.site_name = "MeineKleineFarm.org"
   config.default_seo_title = "MeinekleineFarm.org Shop"
   config.site_url = "shop.meinekleinefarm.org"
   config.emails_sent_from = "shop@meinekleinefarm.org"
