@@ -219,3 +219,9 @@ de:
 
   street_address: "Straße und Hausnummer"
   street_address_2: "Straße (Zusatzbemerkung)"
+
+  activerecord:
+    attributes:
+      spree/address:
+        address1: "Straße und Hausnummer"
+        address2: "Straße (Zusatzbemerkung)"
