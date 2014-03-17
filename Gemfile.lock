@@ -40,11 +40,10 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_address_book.git
-  revision: c9cfd78ac3ff8312e83c9a502e17285006e1eda9
+  revision: d656df12970f68495a4d1acb0eaa5390cbdcc2b4
   branch: 1-3-stable
   specs:
     spree_address_book (1.3.0)
-      spree_auth_devise
       spree_core (~> 1.2)
 
 GIT
