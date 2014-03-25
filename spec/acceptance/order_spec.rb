@@ -66,12 +66,12 @@ feature "Order a Wurst", %q{
     click_button 'Zur Kasse'
 #    expect(Spree::Order.last.a  vailable_shipping_methods).not_to be_empty
     within(:billing, '#billing') do
-      fill_in 'Vorname',    with: 'Chris'
-      fill_in 'Nachname',   with: 'Tucker'
-      fill_in 'Adresse',    with: '1234 Hollywood Blv.'
-      fill_in 'Stadt',      with: 'Los Angeles'
-      fill_in 'PLZ',        with: '90210'
-      select 'Deutschland', from: 'Land'
+      fill_in 'Vorname',                with: 'Chris'
+      fill_in 'Nachname',               with: 'Tucker'
+      fill_in 'Straße und Hausnummer',  with: '1234 Hollywood Blv.'
+      fill_in 'PLZ',                    with: '90210'
+      fill_in 'Stadt',                  with: 'Los Angeles'
+      select 'Deutschland',             from: 'Land'
     end
 
     within(:shipping, '#shipping') do
