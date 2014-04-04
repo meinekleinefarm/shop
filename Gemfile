@@ -92,8 +92,8 @@ gem 'spree_paypal_express',     :git => 'git://github.com/radar/better_spree_pay
 #gem 'spree_paypal_express',     :git => 'git://github.com/meinekleinefarm/better_spree_paypal_express',:branch => '1-3-stable'
 #gem 'spree_paypal_express',     :path => '../better_spree_paypal_express'
 
-gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.git',                   :branch => '1-3-stable'
-#gem 'spree_reviews',            :git => 'git://github.com/meinekleinefarm/spree_reviews.git',          :branch => '1-3-stable'
+#gem 'spree_reviews',            :git => 'git://github.com/spree/spree_reviews.git',                   :branch => '1-3-stable'
+gem 'spree_reviews',            :git => 'git://github.com/meinekleinefarm/spree_reviews.git',          :branch => '1-3-stable'
 #gem 'spree_reviews',            :path => '../spree_reviews'
 
 gem 'spree_editor',             :git => 'git://github.com/spree/spree_editor.git',                    :branch => '1-3-stable'
