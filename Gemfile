@@ -138,5 +138,5 @@ gem 'spree_advanced_reporting', :git => 'git://github.com/meinekleinefarm/spree_
 #gem 'spree_advanced_reporting', :path => '../spree_advanced_reporting'
 
 #gem "spree_chimpy",             :git => "git://github.com/DynamoMTL/spree_chimpy",                     :branch => '1-3-stable'
-#gem "spree_chimpy",             :git => "git://github.com/meinekleinefarm/spree_chimpy",                     :branch => '1-3-stable'
-gem 'spree_chimpy',             :path => '../spree_chimpy'
+gem "spree_chimpy",             :git => "git://github.com/meinekleinefarm/spree_chimpy",                     :branch => '1-3-stable'
+#gem 'spree_chimpy',             :path => '../spree_chimpy'
