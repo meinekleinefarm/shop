@@ -93,7 +93,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 3aab25eac17dd62a551f7766abfbe8c7563bf423
+  revision: 2c5d69a11bf73305d71cb760ffe26d1a357ac5f6
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -181,6 +181,13 @@ GIT
     spree_store_credits (1.1.1)
       spree_core (~> 1.3)
       spree_promo (~> 1.3)
+
+PATH
+  remote: ../spree_chimpy
+  specs:
+    spree_chimpy (1.3.2)
+      mailchimp
+      spree_core (~> 1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -343,6 +350,9 @@ GEM
     hpricot (0.8.6)
     html2markdown (0.0.3)
       nokogiri
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpi (1.1.1)
       rack
     i18n (0.6.9)
@@ -367,6 +377,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailchimp (0.0.9)
+      httparty
     mailfactory (1.4.0)
       mime-types (>= 1.13.1)
     memcache-client (1.8.5)
@@ -376,6 +388,7 @@ GEM
     money (5.1.1)
       i18n (~> 0.6.0)
     multi_json (1.9.2)
+    multi_xml (0.5.5)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -629,6 +642,7 @@ DEPENDENCIES
   spree_advanced_reporting!
   spree_auth_devise!
   spree_bank_transfer!
+  spree_chimpy!
   spree_contact_us!
   spree_editor!
   spree_essential_blog!
