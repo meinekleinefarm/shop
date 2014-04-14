@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_chimpy
-  revision: 3bb09db0c59a17cdd4e5236ffd01305cfb893f94
+  revision: 36b2feefe763b22d7de7577ed7f5836099380b21
   branch: 1-3-stable
   specs:
     spree_chimpy (1.3.2)
