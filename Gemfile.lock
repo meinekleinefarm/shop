@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_address_book.git
-  revision: d656df12970f68495a4d1acb0eaa5390cbdcc2b4
+  revision: 1cf8f4172bc5a2f9cd6ebc088c62319c23db0087
   branch: 1-3-stable
   specs:
     spree_address_book (1.3.0)
