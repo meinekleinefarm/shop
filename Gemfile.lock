@@ -136,13 +136,13 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_auth_devise
-  revision: ccd6add27a101aa3942df2e3c58a0c65b639314c
+  revision: ba95589a85368297c844f096c2a0c121e5b08138
   branch: 1-3-stable
   specs:
-    spree_auth_devise (1.0.0)
+    spree_auth_devise (1.3.0)
       cancan (~> 1.6.7)
       devise (~> 2.2.3)
-      devise-encryptable (= 0.1.1)
+      devise-encryptable (= 0.1.2)
       spree_core
 
 GIT
@@ -157,7 +157,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_gateway
-  revision: a5fe8fc8c88cf293c6fdcddb3a2ab7d1aae3cdb1
+  revision: 80583caf282047860a981055e82468bf8b0436f7
   branch: 1-3-stable
   specs:
     spree_gateway (1.2.0.rc2)
@@ -208,10 +208,10 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    active_utils (2.0.1)
+    active_utils (2.1.1)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.42.2)
+    activemerchant (1.43.1)
       active_utils (~> 2.0, >= 2.0.1)
       activesupport (>= 2.3.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
@@ -243,9 +243,9 @@ GEM
     airbrake (3.1.14)
       builder
       json
-    akami (1.2.0)
+    akami (1.2.2)
       gyoku (>= 0.4.0)
-      nokogiri (>= 1.4.0)
+      nokogiri
     arel (3.0.3)
     awesome_nested_set (2.1.5)
       activerecord (>= 3.0.0)
@@ -253,7 +253,9 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bcrypt-ruby (3.0.1)
+    bcrypt (3.1.7)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -288,7 +290,7 @@ GEM
       orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.3)
+    cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -299,20 +301,20 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     color (1.4.2)
-    colorize (0.6.0)
+    colorize (0.7.2)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
     deface (1.0.0)
       colorize (>= 0.5.8)
       nokogiri (~> 1.6.0)
       rails (>= 3.1)
-    devise (2.2.3)
+    devise (2.2.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    devise-encryptable (0.1.1)
-      devise (>= 2.1.0.rc)
+    devise-encryptable (0.1.2)
+      devise (>= 2.1.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -366,7 +368,6 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -386,7 +387,7 @@ GEM
     memcache-client (1.8.5)
     method_source (0.8.1)
     mime-types (1.25.1)
-    mini_portile (0.5.2)
+    mini_portile (0.6.0)
     money (5.1.1)
       i18n (~> 0.6.0)
     multi_json (1.10.0)
@@ -394,10 +395,10 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     nori (1.1.5)
-    orm_adapter (0.4.0)
+    orm_adapter (0.5.0)
     paperclip (2.8.0)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -515,18 +516,18 @@ GEM
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
     slop (3.4.5)
-    spree (1.3.4)
-      spree_api (= 1.3.4)
-      spree_cmd (= 1.3.4)
-      spree_core (= 1.3.4)
-      spree_promo (= 1.3.4)
-      spree_sample (= 1.3.4)
-    spree_api (1.3.4)
-      spree_core (= 1.3.4)
+    spree (1.3.5)
+      spree_api (= 1.3.5)
+      spree_cmd (= 1.3.5)
+      spree_core (= 1.3.5)
+      spree_promo (= 1.3.5)
+      spree_sample (= 1.3.5)
+    spree_api (1.3.5)
+      spree_core (= 1.3.5)
       versioncake (= 0.4.0)
-    spree_cmd (1.3.4)
+    spree_cmd (1.3.5)
       thor (>= 0.14.6)
-    spree_core (1.3.4)
+    spree_core (1.3.5)
       activemerchant (~> 1.34)
       acts_as_list (= 0.1.4)
       awesome_nested_set (= 2.1.5)
@@ -541,16 +542,16 @@ GEM
       money (= 5.1.1)
       paperclip (~> 2.8)
       rabl (= 0.7.2)
-      rails (~> 3.2.14)
+      rails (~> 3.2.16)
       ransack (= 0.7.2)
       select2-rails (= 3.2.1)
       state_machine (= 1.1.2)
       stringex (~> 1.3.2)
       truncate_html (~> 0.5.5)
-    spree_promo (1.3.4)
-      spree_core (= 1.3.4)
-    spree_sample (1.3.4)
-      spree_core (= 1.3.4)
+    spree_promo (1.3.5)
+      spree_core (= 1.3.5)
+    spree_sample (1.3.5)
+      spree_core (= 1.3.5)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -593,7 +594,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-    warden (1.2.1)
+    warden (1.2.3)
       rack (>= 1.0)
     wasabi (2.5.1)
       httpi (~> 1.0)
@@ -639,7 +640,7 @@ DEPENDENCIES
   ruby-graphviz
   sass-rails (~> 3.2.3)
   shoulda-matchers
-  spree (= 1.3.4)
+  spree (= 1.3.5)
   spree_address_book!
   spree_advanced_reporting!
   spree_auth_devise!

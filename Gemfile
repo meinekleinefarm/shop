@@ -83,7 +83,7 @@ end
 
 # To use debugger
 # gem 'debugger'
-gem 'spree', '1.3.4'
+gem 'spree', '1.3.5'
 gem 'spree_gateway',            :git => 'git://github.com/spree/spree_gateway',                       :branch => '1-3-stable'
 gem 'spree_auth_devise',        :git => 'git://github.com/spree/spree_auth_devise',                   :branch => '1-3-stable'
 gem 'spree_i18n',               :git => 'git://github.com/spree/spree_i18n.git',                      :branch => '1-3-stable'
