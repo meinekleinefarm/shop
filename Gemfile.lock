@@ -119,7 +119,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_reviews.git
-  revision: de902d82c3ec12941994cb89b0b401a0c8b90f3d
+  revision: 39f12d26b1c794eef781be5aaaa9b3cf14fa4dee
   branch: 1-3-stable
   specs:
     spree_reviews (1.0.0)
