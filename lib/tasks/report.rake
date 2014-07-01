@@ -113,6 +113,58 @@ namespace :report do
       ReportMailer.weekly(admin, last_monday, last_sunday).deliver
     end
   end
+
+  desc 'Show retention grid'
+  task retention: :environment do
+    retention_hash = {}
+    retention_grid = Array.new(6)
+    uniq_emails = Spree::Order.complete.all.map(&:email).uniq
+    uniq_emails.each do |email|
+      orders = Spree::Order.complete.find_all_by_email(email)
+      count = orders.count
+      last_time = orders.map(&:completed_at).map(&:to_i).sort.last
+      days_gone = (Time.now.to_i - last_time) / 86400
+      retention_hash[count] ||= {}
+      retention_hash[count][days_gone] ||= 0
+      retention_hash[count][days_gone] =+ 1
+    end
+
+    retention_hash.each do |number_of_orders, orders|
+      col = order_to_column(number_of_orders)
+      orders.each do |days_since_last_order, number_of_shoppers|
+        row = days_to_row(days_since_last_order)
+        retention_grid[col] ||= Array.new(6,0)
+#        puts "#{number_of_orders} = #{col}: #{days_since_last_order} = #{row}, #{retention_grid[col][row]} + #{number_of_shoppers}"
+        retention_grid[col][row] = retention_grid[col][row] + number_of_shoppers
+      end
+    end
+#    puts retention_grid.inspect
+    csv_string = CSV.generate(:force_quotes => true) do |csv|
+      csv << ["", "366+ Tage", "181-365 Tage", "91-180 Tage", "61-90 Tage", "31-60 Tage", "0-30 Tage", "Summe"]
+      csv << (["10+"] + retention_grid[0] + [retention_grid[0].reduce(:+)])
+      csv << (["6-9"] + retention_grid[1] + [retention_grid[1].reduce(:+)])
+      csv << (["4-5"] + retention_grid[2] + [retention_grid[2].reduce(:+)])
+      csv << (["3"]   + retention_grid[3] + [retention_grid[3].reduce(:+)])
+      csv << (["2"]   + retention_grid[4] + [retention_grid[4].reduce(:+)])
+      csv << (["1"]   + retention_grid[5] + [retention_grid[5].reduce(:+)])
+    end
+    puts csv_string
+  end
+end
+
+def order_to_column(number_of_orders)
+  nums = [ (10..10000), (6..9), (4..5), 3, 2, 1 ]
+  nums.each_with_index do |n,i|
+    return i if n == number_of_orders
+    return i if n.is_a?(Range) && n.include?(number_of_orders)
+  end
+end
+
+def days_to_row(days_since_last_order)
+  days =[ 366..10000, 181..365, 91..180, 61..90, 31..60, 0..30 ]
+  days.each_with_index do |d,i|
+    return i if d.include?(days_since_last_order)
+  end
 end
 
 def last_monday
