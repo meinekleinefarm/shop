@@ -14,6 +14,15 @@ GIT
       spree_essentials
 
 GIT
+  remote: git://github.com/hefan/spree_sofort.git
+  revision: 6030af392fb821e27cddfc99a99855891bb66a28
+  branch: 1-3-stable
+  specs:
+    spree_sofort (1.3.0)
+      httparty (~> 0.11)
+      spree_core (~> 1.3)
+
+GIT
   remote: git://github.com/jdutil/spree_contact_us.git
   revision: 627ab1a639378e1a876736644ac0985253b61be8
   branch: 1-3-stable
@@ -661,6 +670,7 @@ DEPENDENCIES
   spree_paypal_express!
   spree_reviews!
   spree_social_products!
+  spree_sofort!
   spree_store_credits!
   therubyracer
   tinymce-rails
