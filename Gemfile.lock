@@ -482,6 +482,9 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.2)
+    retentiongrid (0.0.2)
+      activemodel (>= 3.2.0)
+      httparty (= 0.13.1)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -645,6 +648,7 @@ DEPENDENCIES
   rails (= 3.2.18)
   rails-i18n
   rb-fsevent
+  retentiongrid (= 0.0.2)
   rspec-rails
   ruby-graphviz
   sass-rails (~> 3.2.3)

@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'csv'
+require 'retentiongrid'
 
 include ActionView::Helpers::NumberHelper
 
@@ -54,6 +55,41 @@ namespace :export do
                   number_to_currency(voucher_redeemed, :unit => '', precision: 2),
                   number_to_currency(credit_total, :unit => '', precision: 2),
                 ]
+      end
+    end
+  end
+
+  namespace :retentiongrid do
+
+    desc 'Send all customer information to retentiongrid.com'
+    task :customers => :environment do
+      Spree::IU
+    end
+
+    desc 'Send all order information to retentiongrid.com'
+    task :orders => :environment do
+      Spree::Order.complete.where("user_id IS NOT NULL").each do |order|
+
+        retentiongrid_customer = Retentiongrid::Customer.find(order.user_id) || Retentiongrid::Customer.new({
+          customer_id: order.user_id,
+          full_name: order.name,
+          email: order.email
+        })
+        retentiongrid_customer.save
+
+        retentiongrid_order = Retentiongrid::Order.new({
+          order_id:         order.number,
+          customer_id:      order.user_id.to_s,
+          currency:         order.currency,
+          total_price:      order.item_total.to_f,
+          order_created_at: order.completed_at.to_s
+        })
+
+        begin
+          retentiongrid_order.save
+        rescue Exception => e
+          logger.error e.inspect
+        end
       end
     end
   end

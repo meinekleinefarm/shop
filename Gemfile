@@ -21,6 +21,8 @@ group :default do
   gem 'html2markdown'
   gem 'airbrake'
 
+  gem 'retentiongrid', '0.0.2'
+
   gem 'gattica', git: "git://github.com/chrisle/gattica.git"
 end
 
