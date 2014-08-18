@@ -10,7 +10,7 @@ Spree.config do |config|
   # Uncomment to override the default site name.
   config.site_name = "MeineKleineFarm.org"
   config.default_seo_title = "MeinekleineFarm.org Shop"
-  config.site_url = "shop.meinekleinefarm.org"
+  config.site_url = "www.meinekleinefarm.org"
   config.emails_sent_from = "shop@meinekleinefarm.org"
   config.default_meta_keywords = "Shop Meine kleine Farm Bio Freilandhaltung Respekt Bewurstsein"
   config.default_meta_description = "Wir geben Wurst ein Gesicht!"
