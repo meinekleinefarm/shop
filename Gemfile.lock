@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_essential_menus.git
-  revision: 0e74e2d7989c73864ed7f904c7c9442f4b23505a
+  revision: edae1eaa9541269aafab4f4a91fe9eb98af0b419
   specs:
     spree_essential_menus (0.2.5)
       acts_as_tree (~> 1.1.0)
