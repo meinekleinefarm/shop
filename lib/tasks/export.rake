@@ -61,25 +61,30 @@ namespace :export do
 
   namespace :retentiongrid do
 
-    desc 'Send all customer information to retentiongrid.com'
-    task :customers => :environment do
-      Spree::IU
+    task reset: :environment do
+      Spree::Order.complete.find_each do |order|
+        customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
+        Retentiongrid::Customer.find(customer_id).try(:destroy)
+        Retentiongrid::Order.find(order.number).try(:destroy)
+      end
     end
 
     desc 'Send all order information to retentiongrid.com'
-    task :orders => :environment do
-      Spree::Order.complete.where("user_id IS NOT NULL").each do |order|
-
-        retentiongrid_customer = Retentiongrid::Customer.find(order.user_id) || Retentiongrid::Customer.new({
-          customer_id: order.user_id,
+    task orders: :environment do
+      Spree::Order.complete.order('completed_at DESC').each do |order|
+        customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
+        Retentiongrid::Customer.new({
+          customer_id: customer_id,
           full_name: order.name,
-          email: order.email
-        })
-        retentiongrid_customer.save
+          email: order.email,
+          country: order.shipping_address.try(:country).try(:iso),
+          city: order.shipping_address.try(:city),
+          postal_code: order.shipping_address.try(:zipcode)
+        }).save
 
         retentiongrid_order = Retentiongrid::Order.new({
           order_id:         order.number,
-          customer_id:      order.user_id.to_s,
+          customer_id:      customer_id,
           currency:         order.currency,
           total_price:      order.item_total.to_f,
           order_created_at: order.completed_at.to_s
