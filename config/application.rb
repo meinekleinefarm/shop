@@ -71,5 +71,21 @@ module Shop
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Garbage collection
+
+    if GC.respond_to?(:copy_on_write_friendly=)
+      GC.copy_on_write_friendly = true
+    end
+
+    # https://newrelic.com/docs/ruby/ruby-gc-instrumentation
+    if GC.respond_to?(:enable_stats)
+      GC.enable_stats
+    end
+    if defined?(GC::Profiler) and GC::Profiler.respond_to?(:enable)
+      GC::Profiler.enable
+    end
+
+
   end
 end
