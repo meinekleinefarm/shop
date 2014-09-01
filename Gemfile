@@ -25,6 +25,8 @@ group :default do
   # gem 'retentiongrid', path: '../retentiongrid'
 
   gem 'gattica', git: "git://github.com/chrisle/gattica.git"
+  gem 'newrelic_rpm'
+
 end
 
 # Gems used only for assets and not required
