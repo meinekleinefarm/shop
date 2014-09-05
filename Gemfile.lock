@@ -110,6 +110,15 @@ GIT
       spree_core (~> 1.3.0)
 
 GIT
+  remote: git://github.com/meinekleinefarm/spree_mkf_theme
+  revision: 24837f9252aec79a541bf33b668d89419f2f0e1a
+  branch: master
+  specs:
+    spree_mkf_theme (1.2.3)
+      spree_core (>= 1.3.4)
+      truncate_html
+
+GIT
   remote: git://github.com/meinekleinefarm/spree_packstation.git
   revision: acdb1aa3376d8743bdcf2075dac1d1e1bd5796ae
   branch: 1-3-stable
@@ -190,13 +199,6 @@ GIT
     spree_store_credits (1.1.1)
       spree_core (~> 1.3)
       spree_promo (~> 1.3)
-
-PATH
-  remote: ../spree_mkf_theme
-  specs:
-    spree_mkf_theme (1.2.3)
-      spree_core (>= 1.3.4)
-      truncate_html
 
 GEM
   remote: https://rubygems.org/
