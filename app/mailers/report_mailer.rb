@@ -19,10 +19,7 @@ class ReportMailer < ActionMailer::Base
     @abandoned << abandoned(start_date, end_date)
     @abandoned << abandoned(beginning_of_week_before(start_date), end_of_week_before(end_date))
 
-    @payments = []
-    @payments << payments(start_date, end_date)
-    @payments << payments(beginning_of_week_before(start_date), end_of_week_before(end_date))
-    @payments.compact!
+    @payments = payments(start_date, end_date)
 
     mail( :to => user.email,
           :reply_to => "cb@meinekleinefarm.de",
@@ -84,11 +81,12 @@ class ReportMailer < ActionMailer::Base
     search = Spree::Payment.search( created_at_gt: start_date.beginning_of_day,
                                 created_at_lt: end_date.end_of_day).result
     payments_hash = search.group(:payment_method_id).count
-    payments_hash.keys.each do |k|
+    payment_names = {}
+    payments_hash.each do |k,v|
       payment_name = Spree::PaymentMethod.find(k).name
-      payments_hash[payment_name] = payments_hash.delete(k)
+      payment_names[payment_name] = v
     end
-    payments_hash unless payments_hash.blank?
+    payment_names unless payment_names.blank?
   end
 
 end

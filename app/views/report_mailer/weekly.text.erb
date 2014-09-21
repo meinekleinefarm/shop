@@ -9,8 +9,8 @@ hier der Report von der letzten Woche (<%= I18n.l(@start_date) %> - <%= I18n.l(@
 
 <%= number_to_currency(@revenue.first, unit: Spree::Config.currency) %> Umsatz, 		Vorwoche <%= number_to_currency(@revenue.last, unit: Spree::Config.currency)%> (<%= number_to_percentage((@revenue.first * 100 /  @revenue.last), precision: 1) %>)%>
 
-<%- @payments.each do |payment| %>
-Zahlung <%= payment.keys.first %> <%= payment.values.first %>
+<%- @payments.each do |name,count| %>
+Zahlung <%= name %> <%= count %>
 <%- end %>
 <%= number_to_percentage(@abandoned.first[:rate],  precision: 1) %> Abbruchquote (<%= @abandoned.first[:abandoned]%>/<%= @abandoned.first[:created]%>),	Vorwoche <%= number_to_percentage(@abandoned.last[:rate],  precision: 1) %> (<%= @abandoned.last[:abandoned]%>/<%= @abandoned.last[:created]%>)
 
