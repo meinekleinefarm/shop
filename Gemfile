@@ -21,11 +21,13 @@ group :default do
   gem 'html2markdown'
   gem 'airbrake'
 
-  gem 'retentiongrid', '0.0.4'
+  gem 'retentiongrid'
   # gem 'retentiongrid', path: '../retentiongrid'
 
   gem 'gattica', git: "git://github.com/chrisle/gattica.git"
   gem 'newrelic_rpm'
+
+  gem 'figaro'
 
 end
 

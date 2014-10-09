@@ -61,11 +61,39 @@ namespace :export do
 
   namespace :retentiongrid do
 
-    task reset: :environment do
-      Spree::Order.complete.find_each do |order|
-        customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
-        Retentiongrid::Customer.find(customer_id).try(:destroy)
-        Retentiongrid::Order.find(order.number).try(:destroy)
+    namespace :reset do
+
+      task orders: :environment do
+        Spree::Order.complete.find_each do |order|
+          customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
+          Retentiongrid::Customer.find(customer_id).try(:destroy)
+          Retentiongrid::Order.find(order.number).try(:destroy)
+        end
+      end
+
+      task products: :environment do
+        Spree::Product.find_each do |product|
+          Retentiongrid::Product.find(product.id).try(:destroy)
+        end
+      end
+    end
+
+    desc 'Send all order information to retentiongrid.com'
+    task products: :environment do
+      Spree::Product.find_each do |product|
+        Retentiongrid::Product.new({
+          product_id: product.id,
+          title: product.name,
+          product_url: "http://#{Spree::Config.site_url}/products/#{product.permalink}",
+          available: product.available?,
+          image_url: "http://#{Spree::Config.site_url}#{product.images.try(:first).try(:attachment).try(:url, :original)}",
+          currency: product.currency,
+          price: product.price.to_f,
+  #          sale_price:
+          cost_price: product.cost_price,
+          product_created_at: product.created_at,
+          product_updated_at: product.updated_at
+        }).save
       end
     end
 
@@ -74,20 +102,24 @@ namespace :export do
       Spree::Order.complete.order('completed_at DESC').each do |order|
         customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
         Retentiongrid::Customer.new({
-          customer_id: customer_id,
-          full_name: order.name,
-          email: order.email,
-          country: order.shipping_address.try(:country).try(:iso),
-          city: order.shipping_address.try(:city),
-          postal_code: order.shipping_address.try(:zipcode)
+          customer_id:        order.email,
+          full_name:          order.name,
+          email:              order.email,
+          country:            order.shipping_address.try(:country).try(:iso),
+          city:               order.shipping_address.try(:city),
+          postal_code:        order.shipping_address.try(:zipcode),
+          accepts_marketing:  order.user.try(:subscribed?)
         }).save
 
         retentiongrid_order = Retentiongrid::Order.new({
+          status:           'ok',
           order_id:         order.number,
           customer_id:      customer_id,
           currency:         order.currency,
           total_price:      order.item_total.to_f,
-          order_created_at: order.completed_at.to_s
+          total_discount:   order.total_discount,
+          order_created_at: order.completed_at.to_s,
+
         })
 
         begin

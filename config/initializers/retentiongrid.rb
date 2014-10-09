@@ -1,0 +1,1 @@
+Retentiongrid::Api::api_key = ENV['retentiongrid_key']
