@@ -485,7 +485,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.2)
-    retentiongrid (0.2.2)
+    retentiongrid (0.2.3)
       httparty (= 0.13.1)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)

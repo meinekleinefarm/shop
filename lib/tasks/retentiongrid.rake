@@ -95,19 +95,19 @@ namespace :retentiongrid do
         })
         retentiongrid_order.save
 
-        # order.line_items.each do |line_item|
-        #   retentiongrid_line_item = Retentiongrid::LineItem.new({
-        #     line_item_id: line_item.id,
-        #     order_id: order.id,
-        #     price: line_item.price.to_f,
-        #     quantity: line_item.quantity,
-        #     product_id: line_item.product.id,
-        #     variant_id: line_item.variant_id,
-        #     sku: line_item.variant.sku,
-        #     name: line_item.variant.name
-        #   })
-        #   retentiongrid_line_item.save
-        # end
+        order.line_items.each do |line_item|
+          retentiongrid_line_item = Retentiongrid::LineItem.new({
+            line_item_id: line_item.id,
+            order_id: order.number,
+            price: line_item.price.to_f,
+            quantity: line_item.quantity,
+            product_id: line_item.product.id,
+            # variant_id: line_item.variant_id,
+            sku: line_item.product.sku,
+            name: line_item.variant.name
+          })
+          retentiongrid_line_item.save
+        end
         progress_bar.increment
       end
     end
