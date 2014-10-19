@@ -37,6 +37,10 @@ namespace :retentiongrid do
     task products: :environment do
       progress_bar = ProgressBar.create(:title => "products", :format => '%a |%b>>%i| %C %t', :total => Spree::Product.count )
       Spree::Product.find_each do |product|
+        metadata_hash = {}
+        product.taxons.each do |taxon|
+          metadata_hash[taxon.taxonomy.try(:name)] = taxon.name
+        end
         Retentiongrid::Product.new({
           product_id: product.id,
           title: product.name,
@@ -48,7 +52,8 @@ namespace :retentiongrid do
   #          sale_price:
           cost_price: product.cost_price,
           product_created_at: product.created_at,
-          product_updated_at: product.updated_at
+          product_updated_at: product.updated_at,
+          metadata: metadata_hash
         }).save
         progress_bar.increment
       end
