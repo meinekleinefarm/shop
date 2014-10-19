@@ -10,7 +10,7 @@ namespace :export do
   task :products => :environment do
     csv_file = ENV['FILE'] || 'products.csv'
 
-    csv_string = CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
+    CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
       csv << ["Artikelnummer", "Name", "Gewicht", "Verpackung", "Bauer", "Metzger", "VK"]
       Spree::Product.find_each do |product|
         csv << [  product.sku,
@@ -28,7 +28,7 @@ namespace :export do
   desc 'Export sold and redeemed vouchers.'
   task :vouchers => :environment do
     csv_file = ENV['FILE'] || 'vouchers.csv'
-    csv_string = CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
+    CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
       csv << ["Kaufdatum", "Bestellnummer", "Warenwert", "Davon Waren mit 19%", "Versandkosten", "Gesamtwert", "Gutschein verkauft", "Gutschein eingelöst", "Guthaben eingelöst"]
       Spree::Order.complete.find_each do |order|
 
