@@ -16,7 +16,7 @@ namespace :retentiongrid do
     task customers: :environment do
       progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => customer_emails.count )
       customer_emails.each do |email|
-        customer_id = email.gsub(/@/, '_at_').gsub(/\./,'_')
+        customer_id = normalized_customer_id(email)
         Retentiongrid::Customer.find(customer_id).try(:destroy)
         progress_bar.increment
       end
@@ -59,7 +59,7 @@ namespace :retentiongrid do
       progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => customer_emails.count )
       customer_emails.each do |email|
         order = Spree::Order.complete.where(email: email).order('completed_at DESC').limit(1).try(:first)
-        customer_id = email.gsub(/@/, '_at_').gsub(/\./,'_')
+        customer_id = normalized_customer_id(email)
         retentiongrid_customer = Retentiongrid::Customer.new({
           customer_id:        customer_id,
           full_name:          order.name,
@@ -78,7 +78,7 @@ namespace :retentiongrid do
     task orders: :environment do
       progress_bar = ProgressBar.create(:title => "orders", :format => '%a |%b>>%i| %C %t', :total => Spree::Order.complete.count )
       Spree::Order.complete.order('completed_at DESC').each do |order|
-        customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
+        customer_id = normalized_customer_id(order.email)
         retentiongrid_order = Retentiongrid::Order.new({
           status:           'ok',
           order_id:         order.number,
@@ -112,4 +112,8 @@ end
 
 def customer_emails
    Spree::Order.complete.order('completed_at DESC').map(&:email).uniq
+end
+
+def normalized_customer_id(email)
+  email.gsub(/@/, '_at_').gsub(/\./,'_')
 end
