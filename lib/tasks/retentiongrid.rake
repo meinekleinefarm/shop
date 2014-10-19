@@ -1,27 +1,33 @@
+require 'ruby-progressbar'
 namespace :retentiongrid do
 
   namespace :reset do
 
     desc 'Reset all orders at retentiongrid.com'
     task orders: :environment do
+      progress_bar = ProgressBar.create(:title => "orders", :format => '%a |%b>>%i| %C %t', :total => Spree::Order.complete.count )
       Spree::Order.complete.order('completed_at DESC').find_each do |order|
         Retentiongrid::Order.find(order.number).try(:destroy)
+        progress_bar.increment
       end
     end
 
     desc 'Reset all customers at retentiongrid.com'
     task customers: :environment do
-      customer_emails = Spree::Order.complete.order('completed_at DESC').map(&:email).uniq
+      progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => customer_emails.count )
       customer_emails.each do |email|
         customer_id = email.gsub(/@/, '_at_').gsub(/\./,'_')
         Retentiongrid::Customer.find(customer_id).try(:destroy)
+        progress_bar.increment
       end
     end
 
     desc 'Reset all products at retentiongrid.com'
     task products: :environment do
+      progress_bar = ProgressBar.create(:title => "products", :format => '%a |%b>>%i| %C %t', :total => Spree::Product.count )
       Spree::Product.find_each do |product|
         Retentiongrid::Product.find(product.id).try(:destroy)
+        progress_bar.increment
       end
     end
   end
@@ -29,6 +35,7 @@ namespace :retentiongrid do
   namespace :submit do
     desc 'Send all product information to retentiongrid.com'
     task products: :environment do
+      progress_bar = ProgressBar.create(:title => "products", :format => '%a |%b>>%i| %C %t', :total => Spree::Product.count )
       Spree::Product.find_each do |product|
         Retentiongrid::Product.new({
           product_id: product.id,
@@ -43,12 +50,13 @@ namespace :retentiongrid do
           product_created_at: product.created_at,
           product_updated_at: product.updated_at
         }).save
+        progress_bar.increment
       end
     end
 
     desc 'Send all customer information to retentiongrid.com'
     task customers: :environment do
-      customer_emails = Spree::Order.complete.order('completed_at DESC').map(&:email).uniq
+      progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => customer_emails.count )
       customer_emails.each do |email|
         order = Spree::Order.complete.where(email: email).order('completed_at DESC').limit(1).try(:first)
         customer_id = email.gsub(/@/, '_at_').gsub(/\./,'_')
@@ -62,11 +70,13 @@ namespace :retentiongrid do
           accepts_email_marketing:  order.user.try(:subscribed?)
         })
         retentiongrid_customer.save
+        progress_bar.increment
       end
     end
 
     desc 'Send all order information to retentiongrid.com'
     task orders: :environment do
+      progress_bar = ProgressBar.create(:title => "orders", :format => '%a |%b>>%i| %C %t', :total => Spree::Order.complete.count )
       Spree::Order.complete.order('completed_at DESC').each do |order|
         customer_id = order.email.gsub(/@/, '_at_').gsub(/\./,'_')
         retentiongrid_order = Retentiongrid::Order.new({
@@ -93,7 +103,13 @@ namespace :retentiongrid do
           })
           retentiongrid_line_item.save
         end
+        progress_bar.increment
       end
     end
   end
+end
+
+
+def customer_emails
+   Spree::Order.complete.order('completed_at DESC').map(&:email).uniq
 end

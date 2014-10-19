@@ -23,6 +23,7 @@ group :default do
 
   gem 'retentiongrid'
   # gem 'retentiongrid', path: '../retentiongrid'
+  gem 'ruby-progressbar', require: false
 
   gem 'gattica', git: "git://github.com/chrisle/gattica.git"
   gem 'newrelic_rpm'
