@@ -1,0 +1,98 @@
+---
+de:
+  activerecord:
+    attributes:
+      spree/promotion:
+        advertise: Freischalten
+        code: Code
+        description: Beschreibung
+        event_name: Ereignis Name
+        expires_at: Endet am
+        name: Name
+        path: Pfad
+        starts_at: Beginnt am
+        usage_limit: Begrenzt auf
+  add_action_of_type: Füge Aktion hinzu
+  add_rule_of_type: Füge Regel hinzu
+  back_to_promotions_list: "Zurück zur Promotion Liste"
+  coupon: Coupon
+  coupon_code: Coupon code (Groß/Kleinschreibung egal)
+  coupon_code_applied: Der Coupon code wurde erfolgreich auf deine Bestellung angewendet.
+  coupon_code_expired: Der Coupon code ist abgelaufen
+  coupon_code_already_applied: Der Coupon code wurde bereits auf deine Bestellung angewendet
+  coupon_code_better_exists: Der vorherige Coupon code ergab mehr Ersparnis
+  coupon_code_not_found: Der Coupon code existiert nicht. Versuch es erneut. Groß/Kleinschreibung ist bei den codes egal.
+  coupon_code_max_usage: Alle Coupons wurden bereits aufgebraucht
+  coupon_code_not_eligible: Der Coupon kann auf diese Bestellung nicht angewendet werden
+  editing_promotion: Promotion bearbeitet
+  current_promotion_usage: 'Aktueller Vebrauch: %{count}'
+  events:
+    spree:
+      checkout:
+        coupon_code_added: Coupon code hinzugefügt
+      content:
+        visited: Besucht eine bestimmte Seite
+  expiry: Ablauf
+  free_shipping: Kostenloser Versand
+  item_total_rule:
+    operators:
+      gt: größer als
+      gte: größer oder gleich
+  landing_page_rule:
+    path: Pfad
+  new_promotion: Neue Werbeaktion
+  no_rules_added: Noch keine Regel hinzufügt
+  percent_per_item: Prozent pro Position
+  product_rule:
+    choose_products: Produkte wählen
+    label: "Bestellung muss %{select} von diesen Produkten enthalten"
+    match_any: mindestens eins
+    match_all: alle
+    product_source:
+      group: aus der Produktgruppe
+      manual: Manuell auswälen choose
+  promotion: Werbeaktion
+  promotion_action: Aktion
+  promotion_actions: Aktionen
+  promotion_action_types:
+    create_adjustment:
+      name: Preisnachlass
+      description: Fügt der Bestellung eine Preisnachlass hinzu
+    create_line_items:
+      name: Position
+      description: Fügt dem Warenkorb die angegebene Menge der Variante hinzu
+    give_store_credit:
+      name: Gutschrift geben
+      description: Gibt dem Kunde eine Gutschrift in der angegbenen Höhe
+  promotion_form:
+    match_policies:
+      all: Alle Regeln müssen zutreffen
+      any: Mindestens eine Regel muss zutreffen
+  promotions: Werbeaktionen
+  promotions_description: Verwalte Angebote und Coupons
+  promotion_rule: Regel
+  promotion_rule_types:
+    first_order:
+      name: Erste Bestellung
+      description: "Muss die erste Bestellung dieses Kunden sein"
+    item_total:
+      name: Bestellsumme
+      description: Diese Kriterien treffen auf die Bestellungsumme zu
+    landing_page:
+      name: Landing Page
+      description: Benutzer hat die angegebene Seite besucht
+    product:
+      name: Produkt(e)
+      description: Bestellunge enthält die angegebene Produkte
+    user:
+      name: Benutzer
+      description: Steht nur den genannten Benutzern zur Verfügung
+    user_logged_in:
+      name: Benutzer ist eingeloggt
+      description: Steht nur eingeloggten Benutzern zur Verfügung
+  rules: Regeln
+  spree/order:
+    coupon_code: Coupon Code
+  user_rule:
+    choose_users: Wähle Benutzer
+
