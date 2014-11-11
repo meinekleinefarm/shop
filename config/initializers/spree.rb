@@ -38,5 +38,5 @@ end
 Spree.user_class = "Spree::User"
 
 SpreeEditor::Config.tap do |config|
-  config.ids = "product_description taxon_description schwein_description page_body event_body"
+  config.ids = "product_description taxon_description rind_description schwein_description page_body event_body"
 end
