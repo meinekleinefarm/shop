@@ -9,7 +9,6 @@ namespace :retentiongrid do
       Spree::Order.complete.order('completed_at DESC').find_each do |order|
         Retentiongrid::Order.find(order.number).try(:destroy)
         progress_bar.increment
-        sleep 0.2 # Sleep 200ms to not hammer the api too hard.
       end
     end
 
@@ -20,7 +19,6 @@ namespace :retentiongrid do
         customer_id = normalized_customer_id(email)
         Retentiongrid::Customer.find(customer_id).try(:destroy)
         progress_bar.increment
-        sleep 0.2 # Sleep 200ms to not hammer the api too hard.
       end
     end
 
@@ -30,7 +28,6 @@ namespace :retentiongrid do
       Spree::Product.find_each do |product|
         Retentiongrid::Product.find(product.id).try(:destroy)
         progress_bar.increment
-        sleep 0.2 # Sleep 200ms to not hammer the api too hard.
       end
     end
   end
@@ -59,7 +56,6 @@ namespace :retentiongrid do
           metadata: metadata_hash
         }).save
         progress_bar.increment
-        sleep 0.2 # Sleep 200ms to not hammer the api too hard.
       end
     end
 
@@ -80,7 +76,6 @@ namespace :retentiongrid do
         })
         retentiongrid_customer.save
         progress_bar.increment
-        sleep 0.2 # Sleep 200ms to not hammer the api too hard.
       end
     end
 
@@ -99,7 +94,6 @@ namespace :retentiongrid do
           order_created_at: order.completed_at.to_s,
         })
         retentiongrid_order.save
-        sleep 0.2 # Sleep 200ms to not hammer the api too hard.
 
         order.line_items.each do |line_item|
           retentiongrid_line_item = Retentiongrid::LineItem.new({
@@ -113,7 +107,6 @@ namespace :retentiongrid do
             name: line_item.variant.name
           })
           retentiongrid_line_item.save
-          sleep 0.2 # Sleep 200ms to not hammer the api too hard.
         end
         progress_bar.increment
       end
