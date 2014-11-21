@@ -11,15 +11,14 @@ namespace :export do
     csv_file = ENV['FILE'] || 'products.csv'
 
     CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
-      csv << ["Artikelnummer", "Name", "Gewicht", "Verpackung", "Bauer", "Metzger", "VK"]
+      csv << ["Artikelnummer", "Name", "Gewicht", "Verpackung", "Photo", "VK"]
       Spree::Product.find_each do |product|
         csv << [  product.sku,
                   product.name,
                   number_with_precision(product.weight.to_f, precision: 0),
                   product.container,
-                  "",
-                  "",
-                  number_to_currency(product.price.to_f, :unit => '', precision: 2)
+                  "http://www.meinekleinefarm.org#{product.images.first.try(:attachment).try(:url, :original)}",
+                  number_to_currency(product.price.to_f, :unit => '€', precision: 2)
                 ]
       end
     end
