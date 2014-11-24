@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140825091504) do
+ActiveRecord::Schema.define(:version => 20141124123244) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -347,6 +347,7 @@ ActiveRecord::Schema.define(:version => 20140825091504) do
     t.string   "sofort_hash"
     t.string   "sofort_transaction"
     t.text     "sofort_log"
+    t.string   "payone_hash"
   end
 
   add_index "spree_orders", ["number"], :name => "index_spree_orders_on_number"
