@@ -45,7 +45,7 @@ namespace :retentiongrid do
           product_id: product.id,
           title: product.name,
           product_url: "http://#{Spree::Config.site_url}/products/#{product.permalink}",
-          available: product.available?,
+          available: product.available? && product.has_stock?,
           image_url: "http://#{Spree::Config.site_url}#{product.images.try(:first).try(:attachment).try(:url, :original)}",
           currency: product.currency,
           price: product.price.to_f,
