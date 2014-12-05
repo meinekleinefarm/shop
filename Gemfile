@@ -152,5 +152,5 @@ gem "spree_chimpy",             :git => "git://github.com/meinekleinefarm/spree_
 gem 'spree_sofort',             :git => 'git://github.com/hefan/spree_sofort.git',                      :branch => '1-3-stable'
 #gem 'spree_sofort',             :git => 'git://github.com/meinekleinefarm/spree_sofort.git',            :branch => '1-3-stable'
 
-#gem 'spree_payone_frontend', :git => 'git://github.com/hefan/spree_payone_frontend.git',                :branch => '1-3-stable'
-gem 'spree_payone_frontend', :git => 'git://github.com/meinekleinefarm/spree_payone_frontend.git',     :branch => '1-3-stable'
+gem 'spree_payone_frontend', :git => 'git://github.com/hefan/spree_payone_frontend.git',                :branch => '1-3-stable'
+#gem 'spree_payone_frontend', :git => 'git://github.com/meinekleinefarm/spree_payone_frontend.git',     :branch => '1-3-stable'
