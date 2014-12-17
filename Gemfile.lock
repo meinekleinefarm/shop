@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/hefan/spree_payone_frontend.git
-  revision: 09d428197e7a22f2fc186cde04f81100e7d083da
+  revision: 5883d3c5793d0639e182d0785cd39e750b8fc6ec
   branch: 1-3-stable
   specs:
     spree_payone_frontend (1.3.0)
