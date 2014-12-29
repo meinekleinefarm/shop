@@ -9,9 +9,9 @@
     <%= render :partial => 'spree/shared/facebook_analytics' %>
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
-
-    javascript:
+    <script type="text/javascript">
       <%= yield :data_layer %>
+    </script>
 
     <%= render :partial => 'spree/shared/header' %>
 

@@ -1,4 +1,4 @@
-dataLayer = [{
+var dataLayer = [{
   "transactionId": "<%= j @order.number %>",
   "transactionTotal": <%= @order.total.to_f %>,
   "transactionTax": <%= @order.line_items.map(&:tax_amount).sum.to_f %>,
