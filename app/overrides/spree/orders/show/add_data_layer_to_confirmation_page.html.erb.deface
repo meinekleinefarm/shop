@@ -1,0 +1,4 @@
+<!-- insert_after 'fieldset' -->
+<% content_for :data_layer do %>
+  <%= render partial: 'data_layer/order_confirmation' %>
+<% end %>

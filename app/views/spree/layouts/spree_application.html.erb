@@ -10,6 +10,9 @@
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
 
+    javascript:
+      <%= yield :data_layer %>
+
     <%= render :partial => 'spree/shared/header' %>
 
     <div id="wrapper" class="row" data-hook>
