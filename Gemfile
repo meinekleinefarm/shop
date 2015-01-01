@@ -155,4 +155,4 @@ gem 'spree_sofort',             :git => 'git://github.com/hefan/spree_sofort.git
 gem 'spree_payone_frontend', :git => 'git://github.com/hefan/spree_payone_frontend.git',                :branch => '1-3-stable'
 #gem 'spree_payone_frontend', :git => 'git://github.com/meinekleinefarm/spree_payone_frontend.git',     :branch => '1-3-stable'
 
-gem 'spree_snowplow',          :git => 'git://github.com/meinekleinefarm/spree_snowplow.git',           :branch => 'master'
+#gem 'spree_snowplow',          :git => 'git://github.com/meinekleinefarm/spree_snowplow.git',           :branch => 'master'
