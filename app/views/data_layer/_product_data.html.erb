@@ -1,0 +1,11 @@
+dataLayer.push({
+  "productId": "<%= j @product.id.to_s %>",
+  "productSku": "<%= j @product.sku %>",
+  "productUrl": "<%= j product_url(@product) %>",
+  "productImage": "<%= j @product.images.first.try(:attachment).try(:url) %>",
+  "productBrand": "",
+  "productCategory": "<%= j @product.taxons.first.name %>",
+  "productPrice": <%= @product.price.to_f %>,
+  "productAvailableSince": "<%= @product.available_on %>",
+  "productInStock": <%= @product.on_hand %>
+});

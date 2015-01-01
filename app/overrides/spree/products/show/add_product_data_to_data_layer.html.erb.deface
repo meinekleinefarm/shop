@@ -1,0 +1,4 @@
+<!-- insert_after '[data-hook="product_show"]' -->
+<% content_for :data_layer do %>
+  <%= render partial: 'data_layer/product_data' %>
+<% end %>
