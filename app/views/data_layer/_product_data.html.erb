@@ -1,5 +1,6 @@
 dataLayer.push({
-  "productId": "<%= j @product.id.to_s %>",
+  "productId": <%= @product.id %>,
+  "productName": "<%= j @product.name %>",
   "productSku": "<%= j @product.sku %>",
   "productUrl": "<%= j product_url(@product) %>",
   "productImage": "<%= j @product.images.first.try(:attachment).try(:url) %>",
