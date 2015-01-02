@@ -10,7 +10,9 @@
     <script type="text/javascript" id="data-layer">
       var dataLayer = [{}];
       <%- if try_spree_current_user -%>
-        dataLayer.push({"userId":"<%= try_spree_current_user.email %>"});
+        dataLayer.push({"userId":"<%= try_spree_current_user.try(:email) %>"});
+      <%- elsif @order -%>
+        dataLayer.push({"userId":"<%= @order.try(:email) %>"});
       <%- end -%>
       <%= yield :data_layer %>
     </script>
