@@ -1,4 +1,14 @@
 dataLayer.push({
+  "ecommerce": {
+    "purchase": {
+      "actionField": {
+        <%= render partial: "data_layer/action_field_object", object: @order %>
+      },
+      "products": [
+        <%= render partial: "data_layer/product_field_object", collection: @order.line_items, spacer_template:   "data_layer/comma" %>
+      ]
+    }
+  },
   "transactionId": "<%= j @order.number %>",
   "transactionTotal": <%= @order.total.to_f %>,
   "transactionTax": <%= @order.line_items.map(&:tax_amount).sum.to_f %>,
@@ -7,6 +17,6 @@ dataLayer.push({
   "transactionState": "<%= j @order.ship_address.state %>",
   "transactionCountry": "<%= j @order.ship_address.country.name %>",
   "transactionProducts": [
-    <%= render partial: 'data_layer/line_item', collection: @order.line_items, spacer_template: 'data_layer/comma' %>
+    <%= render partial: "data_layer/line_item", collection: @order.line_items, spacer_template: "data_layer/comma" %>
   ]
 });

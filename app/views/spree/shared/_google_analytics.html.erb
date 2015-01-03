@@ -7,31 +7,32 @@
     ga('create', '<%= tracker.analytics_id %>','meinekleinefarm.org');
     ga('set', 'anonymizeIp', true);
     ga('require', 'displayfeatures');
-    ga('send', 'pageview');
+    ga('require', 'ec');
+    ga('set', '&cu', '<%= Spree::Config[:currency] %>');   // Set tracker currency to Euros
 
     <% if flash[:commerce_tracking] && @order.present? %>
-      <%# more info: https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce %>
-      ga('require', 'ecommerce', 'ecommerce.js');
-      ga('ecommerce:addTransaction', {
-        'id': '<%= j @order.number %>',                                   // Transaction ID. Required.
-        'affiliation': '<%= Spree::Config[:site_name] %>',               // Affiliation or store name.
-        'revenue': '<%= @order.total %>',                               // Grand Total.
-        'shipping': '<%= @order.adjustments.shipping.sum(:amount) %>', // Shipping.
-        'tax': '<%= @order.line_items.map(&:tax_amount).sum.to_f %>', // Tax.
-        'currencyCode': '<%= Spree::Config[:currency] %>'            // local currency code.
-      });
+      <!-- https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#transaction -->
       <% @order.line_items.each do |line_item| %>
-        ga('ecommerce:addItem', {
-          'id': '<%= j @order.number %>',                        // Transaction ID. Required.
-          'name': '<%= j line_item.variant.product.name %>',    // Product name. Required.
-          'sku': '<%= j line_item.variant.sku %>',             // SKU/code.
-          'category': '',                                     // Category or variation.
-          'price': '<%= line_item.price %>',                 // Unit price.
-          'quantity': '<%= line_item.quantity %>'           // Quantity.
+        ga('ec:addProduct', {
+          'id': <%= line_item.variant.product.id %>,         // Product ID. Required.
+          'name': '<%= j line_item.variant.product.name %>', // Product name. Required.
+          'category': '',                                    // Category or variation.
+          'brand': '',                                       // Brand
+          'variant': '<%= j line_item.variant.name %>',      // Variant
+          'price': '<%= line_item.price.to_f %>',            // Unit price.
+          'quantity': <%= line_item.quantity %>              // Quantity.
         });
       <% end %>
-      ga('ecommerce:send');
+      ga('ec:setAction', 'purchase', {
+        'id': '<%= j @order.number %>',                                // Transaction ID. Required.
+        'affiliation': '<%= Spree::Config[:site_name] %>',             // Affiliation or store name.
+        'revenue': '<%= @order.total %>',                              // Grand Total.
+        'tax': '<%= @order.line_items.map(&:tax_amount).sum.to_f %>',  // Tax.
+        'shipping': '<%= @order.adjustments.shipping.sum(:amount) %>', // Shipping.
+        'coupon': ''                                                   // User added a coupon at checkout.
+      });
     <% end %>
+    ga('send', 'pageview');
   </script>
   <!-- Google Tag Manager -->
   <noscript>

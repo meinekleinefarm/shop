@@ -1,4 +1,15 @@
 dataLayer.push({
+  "ecommerce": {
+    "detail": {
+      "products": [{
+        "id": "<%= @product.sku %>",
+        "name": "<%= j @product.name %>",
+        "price": "<%= @product.price.to_f %>",
+        "brand": "",
+        "category": "<%= j @product.taxons.first.name %>"
+      }]
+    }
+  },
   "productId": <%= @product.id %>,
   "productName": "<%= j @product.name %>",
   "productSku": "<%= j @product.sku %>",

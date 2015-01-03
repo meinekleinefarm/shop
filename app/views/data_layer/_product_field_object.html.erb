@@ -1,0 +1,11 @@
+{
+  "id": "<%= j product_field_object.product.sku %>",
+  "name": "<%= j product_field_object.product.name %>",
+  "brand": "",
+  "category": "<%= j product_field_object.product.taxons.first.name %>",
+  "variant": "",
+  "price": <%= product_field_object.price.to_f %>,
+  "quantity": <%= product_field_object.quantity %>,
+  "coupon": "",
+  "position": ""
+}

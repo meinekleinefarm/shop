@@ -1,0 +1,6 @@
+"id": "<%= j action_field_object.number %>",
+"affiliation": "<%= Spree::Config[:site_name] %>",
+"revenue": "<%= action_field_object.total.to_f %>",
+"tax":"<%= action_field_object.line_items.map(&:tax_amount).sum.to_f %>",
+"shipping": "<%= action_field_object.ship_total.to_f %>",
+"coupon": ""
