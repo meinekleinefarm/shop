@@ -3,4 +3,8 @@
 "revenue": "<%= action_field_object.total.to_f %>",
 "tax":"<%= action_field_object.line_items.map(&:tax_amount).sum.to_f %>",
 "shipping": "<%= action_field_object.ship_total.to_f %>",
+"city": "<%= j action_field_object.ship_address.city %>",
+"state": "<%= j action_field_object.ship_address.state %>",
+"country": "<%= j action_field_object.ship_address.country.name %>",
+"currency":"<%= j Spree::Config[:currency] %>",
 "coupon": ""
