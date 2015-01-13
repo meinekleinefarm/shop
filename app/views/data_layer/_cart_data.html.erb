@@ -1,0 +1,10 @@
+dataLayer.push({
+  "ecommerce": {
+    "currencyCode": "<%= j Spree::Config[:currency] %>",
+    "add": {
+      "products": [
+        <%= render partial: "data_layer/line_item_field_object", collection: @order.line_items, spacer_template:   "data_layer/comma", locals: { engagement: 'add_to_cart' } %>
+      ]
+    }
+  }
+});

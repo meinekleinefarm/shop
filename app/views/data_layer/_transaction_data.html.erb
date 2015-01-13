@@ -1,12 +1,13 @@
 dataLayer.push({
   "ecommerce": {
+    "currencyCode": "<%= j Spree::Config[:currency] %>",
     "purchase": {
       "actionField": {
         <%= render partial: "data_layer/action_field_object", object: @order %>
       },
       "products": [
-        <%= render partial: "data_layer/product_field_object", collection: @order.line_items, spacer_template:   "data_layer/comma" %>
+        <%= render partial: "data_layer/line_item_field_object", collection: @order.line_items, spacer_template:   "data_layer/comma", locals: { engagement: 'purchase_product' } %>
       ]
     }
-  },
+  }
 });

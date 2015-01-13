@@ -1,23 +1,10 @@
 dataLayer.push({
   "ecommerce": {
+    "currencyCode": "<%= j Spree::Config[:currency] %>",
     "detail": {
-      "products": [{
-        "id": "<%= @product.sku %>",
-        "name": "<%= j @product.name %>",
-        "price": "<%= @product.price.to_f %>",
-        "brand": "",
-        "category": "<%= j @product.taxons.first.name %>"
-      }]
+      "products": [
+        <%= render partial: "data_layer/product_field_object", object: @product, locals: { engagement: 'view_product' } %>
+      ]
     }
-  },
-  "productId": <%= @product.id %>,
-  "productName": "<%= j @product.name %>",
-  "productSku": "<%= j @product.sku %>",
-  "productUrl": "<%= j product_url(@product) %>",
-  "productImage": "<%= j @product.images.first.try(:attachment).try(:url) %>",
-  "productBrand": "",
-  "productCategory": "<%= j @product.taxons.first.name %>",
-  "productPrice": <%= @product.price.to_f %>,
-  "productAvailableSince": "<%= @product.available_on %>",
-  "productInStock": <%= @product.on_hand %>
+  }
 });

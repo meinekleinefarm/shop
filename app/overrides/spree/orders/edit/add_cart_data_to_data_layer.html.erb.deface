@@ -1,0 +1,5 @@
+<!-- insert_before '[data-hook="outside_cart_form"]' -->
+<% content_for :data_layer do %>
+  <%= render partial: 'data_layer/cart_data' %>
+<% end %>
+
