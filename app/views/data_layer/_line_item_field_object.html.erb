@@ -1,14 +1,13 @@
 {
-  "id": "<%= j line_item_field_object.product.sku %>",
+  "id": "<%= j line_item_field_object.product.id.to_s %>",
   "name": "<%= j line_item_field_object.product.name %>",
   "brand": "",
   "category": "<%= j line_item_field_object.product.category %>",
-  "variant": "<%= j line_item_field_object.variant.option_values.first.try(:name) %>",
+  "variant": "<%= j line_item_field_object.variant.option_values.first.try(:id).try(:to_s) %>",
   "price": <%= line_item_field_object.price.to_f %>,
   "quantity": <%= line_item_field_object.quantity %>,
   "coupon": "",
   "url": "<%= j product_url(line_item_field_object.product) %>",
   "image": "<%= j [request.protocol,request.host,line_item_field_object.product.image_url].join %>",
-  "engagement": "<%= j engagement %>",
-  "stock-level": <%= line_item_field_object.product.try(:on_hand) %>
+  "available": <%= line_item_field_object.product.available?.to_json %>
 }

@@ -14,6 +14,7 @@
       <%- elsif @order -%>
       dataLayer.push({"userId":"<%= @order.try(:email) %>"});
       <%- end -%>
+      dataLayer.push({"appId": 6299 });
       <%= yield :data_layer %>
     </script>
 
