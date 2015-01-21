@@ -1,9 +1,10 @@
 {
   "id": "<%= j line_item_field_object.product.id.to_s %>",
+  "sku": "<%= j line_item_field_object.product.sku %>",
   "name": "<%= j line_item_field_object.product.name %>",
   "brand": "",
   "category": "<%= j line_item_field_object.product.category %>",
-  "variant": "<%= j line_item_field_object.variant.option_values.first.try(:id).try(:to_s) %>",
+  "variant": "<%= j line_item_field_object.variant.try(:sku) %>",
   "price": <%= line_item_field_object.price.to_f %>,
   "quantity": <%= line_item_field_object.quantity %>,
   "coupon": "",
