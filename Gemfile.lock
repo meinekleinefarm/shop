@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: git://github.com/hefan/spree_sofort.git
-  revision: c2e18ce53925723c6be22c866f33bc0d5734c511
+  revision: deb36befd875d3ba4760533be8b1239118f89e17
   branch: 1-3-stable
   specs:
     spree_sofort (1.3.0)
