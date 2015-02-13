@@ -3,6 +3,20 @@ include ActionView::Helpers::NumberHelper
 
 namespace :report do
 
+  task most_orders: :environment do
+    orders = Spree::Order.select('email,count(email) as cnt').group('email').order('count(email) DESC').limit(20)
+    orders.each do |o|
+      puts "#{o.cnt}: #{o.email}"
+    end
+  end
+
+  task most_revenue: :environment do
+    orders = Spree::Order.select('email,sum(item_total) as total').group('email').order('count(email) DESC').limit(20)
+    orders.each do |o|
+      puts "#{o.total}: #{o.email}"
+    end
+  end
+
   desc 'List of sold and redeemed vouchers.'
   task vouchers: :environment do
     year = ENV['YEAR'] || Date.today.year
