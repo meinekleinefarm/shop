@@ -1,0 +1,35 @@
+<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+  <tr>
+    <td valign="top" class="bodyContent">
+      <div class="intro-section"  style="padding:0px; #cccccc; padding-bottom:0px; background-image:url('http://gallery.mailchimp.com/acf7def2835785a77a887ff5d/images/tile_paper_texture_white.jpg');" >
+        <img align="left" alt="" border="0" height="450" width="600" src="http://gallery.mailchimp.com/acf7def2835785a77a887ff5d/images/ac959082-15c8-4551-9e27-a9c3f606cb1d.jpg" style="max-width:600px;margin-bottom:10px;margin-top:10px;" >
+        <div style="padding-left:20px;padding-right:20px;">
+          <p>Hallo <%= @order.name %></p>
+          <p>Du hast vor einer Woche Wurst mit Gesicht bestellt und wolltest per Vorkasse (&Uuml;berweisung) bezahlen.</p>
+          <p>Doch leider konnten wir bis heute keinen Zahlungseingang von Dir finden. Bitte &uuml;berweise innerhalb der n&auml;chsten f&uuml;nf Tage <%= number_to_currency(@order.total, unit: Spree::Config[:currency]) %> mit dem Verwendungszweck &quot;<%= @order.number %>&quot; f&uuml;r Deine Bestellung.</p>
+          <p>
+
+            Unsere Kontodaten:
+          </p>
+          <p>Inhaber: MeinekleineFarm.org UG<br />
+             BLZ 50031000 (Triodos Bank)<br />
+             Kontonummer 1009487006<br />
+             IBAN DE56500310001009487006<br />
+             SWIFT TRODDEF1XXX
+          </p>
+          <p>
+            Falls wir innerhalb der n&auml;chsten 10 Tage keine Zahlung von Dir bekommen, m&uuml;ssen wir Deine Bestellung leider stornieren.
+          </p>
+          <p>Vielen Dank und oink!</p>
+          <p>
+            Laura und Dennis<br />
+            von MeinekleineFarm.org
+          </p>
+          <p>
+            PS: Fragen oder Probleme? Antworte einfach auf diese Mail.
+          </p>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

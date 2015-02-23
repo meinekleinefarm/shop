@@ -1,0 +1,19 @@
+Hallo <%= @order.name%>
+
+Du hast vor einer Woche Wurst mit Gesicht bestellt und wolltest per Vorkasse (Überweisung) bezahlen.
+
+Doch leider konnten wir bis heute keine Zahlung von Dir finden. Bitte überweise innerhalb der nächsten fünf Tage <%= number_to_currency(@order.total, unit: Spree::Config[:currency]) %> mit dem Verwendungszweck <%= @order.number %> für Deine Bestellung.
+
+Unsere Kontodaten:
+
+Inhaber: MeinekleineFarm.org UG | BLZ 50031000 (Triodos Bank) |
+Kontonummer 1009487006 | IBAN DE56500310001009487006 | SWIFT TRODDEF1XXX
+
+Falls wir innerhalb der nächsten 10 Tage keine Zahlung von Dir bekommen, müssen wir Deine Bestellung leider stornieren.
+
+Vielen Dank und oink!
+
+Laura und Dennis
+von MeinekleineFarm.org
+
+PS: Fragen oder Probleme? Antworte einfach auf diese Mail.
