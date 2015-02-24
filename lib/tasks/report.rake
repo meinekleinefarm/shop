@@ -4,14 +4,16 @@ include ActionView::Helpers::NumberHelper
 namespace :report do
 
   task most_orders: :environment do
-    orders = Spree::Order.select('email,count(email) as cnt').group('email').order('count(email) DESC').limit(20)
+    limit = ENV['LIMIT'] || 20
+    orders = Spree::Order.select('email,count(email) as cnt').group('email').order('count(email) DESC').limit(limit)
     orders.each do |o|
       puts "#{o.cnt}: #{o.email}"
     end
   end
 
   task most_revenue: :environment do
-    orders = Spree::Order.select('email,sum(item_total) as total').group('email').order('count(email) DESC').limit(20)
+    limit = ENV['LIMIT'] || 20
+    orders = Spree::Order.select('email,sum(item_total) as total').group('email').order('sum(item_total) DESC').limit(limit)
     orders.each do |o|
       puts "#{o.total}: #{o.email}"
     end
