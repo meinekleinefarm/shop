@@ -6,7 +6,7 @@ class PaymentMailer < ActionMailer::Base
     @order = order
     mail( :to => @order.email,
           :reply_to => "shop@meinekleinefarm.de",
-          :subject => "#{order.number}: Ware noch nicht bzahlt"
+          :subject => "Fleisch mit Gesicht: Vergessen, zu bezahlen?"
         )
   end
 
@@ -15,6 +15,14 @@ class PaymentMailer < ActionMailer::Base
     mail( :to => "shop@meinekleinefarm.org",
           :reply_to => "cb@meinekleinefarm.de",
           :subject => "Bestellungen älter als 7 Tage - keine Vorauskasse"
+        )
+  end
+
+  def inform_cancel(orders)
+    @orders = orders
+    mail( :to => "shop@meinekleinefarm.org",
+          :reply_to => "cb@meinekleinefarm.de",
+          :subject => "Vorauskasse: Bestellungen älter als 14 Tage"
         )
   end
 end

@@ -1,0 +1,9 @@
+Vorauskasse: Hier eine Auflistung der Bestellungen, die älter als 14 Tage sind, nicht vollständig bezahlt und sind:
+
+Falls noch nicht vorab verschickt, bitte stornieren.
+
+<%- @orders.each do |o| %>
+  <%= o.number %>:
+  <%= "http://nichklicken.de/admin/orders?utf8=%E2%9C%93&q%5Bid_eq%5D=&q%5Bspree_number_contains%5D=#{o.number}&q%5Btaggings_tag_name_eq%5D=&q%5Bbilling_first_name_contains%5D=&q%5Bbilling_last_name_contains%5D=&q%5Bbilling_street_contains%5D=&q%5Bbilling_street_nr_contains%5D=&q%5Bbilling_zip_contains%5D=&q%5Bbilling_city_contains%5D=&q%5Bbilling_email_contains%5D=&q%5Bbilling_phone_contains%5D=&q%5Bcreated_at_gte%5D=&q%5Bcreated_at_lte%5D=&commit=Filtern&order=id_desc" %>
+  <%= "https://www.meinekleinefarm.org/admin/orders/#{o.number}/edit" %>
+<%- end %>

@@ -1,7 +1,7 @@
 namespace :payments do
 
   task check_pending: :environment do
-    start_date = 14.days.ago.beginning_of_day
+    start_date = 8.days.ago.beginning_of_day
     end_date = 7.days.ago.beginning_of_day
 
     involved_orders(start_date, end_date).each do |order|
@@ -14,15 +14,12 @@ namespace :payments do
     end
   end
 
-  task cancel_overdue: :environment do
+  task inform_cancel: :environment do
     start_date = Time.at(0)
     end_date = 15.days.ago.end_of_day
 
-    involved_orders(start_date, end_date).each do |order|
-      puts order.inspect
-      puts order.payments.inspect
-      # order.cancel!
-    end
+    orders = involved_orders(start_date, end_date)
+    PaymentMailer.inform_cancel(orders).deliver
   end
 
   task inform_shop: :environment do
