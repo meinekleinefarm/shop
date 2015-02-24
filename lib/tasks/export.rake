@@ -57,4 +57,78 @@ namespace :export do
       end
     end
   end
+
+  desc 'All line items within given time range.'
+  task line_items: :environment do
+    headers = [:name, :number, :completed_at, :quantity, :price, :email, :animal, :category, :hof ]
+    start_date = Date.parse(ENV["START"] || '2014-01-01').beginning_of_day
+    end_date = Date.parse(ENV["END"] || '2014-12-31').end_of_day
+    hof = Spree::Taxonomy.find_by_name('Hof')
+    category = Spree::Taxonomy.find_by_name('Art')
+    CSV.open('line_items.csv', 'wb', headers: headers) do |csv|
+      csv << headers
+      Spree::Order.complete.joins(:line_items).where(completed_at: (start_date..end_date)).order('completed_at ASC').find_each do |o|
+        o.line_items.each do |i|
+          csv << [
+            i.product.name,
+            o.number,
+            o.completed_at,
+            i.quantity,
+            i.price,
+            o.email,
+            i.variant.option_values.map(&:name).join('|'),
+            i.product.taxons.where(taxonomy_id: category.id).limit(1).first.try(:name),
+            i.product.taxons.where(taxonomy_id: hof.id).limit(1).first.try(:name)
+          ]
+        end
+      end
+    end
+  end
+
+  task orders: :environment do
+    headers = [:completed_at, :number, :status, :zahlung, :versand, :email, :gesamt, :produkte, :anpassung ]
+    start_date = Date.parse(ENV["START"] || '2014-01-01').beginning_of_day
+    end_date = Date.parse(ENV["END"] || '2014-12-31').end_of_day
+    CSV.open('orders.csv', 'wb', headers: headers) do |csv|
+      csv << headers
+      Spree::Order.complete.where(completed_at: (start_date..end_date)).find_each do |o|
+        csv << [
+          o.completed_at,
+          o.number,
+          o.state,
+          o.payment_state,
+          o.shipment_state,
+          o.email,
+          o.total,
+          o.item_total,
+          o.adjustment_total
+        ]
+      end
+    end
+
+  end
+
+  task payments: :environment do
+    headers = [:number, :completed_at, :status, :zahlungsstatus,:total, :payment_method ]
+    start_date = Date.parse(ENV["START"] || '2014-01-01').beginning_of_day
+    end_date = Date.parse(ENV["END"] || '2014-12-31').end_of_day
+    CSV.open('payed_orders.csv', 'wb', headers: headers) do |csv|
+      csv << headers
+      Spree::Order.complete.
+        joins(:payments).
+        where(completed_at: (start_date..end_date)).
+        where(payment_state: 'paid').
+        order('completed_at ASC').find_each do |o|
+          latest_payment = o.payments.order('created_at DESC').limit(1).first
+        csv << [
+          o.number,
+          o.completed_at,
+          o.state,
+          o.payment_state,
+          o.total,
+          latest_payment.payment_method.name
+        ]
+      end
+    end
+  end
 end
