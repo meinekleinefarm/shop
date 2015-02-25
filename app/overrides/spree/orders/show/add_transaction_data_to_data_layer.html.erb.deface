@@ -2,3 +2,6 @@
 <% content_for :data_layer do %>
   <%= render partial: 'data_layer/transaction_data' %>
 <% end %>
+
+<!-- insert_after 'fieldset' -->
+<%= render partial: 'facebook/tracking_pixel' %>

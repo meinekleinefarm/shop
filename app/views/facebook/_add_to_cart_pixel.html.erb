@@ -1,0 +1,16 @@
+<!-- Facebook Conversion Code for MkF AddToCart -->
+<script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6021606426656', {'value':'<%= @order.total.to_f %>','currency':'<%= Spree::Config[:currency] %>'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6021606426656&amp;cd[value]=<%= @order.total.to_f %>&amp;cd[currency]=<%= Spree::Config[:currency] %>&amp;noscript=1" /></noscript>

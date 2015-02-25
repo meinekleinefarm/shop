@@ -3,3 +3,5 @@
   <%= render partial: 'data_layer/cart_data' %>
 <% end %>
 
+<!-- insert_top '[data-hook="outside_cart_form"]' -->
+<%= render partial: 'facebook/add_to_cart_pixel' %>
