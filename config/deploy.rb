@@ -10,11 +10,11 @@ set :format, :pretty
 set :log_level, :debug
 # set :pty, true
 
-set :linked_files, %w{config/database.yml config/memcached.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/spree}
+set :linked_files, %w{config/database.yml config/memcached.yml config/airbrake.yml config/gattica.yml config/application.yml }
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/spree public/assets }
 
 set :rbenv_type, :system # :user or :system, depends on your rbenv setup
-set :rbenv_ruby, '1.9.3-p484'
+set :rbenv_ruby, '2.1.0'
 set :rbenv_custom_path, '/opt/rbenv'
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
