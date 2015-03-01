@@ -4,23 +4,17 @@
 # User-Agent: *
 # Disallow: /
 User-agent: *
-Disallow: /checkouts
-Disallow: /orders
-Disallow: /countries
-Disallow: /line_items
-Disallow: /password_resets
-Disallow: /states
-Disallow: /user_sessions
-Disallow: /users
-User-agent: *
-Disallow: /checkout
-Disallow: /cart
-Disallow: /orders
-Disallow: /countries
-Disallow: /line_items
-Disallow: /password_resets
-Disallow: /states
-Disallow: /user_sessions
-Disallow: /user_registrations
-Disallow: /users
 Disallow: /account
+Disallow: /cart
+Disallow: /checkouts
+Disallow: /checkout
+Disallow: /countries
+Disallow: /line_items
+Disallow: /orders
+Disallow: /password_resets
+Disallow: /states
+Disallow: /user_sessions
+Disallow: /users
+Disallow: /user_registrations
+
+Sitemap: http://www.meinekleinefarm.org/sitemap.xml.gz
