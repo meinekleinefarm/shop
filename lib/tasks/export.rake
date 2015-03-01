@@ -29,7 +29,7 @@ namespace :export do
     csv_file = ENV['FILE'] || 'vouchers.csv'
     CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
       csv << ["Kaufdatum", "Bestellnummer", "Warenwert", "Davon Waren mit 19%", "Versandkosten", "Gesamtwert", "Gutschein verkauft", "Gutschein eingelöst", "Guthaben eingelöst"]
-      Spree::Order.complete.find_each do |order|
+      Spree::Order.complete.where(state: 'complete').find_each do |order|
 
         item_total = order.item_total.to_f
         shipment_total = order.adjustments.where(source_type: "Spree::Shipment").sum(:amount).to_f
@@ -67,7 +67,7 @@ namespace :export do
     category = Spree::Taxonomy.find_by_name('Art')
     CSV.open('line_items.csv', 'wb', headers: headers) do |csv|
       csv << headers
-      Spree::Order.complete.joins(:line_items).where(completed_at: (start_date..end_date)).order('completed_at ASC').find_each do |o|
+      Spree::Order.complete.joins(:line_items).where(state: 'complete').where(completed_at: (start_date..end_date)).order('completed_at ASC').find_each do |o|
         o.line_items.each do |i|
           csv << [
             i.product.name,
@@ -91,7 +91,7 @@ namespace :export do
     end_date = Date.parse(ENV["END"] || '2014-12-31').end_of_day
     CSV.open('orders.csv', 'wb', headers: headers) do |csv|
       csv << headers
-      Spree::Order.complete.where(completed_at: (start_date..end_date)).find_each do |o|
+      Spree::Order.complete.where(state: 'complete').where(completed_at: (start_date..end_date)).find_each do |o|
         csv << [
           o.completed_at,
           o.number,
@@ -116,6 +116,7 @@ namespace :export do
       csv << headers
       Spree::Order.complete.
         joins(:payments).
+        where(state: 'complete').
         where(completed_at: (start_date..end_date)).
         where(payment_state: 'paid').
         order('completed_at ASC').find_each do |o|

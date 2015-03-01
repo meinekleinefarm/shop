@@ -36,6 +36,7 @@ namespace :payments do
     Spree::Order.
       complete.
       where(completed_at: (start_date..end_date)).
+      where(state: "complete").
       where(payment_state: :balance_due).
       joins(:payments).
       where('spree_payments.state NOT IN (?)', invalid_states).
