@@ -45,8 +45,19 @@ SitemapGenerator::Sitemap.add_links do
   #   end
   add_login
   add_signup
-  add_account
   add_password_reset
   add_taxons
   add_products
+  Spree::Post.live.order("posted_at DESC").each do |post|
+    add full_post_path(post.blog,post), :lastmod => post.posted_at
+  end
+  Spree::Schwein.order("date_of_death DESC").each do |schwein|
+    add schwein_path(schwein), :lastmod => schwein.updated_at
+  end
+  Spree::Rind.order("date_of_death DESC").each do |rind|
+    add rind_path(rind), :lastmod => rind.updated_at
+  end
+  Spree::Page.where(accessible: true).where(visible: true).order("updated_at DESC").each do |page|
+    add page_path(page), :lastmod => page.updated_at
+  end
 end
