@@ -60,4 +60,5 @@ SitemapGenerator::Sitemap.add_links do
   Spree::Page.where(accessible: true).where(visible: true).order("updated_at DESC").each do |page|
     add page_path(page), :lastmod => page.updated_at
   end
+
 end
