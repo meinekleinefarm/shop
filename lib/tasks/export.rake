@@ -60,25 +60,30 @@ namespace :export do
 
   desc 'All line items within given time range.'
   task line_items: :environment do
-    headers = [:name, :number, :completed_at, :quantity, :price, :email, :animal, :category, :hof ]
+    I18n.locale = :de
+    headers = [:Produkt, :Bestellnummer, :bestellt_am, :Anzahl, :Preis, :email, :Tier, :verfügbar_seit, :Kategorie, :hof ]
     start_date = Date.parse(ENV["START"] || '2014-01-01').beginning_of_day
     end_date = Date.parse(ENV["END"] || '2014-12-31').end_of_day
     hof = Spree::Taxonomy.find_by_name('Hof')
     category = Spree::Taxonomy.find_by_name('Art')
-    CSV.open('line_items.csv', 'wb', headers: headers) do |csv|
+    first_purchase = {}
+    CSV.open('line_items.csv', 'wb', headers: headers, col_sep: ';') do |csv|
       csv << headers
-      Spree::Order.complete.joins(:line_items).where(state: 'complete').where(completed_at: (start_date..end_date)).order('completed_at ASC').find_each do |o|
-        o.line_items.each do |i|
+      Spree::Order.complete.joins(:line_items).includes(:line_items).where(state: 'complete').where(completed_at: (start_date..end_date)).order('completed_at ASC').each do |o|
+        o.line_items.includes(:variant => :option_values, :product => :taxons).each do |i|
+          animal = i.variant.option_values.map(&:name).uniq.join('|')
+          first_purchase[i.variant] ||= o.completed_at.to_date
           csv << [
             i.product.name,
             o.number,
-            o.completed_at,
+            I18n.l(o.completed_at.to_date(), format: :export),
             i.quantity,
-            i.price,
+            number_to_human(i.price, precision: 2),
             o.email,
-            i.variant.option_values.map(&:name).join('|'),
-            i.product.taxons.where(taxonomy_id: category.id).limit(1).first.try(:name),
-            i.product.taxons.where(taxonomy_id: hof.id).limit(1).first.try(:name)
+            animal,
+            I18n.l(first_purchase[i.variant], format: :export),
+            i.product.taxons.where(taxonomy_id: category.id).limit(1).pluck(:name).first,
+            i.product.taxons.where(taxonomy_id: hof.id).limit(1).pluck(:name).first
           ]
         end
       end

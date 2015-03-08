@@ -38,6 +38,7 @@ de:
       long: ! '%e. %B %Y'
       short: ! '%e. %b'
       csv: ! '%Y.%m.%d'
+      export: ! '%d.%m.%Y'
     month_names:
     -
     - Januar
