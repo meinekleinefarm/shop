@@ -61,7 +61,7 @@ namespace :export do
   desc 'All line items within given time range.'
   task line_items: :environment do
     I18n.locale = :de
-    headers = [:Produkt, :Bestellnummer, :bestellt_am, :Anzahl, :Preis, :email, :Tier, :verfügbar_seit, :Kategorie, :hof ]
+    headers = [:Produkt, :Bestellnummer, :bestellt_am, :Anzahl, :Preis, :email, :Stadt, :PLZ, :Tier, :verfügbar_seit, :Kategorie, :hof ]
     start_date = Date.parse(ENV["START"] || '2014-01-01').beginning_of_day
     end_date = Date.parse(ENV["END"] || '2014-12-31').end_of_day
     hof = Spree::Taxonomy.find_by_name('Hof')
@@ -69,7 +69,7 @@ namespace :export do
     first_purchase = {}
     CSV.open('line_items.csv', 'wb', headers: headers, col_sep: ';') do |csv|
       csv << headers
-      Spree::Order.complete.joins(:line_items).includes(:line_items).where(state: 'complete').where(completed_at: (start_date..end_date)).order('completed_at ASC').each do |o|
+      Spree::Order.complete.joins(:line_items).includes(:line_items, :ship_address).where(state: 'complete').where(completed_at: (start_date..end_date)).order('completed_at ASC').each do |o|
         o.line_items.includes(:variant => :option_values, :product => :taxons).each do |i|
           animal = i.variant.option_values.map(&:name).uniq.join('|')
           first_purchase[i.variant] ||= o.completed_at.to_date
@@ -80,6 +80,8 @@ namespace :export do
             i.quantity,
             number_to_human(i.price, precision: 2),
             o.email,
+            o.ship_address.zipcode,
+            o.ship_address.city,
             animal,
             I18n.l(first_purchase[i.variant], format: :export),
             i.product.taxons.where(taxonomy_id: category.id).limit(1).pluck(:name).first,
