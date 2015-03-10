@@ -14,7 +14,7 @@ set :linked_files, %w{config/database.yml config/memcached.yml config/airbrake.y
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/spree public/assets }
 
 set :rbenv_type, :system # :user or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.1.0'
+set :rbenv_ruby, '2.1.5'
 set :rbenv_custom_path, '/opt/rbenv'
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
