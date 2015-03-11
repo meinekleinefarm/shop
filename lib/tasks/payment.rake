@@ -1,5 +1,6 @@
 namespace :payments do
 
+  desc 'Vorauskasse, älter als 7 Tage'
   task check_pending: :environment do
     start_date = 8.days.ago.beginning_of_day
     end_date = 7.days.ago.beginning_of_day
@@ -14,17 +15,19 @@ namespace :payments do
     end
   end
 
+  desc 'Vorauskasse, älter als 14 Tage'
   task inform_cancel: :environment do
     start_date = Time.at(0)
-    end_date = 15.days.ago.end_of_day
+    end_date = 14.days.ago.beginning_of_day
 
     orders = involved_orders(start_date, end_date)
     PaymentMailer.inform_cancel(orders).deliver
   end
 
+  desc 'Keine Vorauskasse, älter als 7 Tage'
   task inform_shop: :environment do
     start_date = Time.at(0)
-    end_date = 7.days.ago.end_of_day
+    end_date = 7.days.ago.beginning_of_day
     payment_method_types = Spree::PaymentMethod.where('type <> ?', 'Spree::PaymentMethod::BankTransfer').pluck(:type).uniq
     orders = involved_orders(start_date, end_date, payment_method_types)
     PaymentMailer.inform_shop(orders).deliver
