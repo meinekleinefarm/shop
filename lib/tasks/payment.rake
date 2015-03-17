@@ -17,8 +17,13 @@ namespace :payments do
 
   desc 'Vorauskasse, älter als 14 Tage'
   task inform_cancel: :environment do
-    start_date = Time.at(0)
-    end_date = 14.days.ago.beginning_of_day
+    start_date = Date.parse(ENV["START_DATE"]).beginning_of_day if ENV["START_DATE"]
+    start_date ||= 21.days.ago.beginning_of_day
+    puts start_date.inspect
+
+    end_date = Date.parse(ENV["END_DATE"]).beginning_of_day if ENV["END_DATE"]
+    end_date ||= 14.days.ago.beginning_of_day
+    puts end_date.inspect
 
     orders = involved_orders(start_date, end_date)
     PaymentMailer.inform_cancel(orders).deliver
