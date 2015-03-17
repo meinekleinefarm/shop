@@ -13,9 +13,15 @@ set :log_level, :debug
 set :linked_files, %w{config/database.yml config/memcached.yml config/airbrake.yml config/gattica.yml config/application.yml }
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/spree public/assets }
 
+# rbenv settings
 set :rbenv_type, :system # :user or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.1.5'
 set :rbenv_custom_path, '/opt/rbenv'
+
+# bundler settings
+set :bundle_jobs, 4
+# This translates to NOKOGIRI_USE_SYSTEM_LIBRARIES=1 when executed
+set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
