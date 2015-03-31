@@ -22,5 +22,4 @@
 config/gattica.yml
 config/airbrake.yml
 config/application.yml
-config/initializers/spree_chimpy.rb
 public/sitemap*
