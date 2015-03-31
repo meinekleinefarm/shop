@@ -1,0 +1,109 @@
+<div data-hook="product_show" itemscope itemtype="http://schema.org/Product">
+  <% @body_id = 'product-details' %>
+
+  <h1 class="product-title" itemprop="name"><%= accurate_title %></h1>
+<div class="p">
+  <div class="left">
+    <%= render :partial => 'spree/products/weight', :object => @product.net_weight %>
+    |
+    <%= render :partial => 'spree/products/price' %>
+  </div>
+  <div class="right">
+    <%= render :partial => 'spree/shared/social_buttons' %>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="columns alpha eight" data-hook="product_left_part">
+    <div class="row" data-hook="product_left_part_wrap">
+
+      <div id="product-images" data-hook="product_images">
+        <div id="main-image" data-hook>
+          <%= render :partial => 'image' %>
+        </div>
+        <div id="thumbnails" data-hook>
+          <%= render :partial => 'thumbnails' %>
+        </div>
+      </div>
+
+      
+
+<% promotions = @product.possible_promotions %>
+<% if promotions.any? %>
+<div id="promotions">
+  <h3><%= t(:promotions) %></h3>
+
+  <% promotions.each do |promotion| %>
+  <div>
+    <h4><%= promotion.name %></h4>
+    <p><%= promotion.description %></p>
+    <% if promotion.products.any? %>
+    <ul>
+      <% promotion.products.each do |product| %>
+        <li><%= link_to product.name, product_path(product) %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+  <% end %>
+
+</div>
+<% end %>
+
+
+
+    
+    </div>
+  </div>
+<div id="cart-form" data-hook="cart_form" class="four columns omega">
+          <%= render :partial => 'cart_form' %>
+        </div>
+
+  <div class="columns   alpha twelve" data-hook="product_right_part">
+    <div class="row" data-hook="product_right_part_wrap">
+
+      <div id="product-description" data-hook="product_description">
+
+        
+
+        <div itemprop="description" data-hook="description">
+          <%= product_description(@product) rescue t(:product_has_no_description) %>
+        </div>
+
+        
+
+      </div>
+
+      <%= render :partial => 'taxons' %>
+
+    </div>
+  </div>
+<div id="reviews" class="columns twelve alpha omega">
+  <h6 class="product-section-title">
+<%= t(:reviews) %> (<%= @product.reviews.count %>)</h6>
+  <% if Spree::Reviews::Config[:include_unapproved_reviews] == false and @product.reviews.approved.count == 0 %>
+    <p class="reviews-none"><%=t('no_reviews_available')%></p>
+  <% else %>
+    <%= render :partial => 'spree/shared/rating', :locals => {:product => @product, :review => 0} %>
+    <% for review in (Spree::Reviews::Config[:track_locale] ? @product.reviews.localized(I18n.locale) : @product.reviews).approval_filter %>
+      <%= render :partial => 'spree/shared/review', :locals => {:review => review} %>
+    <% end %>
+  <% end %>
+  <% if !Spree::Reviews::Config[:require_login] || spree_current_user || Spree::Reviews::Config[:always_show_create] %>
+    <br class="clear"><%= link_to t('write_your_own_review'), new_product_review_path(@product), :class => "button",
+                :rel => "nofollow,noindex" %>
+  <% end %>
+</div>
+
+</div><% content_for :sidebar do %>
+  <div data-hook="homepage_sidebar_navigation">
+    <% if "products" == params[:controller] && @taxon %>
+      <%= render :partial => 'spree/shared/filters' %>
+    <% else %>
+      <%= render :partial => 'spree/shared/taxonomies' %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :data_layer do %>
+  <%= render partial: 'data_layer/product_data' %>
+<% end %>

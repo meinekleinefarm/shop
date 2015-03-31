@@ -1,0 +1,59 @@
+<fieldset id="payment" data-hook>
+  <legend align="center"><%= t(:payment_information) %></legend>
+  <div data-hook="checkout_payment_step">
+<div id="available_payment_methods" class="columns three">
+<% @order.available_payment_methods.each do |method| %>
+    <p>
+      <label>
+        <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.available_payment_methods.first %>
+        <%= t(method.name, :scope => :payment_methods, :default => method.name) %>
+      </label>
+    </p>
+    <% end %>
+</div>
+    
+
+    <ul id="payment-methods" data-hook>
+      <% @order.available_payment_methods.each do |method| %>
+        <li id="payment_method_<%= method.id %>" class="<%= 'last' if method == @order.available_payment_methods.last %>" data-hook>
+          <fieldset>
+            <%= render :partial => "spree/checkout/payment/#{method.method_type}", :locals => { :payment_method => method } %>
+          </fieldset>
+        </li>
+      <% end %>
+    </ul>
+    <br style="clear:both;">
+    <% if Spree::Promotion.with_code.count > 0 %>
+  <p class="field" data-hook="coupon_code">
+    <%= form.label :coupon_code %><br>
+    <%= form.text_field :coupon_code %>
+  </p>
+<% end %>
+
+  </div>
+<% if (spree_current_user && spree_current_user.store_credits_total > 0) %>
+<% usable_amount = number_with_precision(@order.store_credit_maximum_usable_amount, :precision => 2, :separator => '.', :delimiter => '') %>
+<br style="clear:both;">
+<p><%= t('you_have_store_credit',
+       :amount => number_to_currency(spree_current_user.store_credits_total))%>
+</p>
+<p>
+  <label><%= t('enter_desired_amount_of_store_credit') %></label><br>
+  <%= form.text_field :store_credit_amount, :size => 19, :value => usable_amount, :data => { :store_credit_maximum_amount => usable_amount, :store_credit_maximum_amount_message => t('store_credit_maximum_amount', :amount => number_to_currency(@order.store_credit_maximum_usable_amount)) } %>
+</p>
+<% end %>
+
+
+
+<p class="field" data-hook="gift_code">
+  <%= form.label :gift_code, t(:gift_code) %><br>
+  <%= form.text_field :gift_code, value: nil %>
+</p>
+</fieldset>
+
+<br class="space">
+
+<div class="form-buttons" data-hook="buttons">
+  <%= submit_tag( t(:save_and_finish), :class => 'continue button primary') %>
+  <script>disableSaveOnClick();</script>
+</div>

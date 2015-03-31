@@ -1,0 +1,45 @@
+<div class="columns eight alpha">
+  <h1>Die Wurst ist unterwegs!</h1>
+  <p>
+    Wir machen uns jetzt an die Versandarbeit. Derweil haben wir Dir eine Bestätigungs-Mail geschickt, in der Du Einzelheiten zu Deiner Bestellung findest. Falls die Mail in den nächsten Stunden nicht ankommt, bitte
+    <%= mail_to('shop@meinekleinefarm.org', 'melden') + ',' %>
+    da sich manchmal der Fehlerteufel bei der Angabe der Mail-Adresse einschleicht. Es kann aber auch vorkommen, dass die E-Mail in deinem Spam Ordner gelandet ist.
+  </p>
+<p>
+    Deine Bestellnummer ist
+    <b>    <%= @order.number %>
+</b>
+  </p>
+<p>
+    Wenn Du keine Schweine-News verpassen möchtest, abonniere am besten unseren
+    <%= link_to('Newsletter', 'http://eepurl.com/h6YTQ') + '.' %>
+    Und über frisches Fleisch informieren wir über diese
+    <%= link_to('Mailing-Liste', 'http://eepurl.com/l-Euf') + '.' %>
+    Lustig, informativ und rosa ist's auch bei
+    <%= link_to('Facebook', 'http://www.facebook.com/meinekleinefarm') + ',' %>
+    <%= link_to('Twitter', 'http://twitter.com/meatonamission') %>
+    und in unserem
+    <%= link_to('Blog', 'http://www.meinekleinefarm.org') + '.' %>
+  </p>
+<p>Da Du nun ein Agent für Meat on a Mission bist, bekommst Du gleich Deinen ersten Auftrag: Erzähle Freunden und Bekannten von MeinekleineFarm und sorge so für ein neues BeWurstsein, oink!</p>
+</div>
+<div class="columns eight omega">
+  <%= image_tag 'store/success-pig-arrow.png', :style => 'width: 100%' %>
+</div>
+<div class="clear"></div>
+<p data-hook="links">
+  <%= link_to t(:back_to_store), spree.root_path, :class => "button" %>
+  <% unless params.has_key? :checkout_complete %>
+  <% if try_spree_current_user && respond_to?(:spree_account_path) %>
+  <%= link_to t(:my_account), spree_account_path, :class => "button" %>
+  <% end %>
+  <% end %>
+</p>
+
+<% content_for :data_layer do %>
+  <%= render partial: 'data_layer/transaction_data' %>
+<% end %>
+
+
+<%= render partial: 'facebook/tracking_pixel' %>
+

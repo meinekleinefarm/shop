@@ -1,0 +1,20 @@
+<meta charset="utf-8">
+<title><%= title %></title><link rel="apple-touch-icon-precomposed" href="<%=  image_path('store/apple-touch-icon-57x57-precomposed.png') %>">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%=  image_path('store/apple-touch-icon-72x72-precomposed.png') %>">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=  image_path('store/apple-touch-icon-114x114-precomposed.png') %>">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=  image_path('store/apple-touch-icon-144x144-precomposed.png') %>">
+<link rel="apple-touch-icon-precomposed" sizes="241x241" href="<%=  image_path('store/apple-touch-icon-241x241-precomposed.png') %>">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="black">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
+<%== meta_data_tags %>
+<%= favicon_link_tag image_path('store/favicon.png') %>
+<%= stylesheet_link_tag 'store/all', :media => 'screen' %>
+<%= csrf_meta_tags %>
+<%= javascript_include_tag 'store/all' %>
+<!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js"></script>
+<![endif]-->
+<%= yield :head %>

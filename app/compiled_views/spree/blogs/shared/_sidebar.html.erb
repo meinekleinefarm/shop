@@ -1,0 +1,44 @@
+<div class="post-sidebar" data-hook="post-sidebar">
+  <nav id="taxonomies" class="sidebar-item"><h6 class="taxonomy-root">Produkte</h6>
+<ul class="taxons-list">
+  <li><%= link_to("Wurstüberblick", products_path) %></li>
+  <% if root_taxon = Spree::Taxon.find_by_name('Art') %>
+    <%= taxons_tree(root_taxon, @taxon, 3) %>
+  <%- end %>
+</ul>
+
+<% if Spree::Schwein.count > 0 %>
+  <h6 class="taxonomy-root">Schweine</h6>
+  <ul class="taxons-list">
+    <li><%= link_to("Alle Schweine", schweine_path) %></li>
+    <%- Spree::Schwein.limit(5).order('created_at DESC').each do |schwein| %>
+      <%- if schwein.try(:permalink).blank? %>
+        <li><%= schwein.name %></li>
+      <%- else %>
+        <li><%=link_to schwein.name, schwein_path(schwein.permalink) %></li>
+      <%- end %>
+    <% end %>
+  </ul>
+<% end %>
+<% if Spree::Rind.count > 0 %>
+  <h6 class="taxonomy-root">Rinder</h6>
+  <ul class="taxons-list">
+    <li><%= link_to("Alle Rinder", rinder_path) %></li>
+    <%- Spree::Rind.limit(5).order('created_at DESC').each do |rind| %>
+      <li><%=link_to rind.name, rind_path(rind.permalink)%></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%- if defined?(SpreeEssentialBlog)  == 'constant' && Spree::Post.live.count > 0 %>
+  <h6 class="taxonomy-root">Schweinenews</h6>
+  <% @blog = Spree::Blog.first %>
+  <%= render :partial => "spree/blogs/shared/archive", :locals => { :posts => @blog.posts.live.limit(5).order('posted_at DESC') } %>
+<%- end -%>
+
+<%- if @bauern_menu = Spree::MenuBar.find_by_name("Bauern") %>
+  <h6 class="taxonomy-root">Bauern</h6>
+  <%= render :partial => "spree/shared/render_menu", :locals => {:menu_bar => @bauern_menu} %>
+<%- end -%>
+</nav>
+</div>

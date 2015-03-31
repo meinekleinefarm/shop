@@ -43,4 +43,6 @@ Shop::Application.configure do
 
   # Precompile additional assets
   config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+  config.deface.enabled = false
 end
