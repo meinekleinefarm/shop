@@ -33,6 +33,9 @@ group :default do
   gem 'redcarpet'
   gem 'chunky_png'
   gem 'barby'
+
+  gem 'daemons'
+  gem 'delayed_job_active_record'
 end
 
 # Gems used only for assets and not required
