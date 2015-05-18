@@ -41,9 +41,9 @@
 
 <% if Spree::Schwein.count > 0 %>
   <h6 class="taxonomy-root">Schweine</h6>
-  <ul class="taxons-list">
+  <ul class="taxons-list" id="schweine">
     <li><%= link_to("Alle Schweine", schweine_path) %></li>
-    <%- Spree::Schwein.limit(5).order('created_at DESC').each do |schwein| %>
+    <%- Spree::Schwein.where('name IS NOT NULL').where('permalink IS NOT NULL').limit(5).order('created_at DESC').each do |schwein| %>
       <%- if schwein.try(:permalink).blank? %>
         <li><%= schwein.name %></li>
       <%- else %>
@@ -54,10 +54,19 @@
 <% end %>
 <% if Spree::Rind.count > 0 %>
   <h6 class="taxonomy-root">Rinder</h6>
-  <ul class="taxons-list">
+  <ul class="taxons-list" id="rinder">
     <li><%= link_to("Alle Rinder", rinder_path) %></li>
-    <%- Spree::Rind.limit(5).order('created_at DESC').each do |rind| %>
+    <%- Spree::Rind.where('name IS NOT NULL').where('permalink IS NOT NULL').limit(5).order('created_at DESC').each do |rind| %>
       <li><%=link_to rind.name, rind_path(rind.permalink)%></li>
+    <% end %>
+  </ul>
+<% end %>
+<% if Spree::Schaf.count > 0 %>
+  <h6 class="taxonomy-root">Schafe</h6>
+  <ul class="taxons-list" id="schafe">
+    <li><%= link_to("Alle Schafe", schafe_path) %></li>
+    <%- Spree::Schaf.where('name IS NOT NULL').where('permalink IS NOT NULL').limit(5).order('created_at DESC').each do |schaf| %>
+      <li><%=link_to schaf.name, schaf_path(schaf.permalink)%></li>
     <% end %>
   </ul>
 <% end %>
