@@ -1,0 +1,28 @@
+<% content_for :sidebar do %>
+  <div data-hook="homepage_sidebar_navigation">
+    <% if "spree/products" == params[:controller] && @taxon %>
+      <%= render :partial => 'spree/shared/filters' %>
+    <% else %>
+      <%= render :partial => 'spree/shared/taxonomies' %>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% if params[:keywords] %>
+
+  <div data-hook="search_results">
+    <% if @products.empty? %>
+      <h6 class="search-results-title">Keine Produkte mit '<%= params[:keywords] %>' gefunden.<p style="font-size:80%;">Aber in der <a href="/products">Übersicht</a> findest Du andere Leckereien!</p>
+</h6>
+    <% else %>
+      <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
+    <% end %>
+  </div>
+
+<% else %>
+
+  <h2>Hier gibt´s lecker Wurst mit Gesicht.</h2><p> Falls die Sorte Deiner Wahl ausverkauft ist: Mit dem <a href="http://eepurl.com/h6YTQ" target="_blank">Schweine-Newsletter</a> informieren wir über Wurst- und andere Neuigkeiten.</p><div data-hook="homepage_products">
+    <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
+  </div>
+<% end %>

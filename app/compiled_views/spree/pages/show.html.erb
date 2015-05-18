@@ -1,0 +1,10 @@
+<div class="for-<%= @page.to_param %>">
+  <div id="page"><%= render :partial => 'spree/shared/content', :collection => @page.contents %></div>
+<%- content_for :sidebar do -%>
+                      <div data-hook="homepage_sidebar_navigation">
+                        <nav id="taxonomies" class="sidebar-item" data-hook>
+                          <%= render :partial => "spree/schweine/sidebar" %>
+                        </nav>
+                      </div>
+                    <%- end -%>
+</div>
