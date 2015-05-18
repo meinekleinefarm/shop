@@ -7,6 +7,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.singular /^(ox)en/i, '\1'
   inflect.irregular 'schwein', 'schweine'
   inflect.irregular 'rind', 'rinder'
+  inflect.irregular 'schaf', 'schafe'
 #   inflect.uncountable %w( fish sheep )
 end
 #
