@@ -29,7 +29,7 @@ group :default do
   gem 'newrelic_rpm'
 
   gem 'figaro'
-
+  gem 'shopify_api'
 end
 
 # Gems used only for assets and not required
