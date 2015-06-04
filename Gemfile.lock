@@ -352,6 +352,7 @@ GEM
     ffi (1.9.0)
     figaro (1.0.0)
       thor (~> 0.14)
+    forgery (0.6.0)
     formatador (0.2.4)
     guard (1.8.1)
       formatador (>= 0.2.4)
@@ -653,6 +654,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   figaro
+  forgery
   gattica!
   guard
   guard-bundler
