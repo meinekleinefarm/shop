@@ -2,11 +2,6 @@ Hallo Liebe Gesellschafter,
 
 hier der Report von der letzten Woche (<%= I18n.l(@start_date) %> - <%= I18n.l(@end_date)%>):
 
-<%= @visitors.first %> Unique Visitors, 		Vorwoche <%= @visitors.last %> (<%= number_to_percentage((@visitors.first * 100 /  @visitors.last), precision: 1) %>)
-<%- @visitors_by_source.each do |source| %>
-  <%= source[:source]%>: <%= source[:visitors].to_i %>
-<%- end -%>
-
 <%= number_to_currency(@revenue.first, unit: Spree::Config.currency) %> Umsatz, 		Vorwoche <%= number_to_currency(@revenue.last, unit: Spree::Config.currency)%> (<%= number_to_percentage((@revenue.first * 100 /  @revenue.last), precision: 1) %>)%>
 
 <%- @payments.each do |name,count| %>

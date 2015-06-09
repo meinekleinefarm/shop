@@ -5,11 +5,6 @@ class ReportMailer < ActionMailer::Base
   def weekly(user, start_date, end_date)
     @start_date = start_date
     @end_date = end_date
-    @visitors = []
-    @visitors << visitors(start_date, end_date)
-    @visitors << visitors(beginning_of_week_before(start_date), end_of_week_before(end_date))
-
-    @visitors_by_source = visitors_by_source(start_date, end_date)
 
     @revenue = []
     @revenue << revenue(start_date, end_date)
@@ -37,27 +32,6 @@ class ReportMailer < ActionMailer::Base
     end_date - 7.days
   end
 
-  def visitors(start_date, end_date)
-    results = GATTICA_INSTANCE.get({
-                        :start_date => start_date.to_s,
-                        :end_date => end_date.to_s,
-                        :metrics => ['visitors'],
-                      }).to_hash
-
-    results.first[:visitors].to_i
-  end
-
-  def visitors_by_source(start_date, end_date)
-    results = GATTICA_INSTANCE.get({
-                        :start_date => start_date.to_s,
-                        :end_date => end_date.to_s,
-                        :dimensions => ['source'],
-                        :metrics => ['visitors'],
-                        :sort => ['-visitors'],
-                      }).to_hash
-
-    results[0...5]
-  end
 
   def revenue(start_date, end_date)
     results = Spree::Order.search( completed_at_gt: start_date.beginning_of_day,
