@@ -24,6 +24,19 @@ namespace :export do
     end
   end
 
+  task :products_by_farm => :environment do
+    csv_file = ENV['FILE'] || 'hoefe.csv'
+    hoefe = Spree::Taxonomy.find_by_name('Hof')
+    CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
+      csv << ["Hof", "Produkt", "Preis", "sku", "ean"]
+      hoefe.taxons.each do |hof|
+        hof.products.each do |product|
+          csv << [hof.name, product.name, product.price, product.sku, ""]
+        end
+      end
+    end
+  end
+
   desc 'Export sold and redeemed vouchers.'
   task :vouchers => :environment do
     csv_file = ENV['FILE'] || 'vouchers.csv'

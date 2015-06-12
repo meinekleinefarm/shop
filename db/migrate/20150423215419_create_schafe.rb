@@ -13,7 +13,7 @@ class CreateSchafe < ActiveRecord::Migration
       t.integer :position
       t.string :race
       t.timestamps
-    end
+    end rescue nil
   end
 
   def down

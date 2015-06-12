@@ -18,8 +18,9 @@ module Shopify
         password:               password,
         password_confirmation:  password,
         send_email_welcome:     false,
-        addresses:              addresses,
+        addresses:              addresses
         )
+      @customer
     end
 
     def password
