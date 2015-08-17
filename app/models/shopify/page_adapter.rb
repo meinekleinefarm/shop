@@ -11,11 +11,11 @@ module Shopify
 
     def to_shopify
       ShopifyAPI::Page.new(
-      title:      @spree_page.title,
-      body_html:  self.class.markdown.render(@spree_page.contents.first.body),
-      handle:     @spree_page.path,
-      created_at: @spree_page.created_at,
-      updated_at: @spree_page.updated_at
+        title:      @spree_page.title,
+        body_html:  self.class.markdown.render(@spree_page.contents.first.body),
+        handle:     @spree_page.path,
+        created_at: @spree_page.created_at,
+        updated_at: @spree_page.updated_at
       )
     end
   end

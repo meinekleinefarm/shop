@@ -625,6 +625,22 @@ ActiveRecord::Schema.define(:version => 20141124123244) do
   add_index "spree_roles_users", ["role_id"], :name => "index_spree_roles_users_on_role_id"
   add_index "spree_roles_users", ["user_id"], :name => "index_spree_roles_users_on_user_id"
 
+  create_table "spree_schafe", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "date_of_birth"
+    t.date     "date_of_death"
+    t.integer  "weight"
+    t.string   "meta_keywords"
+    t.string   "meta_description"
+    t.datetime "deleted_at"
+    t.string   "permalink"
+    t.integer  "position"
+    t.string   "race"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "spree_schweine", :force => true do |t|
     t.string   "name"
     t.text     "description"
