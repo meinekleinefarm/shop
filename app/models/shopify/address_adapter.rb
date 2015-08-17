@@ -17,6 +17,7 @@ module Shopify
         phone:      @spree_address.phone,
         country:    @spree_address.country.iso
       )
+      @address
     end
   end
 end

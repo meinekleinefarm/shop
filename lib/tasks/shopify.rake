@@ -1,4 +1,4 @@
-
+require 'ruby-progressbar'
 
 def payment_state(state)
   states = {
@@ -38,17 +38,33 @@ namespace :shopify do
 
     desc "Upload all customers"
     task customers: :environment do
-      Spree::User.all.each do |user|
+      progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => Spree::User.count )
+      Spree::User.find_each do |user|
         shopify_customer = Shopify::CustomerAdapter.new(user).to_shopify
-        shopify_customer.save
+        begin
+          shopify_customer.save
+        rescue => e
+          puts shopify_customer.addresses.inspect
+          puts shopify_customer.errors.inspect
+          puts e.message
+        ensure
+          progress_bar.increment
+        end
       end
     end
 
     desc "Upload all orrders"
     task orders: :environment do
-      Spree::Order.complete.each do |order|
+      progress_bar = ProgressBar.create(:title => "orders", :format => '%a |%b>>%i| %C %t', :total => Spree::Order.complete.count )
+      Spree::Order.complete.order('completed_at DESC').each do |order|
         shopify_order = Shopify::OrderAdapter.new(order).to_shopify
         shopify_order.save
+        if order.state == 'complete' ||
+          order.payment_state == 'paid' ||
+          order.shipment_state == 'shipped'
+#          shopify_order.close
+        end
+        progress_bar.increment
       end
     end
 

@@ -9,6 +9,7 @@ module Shopify
       @blog ||= ShopifyAPI::Blog.new(
         title:        @spree_blog.name,
         handle:       @spree_blog.permalink,
+        commentable:  "moderate",
         updated_at:   @spree_blog.updated_at,
         created_at:   @spree_blog.created_at
       )

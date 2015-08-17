@@ -13,11 +13,13 @@ module Shopify
         total_tax:               total_tax,
         total_weight:            total_weight,
         taxes_included:          true,
+        tax_lines:               tax_lines,
         order_id:                @spree_order.number,
         currency:                @spree_order.currency,
         name:                    @spree_order.number,
         created_at:              @spree_order.created_at,
         updated_at:              @spree_order.updated_at,
+        processed_at:            @spree_order.completed_at,
         source_name:             "spree",
         financial_status:        payment_state(@spree_order.payment_state),
         fulfillment_status:      shipment_state(@spree_order.shipment_state),
@@ -30,6 +32,14 @@ module Shopify
 
     def total_tax
       @spree_order.line_items.map(&:tax_amount).reduce(:+).to_f
+    end
+
+    def tax_lines
+      [{
+        price: total_tax,
+        rate: 0.07,
+        title: "inkl. USt."
+      }]
     end
 
     def total_weight
