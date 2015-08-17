@@ -9,15 +9,18 @@ namespace :export do
   desc 'Export products with sku, name, price and so on.'
   task :products => :environment do
     csv_file = ENV['FILE'] || 'products.csv'
+    hof = Spree::Taxonomy.find_by_name('Hof')
+    category = Spree::Taxonomy.find_by_name('Art')
 
-    CSV.open(csv_file, "wb", :force_quotes => true) do |csv|
-      csv << ["Artikelnummer", "Name", "Gewicht", "Verpackung", "Photo", "VK"]
+    CSV.open(csv_file, "wb") do |csv|
+      csv << ["Artikelnummer", "Name", "Kategorie", "Hof", "Gewicht", "Verpackung", "VK"]
       Spree::Product.find_each do |product|
         csv << [  product.sku,
                   product.name,
+                  product.taxons.where(taxonomy_id: category.id).limit(1).pluck(:name).first,
+                  product.taxons.where(taxonomy_id: hof.id).limit(1).pluck(:name).first,
                   number_with_precision(product.weight.to_f, precision: 0),
                   product.container,
-                  "http://www.meinekleinefarm.org#{product.images.first.try(:attachment).try(:url, :original)}",
                   number_to_currency(product.price.to_f, :unit => '€', precision: 2)
                 ]
       end
