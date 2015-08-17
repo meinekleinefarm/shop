@@ -31,6 +31,8 @@ group :default do
   gem 'shopify_api'
   gem 'forgery', require: false
   gem 'redcarpet'
+  gem 'chunky_png'
+  gem 'barby'
 end
 
 # Gems used only for assets and not required
