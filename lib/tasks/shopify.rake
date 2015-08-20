@@ -1,25 +1,5 @@
 require 'ruby-progressbar'
 
-def payment_state(state)
-  states = {
-    "paid" => "paid",
-    "balance_due" => "pending",
-    "failed" => "voided"
-  }
-  states[state]
-end
-
-def shipment_state(state)
-  states = {
-    "shipped" => "fulfilled",
-    "ready" => nil,
-    "pending" => nil,
-    "partial" => "partial"
-  }
-  states[state]
-end
-
-
 namespace :shopify do
 
   namespace :upload do
@@ -41,14 +21,9 @@ namespace :shopify do
       progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => Spree::User.count )
       Spree::User.find_each do |user|
         shopify_customer = ShopifyAPI::Customer.find(:first, :from => :search, :params => { :q => "email:#{user.email}"}) || ShopifyAPI::Customer.new
-        Shopify::CustomerAdapter.new(user).attributes.each do |k,v|
-          shopify_customer.send("#{k}=", v)
-        end
-        if shopify_customer.save
-          puts "saved #{shopify_customer.id}"
-        end
+        shopify_customer.attributes = shopify_customer.attributes.merge(Shopify::CustomerAdapter.new(user).attributes)
+        shopify_customer.save
         progress_bar.increment
-        end
       end
     end
 
