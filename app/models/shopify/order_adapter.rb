@@ -25,7 +25,6 @@ module Shopify
         created_at:              @spree_order.created_at,
         updated_at:              @spree_order.updated_at,
         processed_at:            @spree_order.completed_at,
-        closed_at:               closed_at,
         source_name:             "spree",
         financial_status:        payment_state(@spree_order.payment_state),
         fulfillment_status:      shipment_state(@spree_order.shipment_state),
@@ -36,10 +35,6 @@ module Shopify
         billing_address:         billing_address,
         shipping_address:        shipping_address
       }
-    end
-
-    def closed_at
-      [@spree_order.created_at, @spree_order.updated_at, @spree_order.completed_at ].max
     end
 
     def total_tax
