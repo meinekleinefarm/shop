@@ -40,15 +40,14 @@ namespace :shopify do
     task customers: :environment do
       progress_bar = ProgressBar.create(:title => "customers", :format => '%a |%b>>%i| %C %t', :total => Spree::User.count )
       Spree::User.find_each do |user|
-        shopify_customer = Shopify::CustomerAdapter.new(user).to_shopify
-        begin
-          shopify_customer.save
-        rescue => e
-          puts shopify_customer.addresses.inspect
-          puts shopify_customer.errors.inspect
-          puts e.message
-        ensure
-          progress_bar.increment
+        shopify_customer = ShopifyAPI::Customer.find(:first, :from => :search, :params => { :q => "email:#{user.email}"}) || ShopifyAPI::Customer.new
+        Shopify::CustomerAdapter.new(user).attributes.each do |k,v|
+          shopify_customer.send("#{k}=", v)
+        end
+        if shopify_customer.save
+          puts "saved #{shopify_customer.id}"
+        end
+        progress_bar.increment
         end
       end
     end
@@ -56,33 +55,31 @@ namespace :shopify do
     desc "Upload all orrders"
     task orders: :environment do
       progress_bar = ProgressBar.create(:title => "orders", :format => '%a |%b>>%i| %C %t', :total => Spree::Order.complete.count )
-      Spree::Order.complete.order('completed_at DESC').each do |order|
-        shopify_order = Shopify::OrderAdapter.new(order).to_shopify
+      Spree::Order.order('completed_at DESC').each do |order|
+        shopify_order = ShopifyAPI::Order.find(:first, params: {name: "#{order.number}"}) || ShopifyAPI::Order.new
+        shopify_order.attributes = shopify_order.attributes.merge(Shopify::OrderAdapter.new(order).attributes)
         shopify_order.save
-        if order.state == 'complete' ||
-          order.payment_state == 'paid' ||
-          order.shipment_state == 'shipped'
-#          shopify_order.close
-        end
         progress_bar.increment
       end
     end
 
     desc "Upload all products"
     task products: :environment do
+      progress_bar = ProgressBar.create(:title => "products", :format => '%a |%b>>%i| %C %t', :total => Spree::Product.where("count_on_hand > 0").count )
       Spree::Product.where("count_on_hand > 0").each do |product|
         shopify_product = Shopify::ProductAdapter.new(product).to_shopify
         shopify_product.save
-        putc '.'
+        progress_bar.increment
       end
     end
 
     desc 'Upload all static pages'
     task pages: :environment do
-      Spree::Page.limit(10).each do |page|
+      progress_bar = ProgressBar.create(:title => "pages", :format => '%a |%b>>%i| %C %t', :total => Spree::Page.count )
+      Spree::Page.each do |page|
         shopify_page = Shopify::PageAdapter.new(page).to_shopify
         shopify_page.save
-        putc '.'
+        progress_bar.increment
       end
     end
 

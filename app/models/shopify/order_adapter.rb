@@ -6,7 +6,11 @@ module Shopify
     end
 
     def to_shopify
-      @order ||= ShopifyAPI::Order.new(
+      @order ||= ShopifyAPI::Order.new(attributes)
+    end
+
+    def attributes
+      {
         email:                   @spree_order.email,
         total_line_items_price:  @spree_order.item_total,
         total_price:             @spree_order.total,
@@ -17,17 +21,25 @@ module Shopify
         order_id:                @spree_order.number,
         currency:                @spree_order.currency,
         name:                    @spree_order.number,
+        order_number:            @spree_order.number,
         created_at:              @spree_order.created_at,
         updated_at:              @spree_order.updated_at,
         processed_at:            @spree_order.completed_at,
+        closed_at:               closed_at,
         source_name:             "spree",
         financial_status:        payment_state(@spree_order.payment_state),
         fulfillment_status:      shipment_state(@spree_order.shipment_state),
+        fulfillments:            fulfillments,
+        transactions:            transactions,
         customer:                customer,
         line_items:              line_items,
         billing_address:         billing_address,
         shipping_address:        shipping_address
-        )
+      }
+    end
+
+    def closed_at
+      [@spree_order.created_at, @spree_order.updated_at, @spree_order.completed_at ].max
     end
 
     def total_tax
@@ -59,6 +71,18 @@ module Shopify
       AddressAdapter.new(@spree_order.shipping_address).to_shopify
     end
 
+    def fulfillments
+      @fulfillments ||= @spree_order.shipments.map do |shipment|
+        FulfillmentAdapter.new(shipment).to_shopify
+      end
+    end
+
+    def transactions
+      @transaction ||= @spree_order.payments.map do |payment|
+        TransactionAdapter.new(payment).to_shopify
+      end
+    end
+
     def line_items
       @line_items ||= @spree_order.line_items.map do |line_item|
         LineItemAdapter.new(line_item).to_shopify
@@ -77,8 +101,8 @@ module Shopify
     def shipment_state(state)
       states = {
         "shipped" => "fulfilled",
-        "ready" => nil,
-        "pending" => nil,
+        "ready" => "null",
+        "pending" => "null",
         "partial" => "partial"
       }
       states[state]

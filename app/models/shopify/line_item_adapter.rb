@@ -11,7 +11,8 @@ module Shopify
         quantity:   @spree_item.quantity,
         price:      @spree_item.price,
         title:      @spree_item.variant.name,
-        name:       @spree_item.variant.name
+        name:       @spree_item.variant.name,
+        grams:      @spree_item.variant.weight
       )
     end
   end
