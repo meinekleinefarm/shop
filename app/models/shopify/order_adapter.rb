@@ -12,6 +12,7 @@ module Shopify
     def attributes
       {
         email:                   @spree_order.email,
+        send_receipt:            false,
         total_line_items_price:  @spree_order.item_total,
         total_price:             @spree_order.total,
         total_tax:               total_tax,
