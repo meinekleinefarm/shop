@@ -38,7 +38,7 @@ namespace :shopify do
     desc "Upload all orrders"
     task orders: :environment do
       progress_bar = ProgressBar.create(:title => "orders", :format => bar_format, :total => Spree::Order.complete.count )
-      Spree::Order.order('completed_at DESC').each do |order|
+      Spree::Order.complete.order('completed_at DESC').each do |order|
         shopify_order = ShopifyAPI::Order.find(:first, params: {name: "#{order.number}"}) || ShopifyAPI::Order.new
         shopify_order.attributes = shopify_order.attributes.merge(Shopify::OrderAdapter.new(order).attributes)
         shopify_order.save

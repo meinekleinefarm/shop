@@ -6,6 +6,7 @@ module Shopify
     end
 
     def to_shopify
+      return nil unless @spree_address.present?
       @address ||= ShopifyAPI::Address.new(
         first_name: @spree_address.firstname,
         last_name:  @spree_address.lastname,

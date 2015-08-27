@@ -19,6 +19,8 @@ module Shopify
         total_weight:            total_weight,
         taxes_included:          true,
         tax_lines:               tax_lines,
+        shipping_lines:          shipping_lines,
+        total_discounts:         total_discounts,
         order_id:                @spree_order.number,
         currency:                @spree_order.currency,
         name:                    @spree_order.number,
@@ -28,9 +30,9 @@ module Shopify
         processed_at:            @spree_order.completed_at,
         source_name:             "spree",
         financial_status:        payment_state(@spree_order.payment_state),
+        transactions:            transactions,
         fulfillment_status:      shipment_state(@spree_order.shipment_state),
         fulfillments:            fulfillments,
-        transactions:            transactions,
         customer:                customer,
         line_items:              line_items,
         billing_address:         billing_address,
@@ -42,6 +44,22 @@ module Shopify
       @spree_order.line_items.map(&:tax_amount).reduce(:+).to_f
     end
 
+    def total_discounts
+      @spree_order.adjustments.where("amount < 0").map(&:amount).reduce(:+).to_f
+    end
+
+    def shipping_lines
+      @spree_order.adjustments.where(originator_type: "Spree::ShippingMethod").map do |adjustment|
+        {
+          code: adjustment.originator.name,
+          price: adjustment.amount.to_f,
+          title: adjustment.originator.name,
+          source: 'spree_commerce',
+          taxlines: []
+        }
+      end
+    end
+
     def tax_lines
       [{
         price: total_tax,
@@ -51,7 +69,7 @@ module Shopify
     end
 
     def total_weight
-      @spree_order.line_items.map(&:product).map(&:weight).map(&:to_i).reduce(:+)
+      @spree_order.line_items.map(&:variant).map(&:weight).map(&:to_i).reduce(:+)
     end
 
     def customer
@@ -96,10 +114,10 @@ module Shopify
 
     def shipment_state(state)
       states = {
-        "shipped" => "fulfilled",
-        "ready" => "null",
-        "pending" => "null",
-        "partial" => "partial"
+        "ready" => nil,
+        "pending" => nil,
+        "partial" => "partial",
+        "shipped" => "fulfilled"
       }
       states[state]
     end

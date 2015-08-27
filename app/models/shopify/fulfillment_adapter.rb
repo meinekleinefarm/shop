@@ -7,8 +7,9 @@ module Shopify
 
     def shipping_status
       states = {
-        "pending" => "pending",
         "ready" => "pending",
+        "pending" => "pending",
+        "partial" => "partial",
         "shipped" => "success"
       }
       states[@spree_shipment.state]
