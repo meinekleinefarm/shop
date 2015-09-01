@@ -155,4 +155,16 @@ namespace :export do
       end
     end
   end
+
+  task reviews: :environment do
+    CSV.open("reviews.csv", "wb", :force_quotes => true) do |csv|
+      csv << ["product_handle", "rating", "title","author", "email","body","created_at"]
+      Spree::Review.find_each do |review|
+        email = review.user.try(:email)
+        email ||= 'anonym@meinekleinefarm.org'
+        csv << [review.product.try(:permalink), review.rating, review.title, review.name, email, review.review, review.created_at]
+      end
+    end
+
+  end
 end

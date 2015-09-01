@@ -86,7 +86,7 @@ module Shopify
     end
 
     def fulfillments
-      @fulfillments ||= @spree_order.shipments.map do |shipment|
+      @fulfillments ||= @spree_order.shipments.select{ |s| s.shipped? }.map do |shipment|
         FulfillmentAdapter.new(shipment).to_shopify
       end
     end
