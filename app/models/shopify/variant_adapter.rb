@@ -17,7 +17,6 @@ module Shopify
       barcode: barcode,
       product_id: @spree_variant.product.id.to_s,
       inventory_management: 'shopify',
-      images: images
       )
     end
 
@@ -27,12 +26,6 @@ module Shopify
       joins(:option_type).
       order("#{Spree::OptionType.table_name}.position asc").
       first.try(:presentation)
-    end
-
-    def images
-      @images ||= @spree_variant.images.map do |image|
-        ImageAdapter.new(image).to_shopify
-      end
     end
 
     def barcode

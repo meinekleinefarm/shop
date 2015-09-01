@@ -5,28 +5,32 @@ module Shopify
       @spree_product = spree_product
     end
 
+    def attributes
+      {
+        product_id: @spree_product.id.to_s,
+        sku: @spree_product.sku,
+        title: @spree_product.name,
+        body_html: @spree_product.description,
+        price: @spree_product.price.to_f,
+        weight: @spree_product.weight.to_i,
+        handle: @spree_product.permalink,
+        product_type: @spree_product.taxons.where(taxonomy_id: category.id).limit(1).pluck(:name).first,
+        vendor: @spree_product.taxons.where(taxonomy_id: hof.id).limit(1).pluck(:name).first,
+        requires_shipping: !giftcard?,
+        inventory_management: 'shopify',
+        published_at: @spree_product.available_on,
+        images: images,
+        options: [
+          {
+            name: "Tier"
+          }
+        ],
+        variants: variants
+      }
+    end
+
     def to_shopify
-      @product ||= ShopifyAPI::Product.new(
-      product_id: @spree_product.id.to_s,
-      sku: @spree_product.sku,
-      title: @spree_product.name,
-      body_html: @spree_product.description,
-      price: @spree_product.price.to_f,
-      weight: @spree_product.weight.to_i,
-      handle: @spree_product.permalink,
-      product_type: @spree_product.taxons.where(taxonomy_id: category.id).limit(1).pluck(:name).first,
-      vendor: @spree_product.taxons.where(taxonomy_id: hof.id).limit(1).pluck(:name).first,
-      requires_shipping: !giftcard?,
-      inventory_management: 'shopify',
-      published_at: @spree_product.available_on,
-      images: images,
-      options: [
-        {
-          name: "Tier"
-        }
-      ],
-      variants: variants
-      )
+      @product ||= ShopifyAPI::Product.new(attributes)
     end
 
     def giftcard?

@@ -49,9 +49,23 @@ namespace :shopify do
     desc "Upload all products"
     task products: :environment do
       progress_bar = ProgressBar.create(:title => "products", :format => bar_format, :total => Spree::Product.where("count_on_hand > 0").count )
-      Spree::Product.where("count_on_hand > 0").each do |product|
-        shopify_product = Shopify::ProductAdapter.new(product).to_shopify
+      Spree::Product.each do |product|
+        shopify_product = ShopifyAPI::Product.find(:first, params: {handle: product.permalink } ) || ShopifyAPI::Product.new
+        shopify_product.attributes = Shopify::ProductAdapter.new(product).attributes
         shopify_product.save
+        product.variants.each do |variant|
+          title = variant.option_values.first.name
+          puts ({ title: title, product_id: product.id })
+          shopify_variant = ShopifyAPI::Variant.find(:first, params: { option1: title, product_id: product.id})
+          puts shopify_variant.inspect
+          variant.images.each do |image|
+            shopify_image = Shopify::ImageAdapter.new(image).to_shopify
+            shopify_image.prefix_options = { product_id: shopify_product.id }
+            shopify_image.variant_ids = [ shopify_variant.id ]
+            puts shopify_image.inspect
+            shopify_image.save
+          end
+        end
         progress_bar.increment
       end
     end

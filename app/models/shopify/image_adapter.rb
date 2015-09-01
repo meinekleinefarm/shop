@@ -1,4 +1,3 @@
-require 'forgery'
 module Shopify
   class ImageAdapter
 
