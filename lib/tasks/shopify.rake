@@ -46,26 +46,91 @@ namespace :shopify do
       end
     end
 
+    desc "Upload all product with animal + weight options"
+    task products_with_weight: :environment do
+      shopify_ids = {}
+      progress_bar = ProgressBar.create(:title => "products", :format => bar_format, :total => Spree::Product.where("name ~ '[0-9]+k?g'").where("count_on_hand > 0").count)
+      Spree::Product.where("name ~ '[0-9]+k?g'").where("count_on_hand >= 0").find_each do |product|
+        puts ">>>>>>>>>>>>>>>>>>>>>>>"
+        puts [product.id, product.name].join(' ')
+        puts shopify_ids
+        name =   product.name.gsub(/(.*)\s+\(?\d+k?g\)?$/, '\1')
+        weight = product.name.gsub(/.*\s+\(?(\d+)g\)?$/, '\1').to_i
+        weight ||= product.name.gsub(/.*\s+\(?(\d+)k?g\)?$/, '\1').to_i * 1000
+        handle = name.parameterize
+
+        ShopifyAPI::Redirect.new(path: "/products/#{product.permalink}", target: "/products/#{handle}")
+
+        if shopify_ids[name].present?
+          puts shopify_ids[name]
+          shopify_product = ShopifyAPI::Product.find(shopify_ids[name])
+          puts shopify_product.id
+        end
+        shopify_product ||= ShopifyAPI::Product.find(:first, params: { handle: handle } ) || ShopifyAPI::Product.new
+        shopify_product.attributes.reverse_merge!(Shopify::ProductWeightAdapter.new(product, name).attributes)
+        shopify_product.save
+        shopify_ids[name] ||= shopify_product.id
+        puts shopify_ids
+
+        shopify_variants = ShopifyAPI::Variant.find(:all, params: { product_id: shopify_product.id})
+        product.variants.each do |variant|
+
+          animal = variant.option_values.try(:first).try(:name)
+          puts ({ name: name, weight: weight, title: animal, product_id: product.id, shopify_id: shopify_product.id })
+          shopify_variant = shopify_variants.select{ |v| v.option2 == animal && v.option1 == weight }.first || ShopifyAPI::Variant.new( product_id: shopify_product.id )
+          shopify_variant.attributes.reverse_merge!(Shopify::VariantWeightAdapter.new(variant).attributes)
+          variant_with_image_from_same_animal = shopify_variants.select{ |v| v.option2 == animal && v.image_id.present? }.first
+          #puts shopify_variant.inspect
+          shopify_variant.save
+
+          if variant_with_image_from_same_animal
+            shopify_variant.image_id = variant_with_image_from_same_animal.image_id
+            shopify_variant.save
+          else
+            variant.images.each do |image|
+              shopify_image = Shopify::ImageAdapter.new(image, [shopify_variant.id]).to_shopify
+              shopify_image.prefix_options = { product_id: shopify_product.id }
+              shopify_image.save
+              #puts shopify_image.inspect
+              puts shopify_image.errors.messages unless shopify_image.errors.empty?
+            end
+          end
+        end
+      end
+      # TODO: Create redirect when product has weight option
+      progress_bar.increment
+
+
+    end
+
     desc "Upload all products"
     task products: :environment do
       progress_bar = ProgressBar.create(:title => "products", :format => bar_format, :total => Spree::Product.where("count_on_hand > 0").count )
-      Spree::Product.each do |product|
-        shopify_product = ShopifyAPI::Product.find(:first, params: {handle: product.permalink } ) || ShopifyAPI::Product.new
+      Spree::Product.find_each do |product|
+
+        shopify_product = ShopifyAPI::Product.find(:first, params: {handle: handle } ) || ShopifyAPI::Product.new
         shopify_product.attributes = Shopify::ProductAdapter.new(product).attributes
         shopify_product.save
         product.variants.each do |variant|
           title = variant.option_values.first.name
-          puts ({ title: title, product_id: product.id })
-          shopify_variant = ShopifyAPI::Variant.find(:first, params: { option1: title, product_id: product.id})
-          puts shopify_variant.inspect
-          variant.images.each do |image|
-            shopify_image = Shopify::ImageAdapter.new(image).to_shopify
-            shopify_image.prefix_options = { product_id: shopify_product.id }
-            shopify_image.variant_ids = [ shopify_variant.id ]
-            puts shopify_image.inspect
-            shopify_image.save
+          puts ({ title: title, product_id: shopify_product.id })
+          if shopify_variant = ShopifyAPI::Variant.find(:all, params: { product_id: shopify_product.id}).
+            select{ |v| v.title == title}.first
+            puts shopify_variant.inspect
+            if image_id = shopify_variant.image_id
+              ShopifyAPI::Image.delete(image_id, product_id: shopify_product.id)
+            end
+            variant.images.each do |image|
+              shopify_image = Shopify::ImageAdapter.new(image, [shopify_variant.id]).to_shopify
+              shopify_image.prefix_options = { product_id: shopify_product.id }
+              shopify_image.save
+              puts shopify_image.inspect
+              puts shopify_image.errors.messages
+            end
           end
         end
+
+        # TODO: Create redirect when product has weight option
         progress_bar.increment
       end
     end
