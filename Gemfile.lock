@@ -121,7 +121,7 @@ GIT
 
 GIT
   remote: git://github.com/meinekleinefarm/spree_mkf_theme
-  revision: 74f2382e42611a09f48e87fee4cfa8253ff4d5f4
+  revision: a7bf07e03b6a1a4ee8553bce8de5c77b81ed89aa
   branch: master
   specs:
     spree_mkf_theme (1.2.3)
@@ -227,7 +227,7 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemerchant (1.49.0)
+    activemerchant (1.54.0)
       activesupport (>= 3.2.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
       i18n (>= 0.6.9)
@@ -317,6 +317,7 @@ GEM
     coffee-script-source (1.4.0)
     color (1.4.2)
     colorize (0.7.7)
+    daemons (1.2.3)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
     deface (1.0.1)
@@ -324,6 +325,11 @@ GEM
       nokogiri (~> 1.6.0)
       polyglot
       rails (>= 3.1)
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.1.0)
+      activerecord (>= 3.0, < 5)
+      delayed_job (>= 3.0, < 5)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -382,7 +388,7 @@ GEM
     jquery-rails (2.2.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.2)
+    json (1.8.3)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -408,7 +414,7 @@ GEM
     mini_portile (0.6.2)
     money (5.1.1)
       i18n (~> 0.6.0)
-    multi_json (1.11.0)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -451,8 +457,8 @@ GEM
     rabl (0.7.2)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
-    rack (1.4.5)
-    rack-cache (1.2)
+    rack (1.4.7)
+    rack-cache (1.5.1)
       rack (>= 0.4)
     rack-ssl (1.3.4)
       rack
@@ -609,7 +615,7 @@ GEM
     turbo-sprockets-rails3 (0.3.14)
       railties (> 3.2.8, < 4.0.0)
       sprockets (>= 2.2.0)
-    tzinfo (0.3.44)
+    tzinfo (0.3.45)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -647,7 +653,9 @@ DEPENDENCIES
   capybara-webkit
   chunky_png
   coffee-rails (~> 3.2.1)
+  daemons
   database_cleaner
+  delayed_job_active_record
   factory_girl_rails
   faker
   figaro
@@ -707,3 +715,6 @@ DEPENDENCIES
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
   unicorn
+
+BUNDLED WITH
+   1.10.5
