@@ -13,29 +13,30 @@ group :default do
   gem 'pg'
   gem 'jquery-rails' #, '~> 2.1.4'
 
-  gem 'tinymce-rails'
-  gem 'tinymce-rails-langs'
+  # gem 'tinymce-rails'
+  # gem 'tinymce-rails-langs'
 
   gem 'i18n'
   gem 'rails-i18n'
   gem 'html2markdown'
   gem 'airbrake'
 
-  gem 'retentiongrid'
+  # gem 'retentiongrid'
   # gem 'retentiongrid', path: '../retentiongrid'
   gem 'ruby-progressbar', require: false
 
-  gem 'newrelic_rpm'
+  # gem 'newrelic_rpm'
 
-  gem 'figaro'
-  gem 'shopify_api'
+  # gem 'figaro'
+  gem 'shopify_api', '~>4.0.3'
+  gem 'gibbon'
   gem 'forgery', require: false
   gem 'redcarpet'
   gem 'chunky_png'
   gem 'barby'
 
-  gem 'daemons'
-  gem 'delayed_job_active_record'
+  # gem 'daemons'
+  # gem 'delayed_job_active_record'
 end
 
 # Gems used only for assets and not required
@@ -45,42 +46,42 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+  # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
   gem 'turbo-sprockets-rails3'
 end
 
 group :test, :development do
-  gem 'rb-fsevent'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-pow',     require: false
-  gem 'guard-bundler', require: false
-
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'factory_girl_rails'
-  gem 'launchy'
+#   gem 'rb-fsevent'
+#   gem 'guard'
+#   gem 'guard-rspec'
+#   gem 'guard-pow',     require: false
+#   gem 'guard-bundler', require: false
+# 
+#   gem 'rspec-rails'
+#   gem 'shoulda-matchers'
+#   gem 'capybara'
+#   gem 'capybara-webkit'
+#   gem 'factory_girl_rails'
+#   gem 'launchy'
 end
 
 group :development do
-  gem 'ruby-graphviz'
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'ruby-graphviz'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
 
   # Deploy with Capistrano
-  gem 'capistrano',       '~> 3.0.0'
-  gem 'capistrano-rails', '~> 1.1.0'
-  gem 'capistrano-rbenv', '~> 2.0'
-  gem 'capistrano-bundler'
+  # gem 'capistrano',       '~> 3.0.0'
+  # gem 'capistrano-rails', '~> 1.1.0'
+  # gem 'capistrano-rbenv', '~> 2.0'
+  # gem 'capistrano-bundler'
 end
 
 group :test do
-  gem 'database_cleaner'
-  gem 'faker'
+  # gem 'database_cleaner'
+  # gem 'faker'
 end
 
 group :production, :staging do
